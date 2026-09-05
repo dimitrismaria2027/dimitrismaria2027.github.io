@@ -1,945 +1,1593 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Δημήτρης & Μαρία</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --burgundy: #751d32;
-      --dark-burgundy: #4e1020;
-      --cream: #f7f0e2;
-      --gold: #c69a4b;
-      --black: #171414;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      background: var(--cream);
-      color: var(--black);
-      font-family: "Cormorant Garamond", serif;
-      overflow-x: hidden;
-    }
-
-    /* =========================
-       ENVELOPE SCREEN
-       ========================= */
-
-    .opening-screen {
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      background:
-        radial-gradient(circle at 50% 45%, #8d2941 0%, var(--burgundy) 45%, #4a0e1d 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      transition: opacity 1.2s ease, visibility 1.2s ease;
-    }
-
-    .opening-screen.hidden {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    .opening-title {
-      position: absolute;
-      top: 7%;
-      width: 100%;
-      text-align: center;
-      color: #f4dfae;
-      letter-spacing: 3px;
-      font-size: 14px;
-      text-transform: uppercase;
-      opacity: 0.9;
-    }
-
-    .envelope-wrapper {
-      position: relative;
-      width: min(88vw, 430px);
-      height: min(60vw, 290px);
-      perspective: 1200px;
-    }
-
-    .envelope {
-      position: absolute;
-      inset: 0;
-      background: #64162b;
-      border-radius: 5px;
-      box-shadow:
-        0 25px 70px rgba(0, 0, 0, 0.45),
-        0 4px 10px rgba(0, 0, 0, 0.25);
-    }
-
-    /* Letter inside */
-
-    .letter {
-      position: absolute;
-      left: 6%;
-      right: 6%;
-      top: 10%;
-      height: 85%;
-      background: var(--cream);
-      z-index: 2;
-      border-radius: 2px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      transition: transform 1.5s cubic-bezier(.2,.8,.2,1);
-      box-shadow: 0 4px 15px rgba(0,0,0,.2);
-    }
-
-    .letter-content {
-      color: var(--burgundy);
-      opacity: .9;
-    }
-
-    .letter-content .small {
-      font-size: 12px;
-      letter-spacing: 2px;
-    }
-
-    .letter-content .initials {
-      font-family: "Great Vibes", cursive;
-      font-size: 52px;
-      margin-top: 5px;
-    }
-
-    /* Envelope front */
-
-    .envelope-front {
-      position: absolute;
-      inset: 0;
-      z-index: 5;
-      overflow: hidden;
-      border-radius: 5px;
-    }
-
-    .envelope-front::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      border-style: solid;
-      border-width: 145px 215px 0 0;
-      border-color: #571125 transparent transparent transparent;
-    }
-
-    .envelope-front::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      border-style: solid;
-      border-width: 145px 0 0 215px;
-      border-color: #571125 transparent transparent transparent;
-    }
-
-    /* Flap */
-
-    .flap {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 0;
-      height: 0;
-      border-left: 50% solid transparent;
-      border-right: 50% solid transparent;
-      border-top: 145px solid #8a2840;
-      transform-origin: top center;
-      z-index: 8;
-      transition: transform 1.4s cubic-bezier(.2,.7,.2,1);
-    }
-
-    /* Because percentage borders don't behave reliably,
-       create the flap with clip-path instead. */
-
-    .flap {
-      width: 100%;
-      height: 58%;
-      border: none;
-      background: #8a2840;
-      clip-path: polygon(0 0, 100% 0, 50% 100%);
-      transform-origin: top center;
-    }
-
-    /* Seal */
-
-    .seal-button {
-      position: absolute;
-      left: 50%;
-      top: 49%;
-      transform: translate(-50%, -50%);
-      z-index: 20;
-
-      width: 78px;
-      height: 78px;
-      border-radius: 50%;
-      border: 2px solid #e1bd72;
-      background:
-        radial-gradient(circle at 35% 30%, #e3bc69, #a86d20 60%, #7a4b11);
-      color: #fff0c9;
-      box-shadow:
-        0 5px 15px rgba(0,0,0,.35),
-        inset 0 2px 3px rgba(255,255,255,.25);
-
-      cursor: pointer;
-      font-family: "Cormorant Garamond", serif;
-      transition: transform .3s ease, opacity .6s ease;
-    }
-
-    .seal-button:hover {
-      transform: translate(-50%, -50%) scale(1.05);
-    }
-
-    .seal-initials {
-      display: block;
-      font-family: "Great Vibes", cursive;
-      font-size: 29px;
-      line-height: 1;
-    }
-
-    .seal-subtitle {
-      display: block;
-      font-size: 8px;
-      letter-spacing: 1px;
-      margin-top: 4px;
-    }
-
-    .open-text {
-      position: absolute;
-      bottom: -48px;
-      left: 0;
-      width: 100%;
-      text-align: center;
-      color: #f4dfae;
-      font-size: 15px;
-      letter-spacing: 1.5px;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: .55; }
-      50% { opacity: 1; }
-    }
-
-    /* Stars */
-
-    .sparkle {
-      position: absolute;
-      color: #f4dfae;
-      font-size: 14px;
-      animation: sparkle 3s infinite ease-in-out;
-      opacity: .7;
-    }
-
-    .s1 { top: 18%; left: 16%; }
-    .s2 { top: 27%; right: 13%; animation-delay: .8s; }
-    .s3 { bottom: 22%; left: 10%; animation-delay: 1.3s; }
-    .s4 { bottom: 16%; right: 17%; animation-delay: 1.9s; }
-    .s5 { top: 12%; right: 30%; animation-delay: .4s; }
-
-    @keyframes sparkle {
-      0%,100% {
-        transform: scale(.7);
-        opacity: .2;
-      }
-      50% {
-        transform: scale(1.35);
-        opacity: 1;
-      }
-    }
-
-    /* Opening animation */
-
-    .opening-screen.opening .flap {
-      transform: rotateX(180deg);
-      z-index: 1;
-    }
-
-    .opening-screen.opening .letter {
-      transform: translateY(-58%);
-    }
-
-    .opening-screen.opening .seal-button {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    /* =========================
-       INVITATION
-       ========================= */
-
-    .invitation {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 1.2s ease, transform 1.2s ease;
-      pointer-events: none;
-    }
-
-    .invitation.visible {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-
-    .hero {
-      min-height: 100vh;
-      padding: 55px 20px 70px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 350px;
-      height: 350px;
-      border-radius: 50%;
-      background: rgba(117,29,50,.06);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    .crest {
-      width: 86px;
-      height: 100px;
-      margin-bottom: 25px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .crest-shape {
-      width: 100%;
-      height: 100%;
-      background: var(--burgundy);
-      clip-path: polygon(
-        8% 0,
-        92% 0,
-        92% 62%,
-        50% 100%,
-        8% 62%
-      );
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 20px rgba(0,0,0,.12);
-    }
-
-    .crest-inner {
-      width: 72px;
-      height: 86px;
-      border: 1px solid var(--gold);
-      clip-path: polygon(
-        8% 0,
-        92% 0,
-        92% 62%,
-        50% 100%,
-        8% 62%
-      );
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold);
-      font-family: "Great Vibes", cursive;
-      font-size: 30px;
-    }
-
-    .intro {
-      position: relative;
-      z-index: 1;
-      font-size: 17px;
-      max-width: 550px;
-      line-height: 1.7;
-      margin: 0 0 22px;
-    }
-
-    .names {
-      position: relative;
-      z-index: 1;
-      color: var(--burgundy);
-      font-size: clamp(45px, 12vw, 78px);
-      line-height: .95;
-      font-weight: 500;
-      margin: 5px 0;
-    }
-
-    .ampersand {
-      font-family: "Great Vibes", cursive;
-      color: var(--gold);
-      font-size: .75em;
-    }
-
-    .date {
-      position: relative;
-      z-index: 1;
-      margin-top: 30px;
-      color: var(--burgundy);
-      font-size: 22px;
-      letter-spacing: 3px;
-    }
-
-    .time {
-      position: relative;
-      z-index: 1;
-      font-size: 18px;
-      margin-top: 7px;
-    }
-
-    .magic-line {
-      position: relative;
-      z-index: 1;
-      color: var(--burgundy);
-      font-size: 20px;
-      margin-top: 35px;
-      font-style: italic;
-    }
-
-    .gold-line {
-      width: 100px;
-      height: 1px;
-      background: var(--gold);
-      margin: 22px auto;
-    }
-
-    section {
-      padding: 70px 20px;
-      text-align: center;
-      max-width: 850px;
-      margin: auto;
-    }
-
-    section:nth-child(even) {
-      background: rgba(117,29,50,.035);
-      max-width: none;
-    }
-
-    .section-inner {
-      max-width: 850px;
-      margin: auto;
-    }
-
-    .section-title {
-      color: var(--burgundy);
-      font-size: 30px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      margin: 0 0 15px;
-    }
-
-    .section-subtitle {
-      color: #555;
-      font-size: 16px;
-      letter-spacing: 1px;
-      margin-bottom: 30px;
-    }
-
-    .place {
-      font-size: 24px;
-      color: var(--black);
-      line-height: 1.35;
-      margin: 12px auto;
-      max-width: 650px;
-    }
-
-    .details {
-      font-size: 17px;
-      line-height: 1.7;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 25px;
-      max-width: 850px;
-      margin: 35px auto 0;
-    }
-
-    .card {
-      padding: 30px 20px;
-      border: 1px solid rgba(117,29,50,.2);
-      background: rgba(255,255,255,.28);
-    }
-
-    .card h3 {
-      color: var(--burgundy);
-      font-size: 21px;
-      margin: 0 0 16px;
-    }
-
-    .person {
-      font-size: 19px;
-      line-height: 1.8;
-    }
-
-    .phone {
-      display: inline-block;
-      color: var(--burgundy);
-      font-size: 20px;
-      text-decoration: none;
-      margin: 8px;
-      border-bottom: 1px solid var(--gold);
-      padding-bottom: 3px;
-    }
-
-    .iban {
-      background: rgba(117,29,50,.06);
-      border: 1px solid rgba(117,29,50,.2);
-      padding: 18px 12px;
-      margin: 25px auto;
-      max-width: 650px;
-      font-family: monospace;
-      font-size: 15px;
-      word-break: break-all;
-    }
-
-    .copy-button,
-    .map-button {
-      display: inline-block;
-      border: 1px solid var(--burgundy);
-      background: var(--burgundy);
-      color: white;
-      padding: 11px 20px;
-      font-family: "Cormorant Garamond", serif;
-      font-size: 16px;
-      text-decoration: none;
-      cursor: pointer;
-      margin: 5px;
-      transition: all .25s ease;
-    }
-
-    .copy-button:hover,
-    .map-button:hover {
-      background: transparent;
-      color: var(--burgundy);
-    }
-
-    .footer {
-      padding: 80px 20px 100px;
-      text-align: center;
-      background: var(--burgundy);
-      color: #f7ead0;
-    }
-
-    .footer-names {
-      font-size: 32px;
-      margin-bottom: 15px;
-    }
-
-    .footer-text {
-      font-size: 17px;
-      letter-spacing: 1px;
-    }
-
-    .tiny-stars {
-      color: #e5c47e;
-      letter-spacing: 8px;
-      margin: 20px 0;
-    }
-
-    @media (max-width: 650px) {
-      .cards {
-        grid-template-columns: 1fr;
-      }
-
-      .opening-title {
-        top: 10%;
-        font-size: 11px;
-      }
-
-      .envelope-wrapper {
-        width: 86vw;
-        height: 55vw;
-      }
-
-      .flap {
-        height: 57%;
-      }
-
-      .open-text {
-        bottom: -45px;
-      }
-
-      .hero {
-        padding-top: 50px;
-      }
-
-      .intro {
-        font-size: 16px;
-      }
-
-      .place {
-        font-size: 21px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Δημήτρης & Μαρία</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --burgundy:#741d32;
+  --burgundy-dark:#4d0f20;
+  --cream:#f7f0e2;
+  --gold:#c69a4b;
+  --gold-light:#ead29a;
+  --black:#171414;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--black);
+  font-family:"Cormorant Garamond",serif;
+  overflow-x:hidden;
+}
+
+/* ==================================================
+   MAGIC PARTICLES
+================================================== */
+
+.magic-particle{
+  position:fixed;
+  width:3px;
+  height:3px;
+  background:var(--gold-light);
+  border-radius:50%;
+  pointer-events:none;
+  z-index:999;
+  animation:magicFloat linear forwards;
+}
+
+@keyframes magicFloat{
+  0%{
+    opacity:0;
+    transform:translateY(20px) scale(.5);
+  }
+
+  20%{
+    opacity:1;
+  }
+
+  80%{
+    opacity:.8;
+  }
+
+  100%{
+    opacity:0;
+    transform:translateY(-120px) scale(1.4);
+  }
+}
+
+
+/* ==================================================
+   OPENING SCREEN
+================================================== */
+
+.opening-screen{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+
+  background:
+    radial-gradient(
+      circle at center,
+      #8a2942 0%,
+      var(--burgundy) 45%,
+      var(--burgundy-dark) 100%
+    );
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  overflow:hidden;
+
+  transition:
+    opacity 1.3s ease,
+    visibility 1.3s ease;
+}
+
+.opening-screen.hidden{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.opening-title{
+  position:absolute;
+  top:8%;
+  width:100%;
+
+  text-align:center;
+
+  color:var(--gold-light);
+
+  font-size:13px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+}
+
+.opening-subtitle{
+  position:absolute;
+  bottom:7%;
+  width:100%;
+
+  text-align:center;
+
+  color:#f4dfae;
+
+  font-size:13px;
+  letter-spacing:2px;
+
+  opacity:.65;
+}
+
+
+/* ==================================================
+   ENVELOPE
+================================================== */
+
+.envelope-wrapper{
+  position:relative;
+
+  width:min(88vw,430px);
+  height:min(60vw,290px);
+
+  perspective:1200px;
+}
+
+.envelope{
+  position:absolute;
+  inset:0;
+
+  background:#64162b;
+
+  border-radius:5px;
+
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.45),
+    0 5px 15px rgba(0,0,0,.25);
+}
+
+
+/* Letter */
+
+.letter{
+  position:absolute;
+
+  left:6%;
+  right:6%;
+  top:10%;
+
+  height:85%;
+
+  background:var(--cream);
+
+  z-index:2;
+
+  border-radius:2px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  transition:
+    transform 1.6s cubic-bezier(.2,.8,.2,1);
+
+  box-shadow:
+    0 5px 20px rgba(0,0,0,.2);
+}
+
+.letter-content{
+  color:var(--burgundy);
+}
+
+.letter-small{
+  font-size:11px;
+  letter-spacing:3px;
+}
+
+.letter-initials{
+  font-family:"Great Vibes",cursive;
+  font-size:52px;
+  margin-top:5px;
+}
+
+
+/* Envelope front */
+
+.envelope-front{
+  position:absolute;
+  inset:0;
+
+  z-index:5;
+
+  overflow:hidden;
+
+  border-radius:5px;
+}
+
+.envelope-front:before{
+  content:"";
+
+  position:absolute;
+
+  left:0;
+  bottom:0;
+
+  border-style:solid;
+  border-width:145px 215px 0 0;
+  border-color:#571125 transparent transparent transparent;
+}
+
+.envelope-front:after{
+  content:"";
+
+  position:absolute;
+
+  right:0;
+  bottom:0;
+
+  border-style:solid;
+  border-width:145px 0 0 215px;
+  border-color:#571125 transparent transparent transparent;
+}
+
+
+/* Envelope flap */
+
+.flap{
+  position:absolute;
+
+  left:0;
+  top:0;
+
+  width:100%;
+  height:58%;
+
+  background:#8a2840;
+
+  clip-path:
+    polygon(0 0,100% 0,50% 100%);
+
+  transform-origin:top center;
+
+  z-index:8;
+
+  transition:
+    transform 1.5s cubic-bezier(.2,.7,.2,1);
+}
+
+
+/* ==================================================
+   WAX SEAL
+================================================== */
+
+.seal-button{
+
+  position:absolute;
+
+  left:50%;
+  top:49%;
+
+  transform:translate(-50%,-50%);
+
+  z-index:20;
+
+  width:80px;
+  height:80px;
+
+  border-radius:50%;
+
+  border:2px solid #e5c77e;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #e5c274,
+      #ad7423 60%,
+      #75480f
+    );
+
+  color:#fff0c9;
+
+  box-shadow:
+    0 6px 18px rgba(0,0,0,.4),
+    inset 0 2px 4px rgba(255,255,255,.25);
+
+  cursor:pointer;
+
+  transition:
+    transform .3s ease,
+    opacity .7s ease;
+}
+
+.seal-button:hover{
+  transform:
+    translate(-50%,-50%)
+    scale(1.06);
+}
+
+.seal-initials{
+  display:block;
+
+  font-family:"Great Vibes",cursive;
+
+  font-size:29px;
+
+  line-height:1;
+}
+
+.seal-subtitle{
+  display:block;
+
+  font-size:8px;
+
+  letter-spacing:2px;
+
+  margin-top:5px;
+}
+
+
+/* ==================================================
+   OPENING ANIMATION
+================================================== */
+
+.opening-screen.opening .flap{
+  transform:rotateX(180deg);
+  z-index:1;
+}
+
+.opening-screen.opening .letter{
+  transform:translateY(-60%);
+}
+
+.opening-screen.opening .seal-button{
+  opacity:0;
+  pointer-events:none;
+}
+
+
+/* ==================================================
+   STARS
+================================================== */
+
+.star{
+  position:absolute;
+
+  color:var(--gold-light);
+
+  font-size:15px;
+
+  opacity:.5;
+
+  animation:
+    starPulse 3s infinite ease-in-out;
+}
+
+.star1{
+  top:18%;
+  left:15%;
+}
+
+.star2{
+  top:27%;
+  right:13%;
+  animation-delay:.7s;
+}
+
+.star3{
+  bottom:23%;
+  left:10%;
+  animation-delay:1.3s;
+}
+
+.star4{
+  bottom:17%;
+  right:17%;
+  animation-delay:1.8s;
+}
+
+.star5{
+  top:13%;
+  right:31%;
+  animation-delay:.4s;
+}
+
+@keyframes starPulse{
+
+  0%,100%{
+    opacity:.2;
+    transform:scale(.7) rotate(0deg);
+  }
+
+  50%{
+    opacity:1;
+    transform:scale(1.3) rotate(20deg);
+  }
+
+}
+
+
+/* ==================================================
+   INVITATION
+================================================== */
+
+.invitation{
+  opacity:0;
+
+  transform:translateY(30px);
+
+  transition:
+    opacity 1.3s ease,
+    transform 1.3s ease;
+
+  pointer-events:none;
+}
+
+.invitation.visible{
+  opacity:1;
+
+  transform:translateY(0);
+
+  pointer-events:auto;
+}
+
+
+/* ==================================================
+   HERO
+================================================== */
+
+.hero{
+
+  min-height:100vh;
+
+  padding:55px 20px 80px;
+
+  display:flex;
+  flex-direction:column;
+
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+.hero:before{
+
+  content:"";
+
+  position:absolute;
+
+  width:380px;
+  height:380px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(198,154,75,.08),
+      transparent 70%
+    );
+
+  top:50%;
+  left:50%;
+
+  transform:
+    translate(-50%,-50%);
+}
+
+
+/* ==================================================
+   CREST
+================================================== */
+
+.crest{
+  position:relative;
+
+  width:74px;
+  height:88px;
+
+  margin-bottom:28px;
+
+  z-index:2;
+}
+
+.crest-shape{
+
+  width:100%;
+  height:100%;
+
+  background:var(--burgundy);
+
+  clip-path:
+    polygon(
+      8% 0,
+      92% 0,
+      92% 62%,
+      50% 100%,
+      8% 62%
+    );
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  position:relative;
+}
+
+.crest-shape:before{
+
+  content:"";
+
+  position:absolute;
+
+  inset:7px;
+
+  border:1px solid var(--gold);
+
+  clip-path:
+    polygon(
+      8% 0,
+      92% 0,
+      92% 62%,
+      50% 100%,
+      8% 62%
+    );
+}
+
+.crest-initials{
+
+  color:var(--gold-light);
+
+  font-family:"Great Vibes",cursive;
+
+  font-size:27px;
+
+  position:relative;
+}
+
+
+/* Little magical ring */
+
+.crest:after{
+
+  content:"✦";
+
+  position:absolute;
+
+  right:-19px;
+  top:-13px;
+
+  color:var(--gold);
+
+  font-size:14px;
+
+  animation:
+    starPulse 2.5s infinite;
+}
+
+
+/* ==================================================
+   TEXT
+================================================== */
+
+.intro{
+
+  position:relative;
+  z-index:2;
+
+  max-width:560px;
+
+  font-size:18px;
+
+  line-height:1.7;
+
+  margin:0 0 20px;
+}
+
+.names{
+
+  position:relative;
+  z-index:2;
+
+  color:var(--burgundy);
+
+  font-size:
+    clamp(44px,12vw,78px);
+
+  line-height:.95;
+
+  font-weight:500;
+
+  margin:5px 0;
+}
+
+.ampersand{
+
+  font-family:"Great Vibes",cursive;
+
+  color:var(--gold);
+
+  font-size:.75em;
+}
+
+.gold-line{
+
+  width:105px;
+  height:1px;
+
+  background:var(--gold);
+
+  margin:23px auto;
+}
+
+.date{
+
+  position:relative;
+  z-index:2;
+
+  color:var(--burgundy);
+
+  font-size:22px;
+
+  letter-spacing:3px;
+
+  margin-top:30px;
+}
+
+.time{
+
+  position:relative;
+  z-index:2;
+
+  font-size:18px;
+
+  margin-top:7px;
+}
+
+.magic-line{
+
+  position:relative;
+  z-index:2;
+
+  color:var(--burgundy);
+
+  font-size:20px;
+
+  margin-top:34px;
+
+  font-style:italic;
+}
+
+
+/* ==================================================
+   SECTIONS
+================================================== */
+
+section{
+
+  padding:72px 20px;
+
+  text-align:center;
+
+  max-width:850px;
+
+  margin:auto;
+
+  position:relative;
+}
+
+section:nth-child(even){
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(117,29,50,.035),
+      transparent
+    );
+
+  max-width:none;
+}
+
+.section-inner{
+  max-width:850px;
+  margin:auto;
+}
+
+.section-title{
+
+  color:var(--burgundy);
+
+  font-size:30px;
+
+  font-weight:600;
+
+  letter-spacing:2px;
+
+  margin:0 0 15px;
+}
+
+.place{
+
+  font-size:24px;
+
+  color:var(--black);
+
+  line-height:1.4;
+
+  margin:12px auto;
+
+  max-width:650px;
+}
+
+.details{
+
+  font-size:17px;
+
+  line-height:1.7;
+}
+
+
+/* ==================================================
+   CARDS
+================================================== */
+
+.cards{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+  gap:25px;
+
+  max-width:850px;
+
+  margin:35px auto 0;
+}
+
+.card{
+
+  padding:30px 20px;
+
+  border:1px solid rgba(117,29,50,.2);
+
+  background:
+    rgba(255,255,255,.25);
+
+  position:relative;
+}
+
+.card:before{
+
+  content:"✦";
+
+  position:absolute;
+
+  top:10px;
+  right:13px;
+
+  color:var(--gold);
+
+  font-size:10px;
+
+  opacity:.6;
+}
+
+.card h3{
+
+  color:var(--burgundy);
+
+  font-size:21px;
+
+  margin:0 0 16px;
+}
+
+.person{
+
+  font-size:19px;
+
+  line-height:1.8;
+}
+
+
+/* ==================================================
+   RSVP
+================================================== */
+
+.phone{
+
+  display:inline-block;
+
+  color:var(--burgundy);
+
+  font-size:20px;
+
+  text-decoration:none;
+
+  margin:8px;
+
+  border-bottom:1px solid var(--gold);
+
+  padding-bottom:3px;
+}
+
+
+/* ==================================================
+   BUTTONS
+================================================== */
+
+.map-button,
+.copy-button{
+
+  display:inline-block;
+
+  border:1px solid var(--burgundy);
+
+  background:var(--burgundy);
+
+  color:white;
+
+  padding:11px 20px;
+
+  font-family:"Cormorant Garamond",serif;
+
+  font-size:16px;
+
+  text-decoration:none;
+
+  cursor:pointer;
+
+  margin:6px;
+
+  transition:.25s ease;
+}
+
+.map-button:hover,
+.copy-button:hover{
+
+  background:transparent;
+
+  color:var(--burgundy);
+}
+
+
+/* ==================================================
+   IBAN
+================================================== */
+
+.iban{
+
+  background:
+    rgba(117,29,50,.06);
+
+  border:1px solid rgba(117,29,50,.2);
+
+  padding:18px 12px;
+
+  margin:25px auto;
+
+  max-width:650px;
+
+  font-family:monospace;
+
+  font-size:15px;
+
+  word-break:break-all;
+}
+
+
+/* ==================================================
+   FOOTER
+================================================== */
+
+.footer{
+
+  padding:85px 20px 100px;
+
+  text-align:center;
+
+  background:var(--burgundy);
+
+  color:#f7ead0;
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+.footer:before{
+
+  content:"✦     ✧     ✦";
+
+  position:absolute;
+
+  top:20px;
+  left:0;
+
+  width:100%;
+
+  color:var(--gold-light);
+
+  letter-spacing:8px;
+
+  opacity:.35;
+}
+
+.footer-names{
+
+  font-size:32px;
+
+  margin-bottom:15px;
+}
+
+.footer-text{
+
+  font-size:17px;
+
+  letter-spacing:1px;
+}
+
+.tiny-stars{
+
+  color:#e5c47e;
+
+  letter-spacing:8px;
+
+  margin:20px 0;
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media(max-width:650px){
+
+  .opening-title{
+    top:10%;
+    font-size:10px;
+    letter-spacing:3px;
+  }
+
+  .opening-subtitle{
+    bottom:6%;
+    font-size:11px;
+  }
+
+  .envelope-wrapper{
+    width:86vw;
+    height:55vw;
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .intro{
+    font-size:16px;
+  }
+
+  .place{
+    font-size:21px;
+  }
+
+  .section-title{
+    font-size:27px;
+  }
+
+}
+
+</style>
 </head>
+
 
 <body>
 
-  <!-- =========================
-       ENVELOPE
-       ========================= -->
 
-  <div class="opening-screen" id="openingScreen">
+<!-- ==================================================
+     ENVELOPE SCREEN
+================================================== -->
 
-    <div class="opening-title">
-      Μια ξεχωριστή πρόσκληση
-    </div>
+<div class="opening-screen" id="openingScreen">
 
-    <div class="sparkle s1">✦</div>
-    <div class="sparkle s2">✧</div>
-    <div class="sparkle s3">✦</div>
-    <div class="sparkle s4">✧</div>
-    <div class="sparkle s5">✦</div>
+  <div class="opening-title">
+    ΜΙΑ ΜΑΓΙΚΗ ΠΡΟΣΚΛΗΣΗ
+  </div>
 
-    <div class="envelope-wrapper">
+  <div class="star star1">✦</div>
+  <div class="star star2">✧</div>
+  <div class="star star3">✦</div>
+  <div class="star star4">✧</div>
+  <div class="star star5">✦</div>
 
-      <div class="envelope">
 
-        <div class="letter">
-          <div class="letter-content">
-            <div class="small">Ο ΓΑΜΟΣ ΜΑΣ</div>
-            <div class="initials">Δ & Μ</div>
+  <div class="envelope-wrapper">
+
+    <div class="envelope">
+
+
+      <div class="letter">
+
+        <div class="letter-content">
+
+          <div class="letter-small">
+            Ο ΓΑΜΟΣ ΜΑΣ
           </div>
+
+          <div class="letter-initials">
+            Δ & Μ
+          </div>
+
         </div>
 
-        <div class="envelope-front"></div>
-
-        <div class="flap"></div>
-
-        <button class="seal-button" id="sealButton" aria-label="Άνοιγμα πρόσκλησης">
-          <span class="seal-initials">Δ & Μ</span>
-          <span class="seal-subtitle">OPEN</span>
-        </button>
-
       </div>
 
-      <div class="open-text">
-        Πατήστε το χρυσό seal για να ανοίξετε την πρόσκληση
-      </div>
+
+      <div class="envelope-front"></div>
+
+      <div class="flap"></div>
+
+
+      <button
+        class="seal-button"
+        id="sealButton"
+        aria-label="Άνοιγμα πρόσκλησης"
+      >
+
+        <span class="seal-initials">
+          Δ & Μ
+        </span>
+
+        <span class="seal-subtitle">
+          OPEN
+        </span>
+
+      </button>
+
 
     </div>
+
+
   </div>
 
 
-  <!-- =========================
-       INVITATION
-       ========================= -->
+  <div class="opening-subtitle">
+    Πατήστε το χρυσό seal
+  </div>
 
-  <main class="invitation" id="invitation">
+</div>
 
-    <div class="hero">
 
-      <div class="crest">
-        <div class="crest-shape">
-          <div class="crest-inner">Δ & Μ</div>
-        </div>
-      </div>
 
-      <p class="intro">
-        Να μοιραστούμε μαζί σας την πιο μαγική στιγμή της ζωής μας.
-      </p>
+<!-- ==================================================
+     INVITATION
+================================================== -->
 
-      <h1 class="names">
-        ΔΗΜΗΤΡΗΣ<br>
-        <span class="ampersand">&</span><br>
-        ΜΑΡΙΑ
-      </h1>
+<main class="invitation" id="invitation">
 
-      <div class="gold-line"></div>
 
-      <div class="date">
-        2 ΙΑΝΟΥΑΡΙΟΥ 2027
-      </div>
+<!-- HERO -->
 
-      <div class="time">
-        Ώρα 18:00
-      </div>
+<div class="hero">
 
-      <div class="magic-line">
-        ✦ Μια νέα αρχή, ένα όμορφο ταξίδι, μια ζωή μαζί. ✦
+
+  <div class="crest">
+
+    <div class="crest-shape">
+
+      <div class="crest-initials">
+        Δ & Μ
       </div>
 
     </div>
 
-
-    <!-- ΜΥΣΤΗΡΙΟ -->
-
-    <section>
-      <div class="section-inner">
-
-        <h2 class="section-title">ΤΟ ΜΥΣΤΗΡΙΟ</h2>
-
-        <div class="gold-line"></div>
-
-        <p class="place">
-          Ιερός Καθεδρικός Ναός<br>
-          Μεταμορφώσεως του Σωτήρος
-        </p>
-
-        <p class="details">
-          Μεταμόρφωση Αττικής<br>
-          Σάββατο 2 Ιανουαρίου 2027<br>
-          Ώρα 18:00
-        </p>
-
-        <a
-          class="map-button"
-          href="https://www.google.com/maps/search/?api=1&query=Ιερός+Καθεδρικός+Ναός+Μεταμορφώσεως+του+Σωτήρος+Μεταμόρφωση+Αττικής"
-          target="_blank"
-        >
-          📍 ΟΔΗΓΙΕΣ ΧΑΡΤΗ
-        </a>
-
-      </div>
-    </section>
+  </div>
 
 
-    <!-- ΔΕΞΙΩΣΗ -->
-
-    <section>
-      <div class="section-inner">
-
-        <h2 class="section-title">Η ΔΕΞΙΩΣΗ</h2>
-
-        <div class="gold-line"></div>
-
-        <p class="place">
-          Κτήμα Santa Maria Estate
-        </p>
-
-        <p class="details">
-          Θα χαρούμε πολύ να συνεχίσουμε τη γιορτή<br>
-          μαζί σας!
-        </p>
-
-        <a
-          class="map-button"
-          href="https://www.google.com/maps/search/?api=1&query=Santa+Maria+Estate"
-          target="_blank"
-        >
-          📍 ΟΔΗΓΙΕΣ ΧΑΡΤΗ
-        </a>
-
-      </div>
-    </section>
+  <p class="intro">
+    Να μοιραστούμε μαζί σας την πιο μαγική στιγμή της ζωής μας.
+  </p>
 
 
-    <!-- ΟΙΚΟΓΕΝΕΙΕΣ -->
+  <h1 class="names">
 
-    <section>
-      <div class="section-inner">
+    ΔΗΜΗΤΡΗΣ
 
-        <h2 class="section-title">ΟΙ ΟΙΚΟΓΕΝΕΙΕΣ ΜΑΣ</h2>
+    <br>
 
-        <div class="cards">
+    <span class="ampersand">
+      &
+    </span>
 
-          <div class="card">
-            <h3>Η ΟΙΚΟΓΕΝΕΙΑ ΤΗΣ ΜΑΡΙΑΣ</h3>
+    <br>
 
-            <div class="person">
-              Γεώργιος Μπαντή<br>
-              Κωνσταντίνα Μπαντή
-            </div>
-          </div>
+    ΜΑΡΙΑ
 
-          <div class="card">
-            <h3>Η ΟΙΚΟΓΕΝΕΙΑ ΤΟΥ ΔΗΜΗΤΡΗ</h3>
-
-            <div class="person">
-              Βασίλης Παπαδημητρίου<br>
-              Άννα Ντάγκα
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
+  </h1>
 
 
-    <!-- ΚΟΥΜΠΑΡΟΙ -->
+  <div class="gold-line"></div>
 
-    <section>
-      <div class="section-inner">
 
-        <h2 class="section-title">ΟΙ ΚΟΥΜΠΑΡΟΙ ΜΑΣ</h2>
+  <div class="date">
+    2 ΙΑΝΟΥΑΡΙΟΥ 2027
+  </div>
 
-        <div class="gold-line"></div>
+
+  <div class="time">
+    Ώρα 18:00
+  </div>
+
+
+  <div class="magic-line">
+    ✦ Μια νέα αρχή, ένα όμορφο ταξίδι, μια ζωή μαζί. ✦
+  </div>
+
+
+</div>
+
+
+
+<!-- ΜΥΣΤΗΡΙΟ -->
+
+<section>
+
+  <div class="section-inner">
+
+    <h2 class="section-title">
+      ΤΟ ΜΥΣΤΗΡΙΟ
+    </h2>
+
+    <div class="gold-line"></div>
+
+    <p class="place">
+
+      Ιερός Καθεδρικός Ναός<br>
+
+      Μεταμορφώσεως του Σωτήρος
+
+    </p>
+
+
+    <p class="details">
+
+      Μεταμόρφωση Αττικής<br>
+
+      Σάββατο 2 Ιανουαρίου 2027<br>
+
+      Ώρα 18:00
+
+    </p>
+
+
+    <a
+      class="map-button"
+      href="https://www.google.com/maps/search/?api=1&query=Ιερός+Καθεδρικός+Ναός+Μεταμορφώσεως+του+Σωτήρος+Μεταμόρφωση+Αττικής"
+      target="_blank"
+    >
+      📍 ΟΔΗΓΙΕΣ ΧΑΡΤΗ
+    </a>
+
+  </div>
+
+</section>
+
+
+
+<!-- ΔΕΞΙΩΣΗ -->
+
+<section>
+
+  <div class="section-inner">
+
+    <h2 class="section-title">
+      Η ΔΕΞΙΩΣΗ
+    </h2>
+
+    <div class="gold-line"></div>
+
+
+    <p class="place">
+      Κτήμα Santa Maria Estate
+    </p>
+
+
+    <p class="details">
+
+      Θα χαρούμε πολύ να συνεχίσουμε τη γιορτή<br>
+
+      μαζί σας!
+
+    </p>
+
+
+    <a
+      class="map-button"
+      href="https://www.google.com/maps/search/?api=1&query=Santa+Maria+Estate"
+      target="_blank"
+    >
+      📍 ΟΔΗΓΙΕΣ ΧΑΡΤΗ
+    </a>
+
+  </div>
+
+</section>
+
+
+
+<!-- ΟΙΚΟΓΕΝΕΙΕΣ -->
+
+<section>
+
+  <div class="section-inner">
+
+    <h2 class="section-title">
+      ΟΙ ΟΙΚΟΓΕΝΕΙΕΣ ΜΑΣ
+    </h2>
+
+
+    <div class="cards">
+
+
+      <div class="card">
+
+        <h3>
+          Η ΟΙΚΟΓΕΝΕΙΑ ΤΗΣ ΜΑΡΙΑΣ
+        </h3>
 
         <div class="person">
-          Ηλίας Πέτσας<br>
-          Έφη Τσιομπανίδη<br>
-          Ελένη Γκίννη
-        </div>
 
-      </div>
-    </section>
+          Γεώργιος Μπαντή<br>
 
-
-    <!-- RSVP -->
-
-    <section>
-      <div class="section-inner">
-
-        <h2 class="section-title">RSVP</h2>
-
-        <div class="gold-line"></div>
-
-        <p class="details">
-          Παρακαλούμε ενημερώστε μας για την παρουσία σας<br>
-          έως <strong>1/12/2026</strong>.
-        </p>
-
-        <div style="margin-top:25px;">
-
-          <a class="phone" href="tel:6983799690">
-            Δημήτρης · 6983799690
-          </a>
-
-          <br>
-
-          <a class="phone" href="tel:6978247830">
-            Μαρία · 6978247830
-          </a>
+          Κωνσταντίνα Μπαντή
 
         </div>
 
       </div>
-    </section>
 
 
-    <!-- ΛΙΣΤΑ ΓΑΜΟΥ -->
+      <div class="card">
 
-    <section>
-      <div class="section-inner">
+        <h3>
+          Η ΟΙΚΟΓΕΝΕΙΑ ΤΟΥ ΔΗΜΗΤΡΗ
+        </h3>
 
-        <h2 class="section-title">ΛΙΣΤΑ ΓΑΜΟΥ</h2>
+        <div class="person">
 
-        <div class="gold-line"></div>
+          Βασίλης Παπαδημητρίου<br>
 
-        <p class="details">
-          Προαιρετική λίστα γάμου<br>
-          Εθνική Τράπεζα
-        </p>
+          Άννα Ντάγκα
 
-        <div class="iban" id="iban">
-          GR000000000000000000
         </div>
 
-        <button class="copy-button" onclick="copyIBAN()">
-          ΑΝΤΙΓΡΑΦΗ IBAN
-        </button>
-
-        <p id="copyMessage" style="font-size:14px;"></p>
-
-      </div>
-    </section>
-
-
-    <!-- FOOTER -->
-
-    <div class="footer">
-
-      <div class="tiny-stars">
-        ✦ ✧ ✦
       </div>
 
-      <div class="footer-names">
-        ΔΗΜΗΤΡΗΣ & ΜΑΡΙΑ
-      </div>
-
-      <div class="footer-text">
-        2 ΙΑΝΟΥΑΡΙΟΥ 2027
-      </div>
-
-      <div class="tiny-stars">
-        ✦ ✧ ✦
-      </div>
-
-      <div class="footer-text">
-        Σας περιμένουμε να γιορτάσουμε μαζί.
-      </div>
 
     </div>
 
-  </main>
+  </div>
+
+</section>
 
 
-  <script>
 
-    const sealButton = document.getElementById("sealButton");
-    const openingScreen = document.getElementById("openingScreen");
-    const invitation = document.getElementById("invitation");
+<!-- ΚΟΥΜΠΑΡΟΙ -->
 
-    sealButton.addEventListener("click", function () {
+<section>
 
-      /* Ξεκινάει το άνοιγμα του φακέλου */
-      openingScreen.classList.add("opening");
+  <div class="section-inner">
 
-      /* Μετά το animation εμφανίζεται η πρόσκληση */
-      setTimeout(function () {
+    <h2 class="section-title">
+      ΟΙ ΚΟΥΜΠΑΡΟΙ ΜΑΣ
+    </h2>
 
-        openingScreen.classList.add("hidden");
-        invitation.classList.add("visible");
+    <div class="gold-line"></div>
 
-        /* Πηγαίνουμε στην αρχή της πρόσκλησης */
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth"
-        });
 
-      }, 1800);
+    <div class="person">
 
+      Ηλίας Πέτσας<br>
+
+      Έφη Τσιομπανίδη<br>
+
+      Ελένη Γκίννη
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- RSVP -->
+
+<section>
+
+  <div class="section-inner">
+
+    <h2 class="section-title">
+      RSVP
+    </h2>
+
+    <div class="gold-line"></div>
+
+
+    <p class="details">
+
+      Παρακαλούμε ενημερώστε μας για την παρουσία σας<br>
+
+      έως <strong>1/12/2026</strong>.
+
+    </p>
+
+
+    <div style="margin-top:25px;">
+
+      <a
+        class="phone"
+        href="tel:6983799690"
+      >
+        Δημήτρης · 6983799690
+      </a>
+
+      <br>
+
+      <a
+        class="phone"
+        href="tel:6978247830"
+      >
+        Μαρία · 6978247830
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ΛΙΣΤΑ ΓΑΜΟΥ -->
+
+<section>
+
+  <div class="section-inner">
+
+    <h2 class="section-title">
+      ΛΙΣΤΑ ΓΑΜΟΥ
+    </h2>
+
+    <div class="gold-line"></div>
+
+
+    <p class="details">
+
+      Προαιρετική λίστα γάμου<br>
+
+      Εθνική Τράπεζα
+
+    </p>
+
+
+    <div
+      class="iban"
+      id="iban"
+    >
+      GR000000000000000000
+    </div>
+
+
+    <button
+      class="copy-button"
+      onclick="copyIBAN()"
+    >
+      ΑΝΤΙΓΡΑΦΗ IBAN
+    </button>
+
+
+    <p
+      id="copyMessage"
+      style="font-size:14px;"
+    ></p>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+  <div class="tiny-stars">
+    ✦ ✧ ✦
+  </div>
+
+
+  <div class="footer-names">
+    ΔΗΜΗΤΡΗΣ & ΜΑΡΙΑ
+  </div>
+
+
+  <div class="footer-text">
+    2 ΙΑΝΟΥΑΡΙΟΥ 2027
+  </div>
+
+
+  <div class="tiny-stars">
+    ✦ ✧ ✦
+  </div>
+
+
+  <div class="footer-text">
+    Σας περιμένουμε να γιορτάσουμε μαζί.
+  </div>
+
+</div>
+
+
+</main>
+
+
+
+<script>
+
+/* ==================================================
+   OPEN ENVELOPE
+================================================== */
+
+const sealButton =
+  document.getElementById("sealButton");
+
+const openingScreen =
+  document.getElementById("openingScreen");
+
+const invitation =
+  document.getElementById("invitation");
+
+
+sealButton.addEventListener("click", function(){
+
+  /* Άνοιγμα φακέλου */
+
+  openingScreen.classList.add("opening");
+
+
+  /* Stardust */
+
+  createMagicDust();
+
+
+  /* Εμφάνιση πρόσκλησης */
+
+  setTimeout(function(){
+
+    openingScreen.classList.add("hidden");
+
+    invitation.classList.add("visible");
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
     });
 
+  },1800);
 
-    function copyIBAN() {
+});
 
-      const iban = document.getElementById("iban").innerText;
-      const message = document.getElementById("copyMessage");
 
-      navigator.clipboard.writeText(iban).then(function () {
+/* ==================================================
+   STARDUST
+================================================== */
 
-        message.innerText = "✓ Το IBAN αντιγράφηκε.";
+function createMagicDust(){
 
-        setTimeout(function () {
-          message.innerText = "";
-        }, 2500);
+  for(let i=0;i<45;i++){
 
-      }).catch(function () {
+    setTimeout(function(){
 
-        message.innerText = "Παρακαλώ αντιγράψτε το IBAN χειροκίνητα.";
+      const particle =
+        document.createElement("div");
 
-      });
+      particle.className =
+        "magic-particle";
 
-    }
+      particle.style.left =
+        (35 + Math.random()*30) + "%";
 
-  </script>
+      particle.style.top =
+        (35 + Math.random()*30) + "%";
+
+      particle.style.animationDuration =
+        (1.5 + Math.random()*2) + "s";
+
+      particle.style.width =
+        (2 + Math.random()*3) + "px";
+
+      particle.style.height =
+        particle.style.width;
+
+      document.body.appendChild(particle);
+
+
+      setTimeout(function(){
+
+        particle.remove();
+
+      },4000);
+
+    },i*25);
+
+  }
+
+}
+
+
+/* ==================================================
+   COPY IBAN
+================================================== */
+
+function copyIBAN(){
+
+  const iban =
+    document.getElementById("iban").innerText;
+
+  const message =
+    document.getElementById("copyMessage");
+
+
+  navigator.clipboard.writeText(iban)
+
+  .then(function(){
+
+    message.innerText =
+      "✓ Το IBAN αντιγράφηκε.";
+
+    setTimeout(function(){
+
+      message.innerText="";
+
+    },2500);
+
+  })
+
+  .catch(function(){
+
+    message.innerText =
+      "Παρακαλώ αντιγράψτε το IBAN χειροκίνητα.";
+
+  });
+
+}
+
+</script>
 
 </body>
 </html>
