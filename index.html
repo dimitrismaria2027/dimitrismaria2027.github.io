@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Δημήτρης & Μαρία | 2 Ιανουαρίου 2027</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: #f7f1e8;
+    color: #171414;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.invitation {
+    max-width: 720px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 20% 15%, rgba(128, 24, 48, .06), transparent 22%),
+        radial-gradient(circle at 80% 85%, rgba(128, 24, 48, .06), transparent 22%),
+        #f8f2e9;
+    position: relative;
+    overflow: hidden;
+    border-left: 1px solid #7e1d35;
+    border-right: 1px solid #7e1d35;
+}
+
+.invitation::before {
+    content: "";
+    position: absolute;
+    inset: 14px;
+    border: 1px solid #7e1d35;
+    pointer-events: none;
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    padding: 55px 35px 70px;
+    text-align: center;
+}
+
+/* Αστερόσκονη */
+
+.sparkle {
+    position: absolute;
+    color: #a86d20;
+    font-size: 18px;
+    animation: twinkle 3s infinite ease-in-out;
+}
+
+.s1 { top: 8%; left: 12%; }
+.s2 { top: 17%; right: 12%; animation-delay: .8s; }
+.s3 { top: 37%; left: 8%; animation-delay: 1.4s; }
+.s4 { top: 49%; right: 9%; animation-delay: .3s; }
+.s5 { top: 70%; left: 13%; animation-delay: 1.1s; }
+.s6 { top: 78%; right: 14%; animation-delay: 1.8s; }
+
+@keyframes twinkle {
+    0%, 100% { opacity: .25; transform: scale(.8); }
+    50% { opacity: 1; transform: scale(1.3); }
+}
+
+/* Οικόσημο */
+
+.crest {
+    width: 125px;
+    height: 145px;
+    margin: 0 auto 22px;
+    border: 2px solid #7e1d35;
+    border-radius: 48% 48% 50% 50% / 28% 28% 65% 65%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #7e1d35;
+}
+
+.crest::before {
+    content: "✦";
+    position: absolute;
+    top: -28px;
+    font-size: 28px;
+}
+
+.crest::after {
+    content: "";
+    position: absolute;
+    inset: 7px;
+    border: 1px solid #7e1d35;
+    border-radius: inherit;
+}
+
+.monogram {
+    position: relative;
+    z-index: 2;
+    font-family: Georgia, serif;
+    font-size: 43px;
+    letter-spacing: -8px;
+    margin-left: -8px;
+}
+
+.intro {
+    font-size: 17px;
+    letter-spacing: 4px;
+    margin: 10px 0 28px;
+}
+
+.names {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(58px, 11vw, 92px);
+    line-height: 1;
+    margin: 0;
+    color: #111;
+}
+
+.names .amp {
+    color: #7e1d35;
+}
+
+.subtitle {
+    font-size: 20px;
+    line-height: 1.5;
+    margin: 28px auto 38px;
+    max-width: 560px;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    color: #7e1d35;
+    margin: 30px 0;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    width: 80px;
+    height: 1px;
+    background: #a86d20;
+}
+
+.divider span {
+    font-size: 18px;
+}
+
+/* Ημερομηνία */
+
+.date {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    margin: 30px 0 40px;
+}
+
+.date-side {
+    font-size: 23px;
+    letter-spacing: 3px;
+    font-weight: 600;
+}
+
+.date-main {
+    border-left: 1px solid #a86d20;
+    border-right: 1px solid #a86d20;
+    padding: 0 35px;
+}
+
+.day {
+    font-size: 60px;
+    line-height: .9;
+    color: #7e1d35;
+    font-weight: 700;
+}
+
+.month {
+    font-size: 22px;
+    letter-spacing: 3px;
+}
+
+.year {
+    font-size: 19px;
+    letter-spacing: 5px;
+}
+
+.time {
+    font-size: 25px;
+    color: #7e1d35;
+}
+
+/* Sections */
+
+.section {
+    margin: 40px auto;
+    max-width: 600px;
+}
+
+.section-title {
+    color: #7e1d35;
+    font-size: 25px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    margin-bottom: 13px;
+}
+
+.section-text {
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+.section-text strong {
+    font-weight: 700;
+}
+
+.two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-top: 45px;
+}
+
+.column {
+    padding: 10px 15px;
+}
+
+.column:first-child {
+    border-right: 1px solid #a86d20;
+}
+
+.column-title {
+    color: #7e1d35;
+    font-size: 22px;
+    letter-spacing: 3px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.people {
+    font-size: 20px;
+    line-height: 1.65;
+}
+
+/* RSVP */
+
+.rsvp {
+    margin-top: 48px;
+    padding: 28px 20px;
+    border-top: 1px solid #a86d20;
+    border-bottom: 1px solid #a86d20;
+}
+
+.rsvp-title {
+    color: #7e1d35;
+    font-size: 24px;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+}
+
+.rsvp-text {
+    font-size: 19px;
+    line-height: 1.5;
+}
+
+.phone {
+    display: inline-block;
+    margin: 8px 12px;
+    color: #171414;
+    text-decoration: none;
+    font-size: 19px;
+}
+
+.phone:hover {
+    color: #7e1d35;
+}
+
+/* Λίστα γάμου */
+
+.gift {
+    margin-top: 38px;
+}
+
+.gift-title {
+    color: #7e1d35;
+    font-size: 22px;
+    letter-spacing: 3px;
+}
+
+.iban {
+    font-size: 17px;
+    word-break: break-all;
+    margin-top: 10px;
+}
+
+.copy-button {
+    margin-top: 15px;
+    border: 1px solid #7e1d35;
+    background: transparent;
+    color: #7e1d35;
+    padding: 10px 22px;
+    font-family: inherit;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.copy-button:hover {
+    background: #7e1d35;
+    color: white;
+}
+
+.footer {
+    margin-top: 55px;
+    font-family: 'Great Vibes', cursive;
+    font-size: 34px;
+    color: #7e1d35;
+}
+
+@media (max-width: 600px) {
+
+    .content {
+        padding: 48px 28px 60px;
+    }
+
+    .intro {
+        font-size: 14px;
+        letter-spacing: 2px;
+    }
+
+    .date {
+        gap: 12px;
+    }
+
+    .date-main {
+        padding: 0 15px;
+    }
+
+    .date-side {
+        font-size: 17px;
+        letter-spacing: 1px;
+    }
+
+    .time {
+        font-size: 19px;
+    }
+
+    .day {
+        font-size: 48px;
+    }
+
+    .month {
+        font-size: 17px;
+    }
+
+    .two-columns {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .column:first-child {
+        border-right: none;
+        border-bottom: 1px solid #a86d20;
+        padding-bottom: 25px;
+    }
+
+    .names {
+        font-size: 60px;
+    }
+
+    .section-text {
+        font-size: 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="invitation">
+
+    <!-- Αστερόσκονη -->
+    <div class="sparkle s1">✦</div>
+    <div class="sparkle s2">✧</div>
+    <div class="sparkle s3">✦</div>
+    <div class="sparkle s4">✧</div>
+    <div class="sparkle s5">✦</div>
+    <div class="sparkle s6">✧</div>
+
+    <main class="content">
+
+        <!-- Οικόσημο -->
+        <div class="crest">
+            <div class="monogram">ΔΜ</div>
+        </div>
+
+        <div class="intro">
+            ΜΕ ΧΑΡΑ ΣΑΣ ΠΡΟΣΚΑΛΟΥΜΕ ΣΤΟΝ ΓΑΜΟ ΜΑΣ
+        </div>
+
+        <h1 class="names">
+            Δημήτρης <span class="amp">&amp;</span> Μαρία
+        </h1>
+
+        <p class="subtitle">
+            Σας περιμένουμε να μοιραστούμε μαζί σας
+            την πιο μαγική στιγμή της ζωής μας.
+        </p>
+
+        <div class="divider"><span>✦</span></div>
+
+        <!-- Ημερομηνία -->
+        <div class="date">
+
+            <div class="date-side">
+                ΣΑΒΒΑΤΟ
+            </div>
+
+            <div class="date-main">
+                <div class="day">2</div>
+                <div class="month">ΙΑΝΟΥΑΡΙΟΥ</div>
+                <div class="year">2027</div>
+            </div>
+
+            <div class="time">
+                18:00
+            </div>
+
+        </div>
+
+        <!-- Μυστήριο -->
+        <section class="section">
+
+            <div class="section-title">
+                ΜΥΣΤΗΡΙΟ
+            </div>
+
+            <div class="section-text">
+                <strong>
+                    Ιερός Καθεδρικός Ναός Μεταμορφώσεως του Σωτήρος
+                </strong>
+                <br>
+                Μεταμόρφωση Αττικής
+            </div>
+
+        </section>
+
+        <div class="divider"><span>✦</span></div>
+
+        <!-- Δεξίωση -->
+        <section class="section">
+
+            <div class="section-title">
+                ΔΕΞΙΩΣΗ
+            </div>
+
+            <div class="section-text">
+                <strong>Κτήμα Santa Maria Estate</strong>
+            </div>
+
+        </section>
+
+        <!-- Οικογένειες / Κουμπάροι -->
+        <div class="two-columns">
+
+            <div class="column">
+
+                <div class="column-title">
+                    ΟΙΚΟΓΕΝΕΙΕΣ
+                </div>
+
+                <div class="people">
+                    ΓΕΩΡΓΙΟΣ ΜΠΑΝΤΗ<br>
+                    ΚΩΝΣΤΑΝΤΙΝΑ ΜΠΑΝΤΗ
+                    <br><br>
+                    ΒΑΣΙΛΗΣ ΠΑΠΑΔΗΜΗΤΡΙΟΥ<br>
+                    ΑΝΝΑ ΝΤΑΓΚΑ
+                </div>
+
+            </div>
+
+            <div class="column">
+
+                <div class="column-title">
+                    ΚΟΥΜΠΑΡΟΙ
+                </div>
+
+                <div class="people">
+                    ΗΛΙΑΣ ΠΕΤΣΑΣ
+                    <br>
+                    ΕΦΗ ΤΣΙΟΜΠΑΝΙΔΗ
+                    <br>
+                    ΕΛΕΝΗ ΓΚΙΝΝΗ
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- RSVP -->
+        <section class="rsvp">
+
+            <div class="rsvp-title">
+                ΠΑΡΑΚΑΛΟΥΜΕ ΕΝΗΜΕΡΩΣΤΕ ΜΑΣ
+            </div>
+
+            <div class="rsvp-text">
+                για την παρουσία σας έως <strong>1/12/2026</strong>
+            </div>
+
+            <div>
+                <a class="phone" href="tel:6983799690">
+                    ΔΗΜΗΤΡΗΣ · 6983799690
+                </a>
+
+                <a class="phone" href="tel:6978247830">
+                    ΜΑΡΙΑ · 6978247830
+                </a>
+            </div>
+
+        </section>
+
+        <!-- Λίστα γάμου -->
+        <section class="gift">
+
+            <div class="gift-title">
+                ΠΡΟΑΙΡΕΤΙΚΗ ΛΙΣΤΑ ΓΑΜΟΥ
+            </div>
+
+            <div class="section-text">
+                Εθνική Τράπεζα
+            </div>
+
+            <div class="iban" id="iban">
+                GR000000000000000000
+            </div>
+
+            <button class="copy-button" onclick="copyIBAN()">
+                ΑΝΤΙΓΡΑΦΗ IBAN
+            </button>
+
+        </section>
+
+        <div class="footer">
+            Δ &amp; Μ
+        </div>
+
+    </main>
+
+</div>
+
+<script>
+function copyIBAN() {
+    const iban = document.getElementById("iban").innerText;
+
+    navigator.clipboard.writeText(iban).then(function() {
+        alert("Το IBAN αντιγράφηκε!");
+    });
+}
+</script>
+
+</body>
+</html>
