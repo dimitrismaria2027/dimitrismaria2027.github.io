@@ -95,7 +95,6 @@ button,a{font-family:inherit}
   width:4px;
   height:4px;
   border-radius:50%;
-
   background:rgba(220,193,119,.7);
 
   box-shadow:
@@ -145,7 +144,6 @@ button,a{font-family:inherit}
     opacity:.15;
     transform:translateY(0) scale(.7);
   }
-
   50%{
     opacity:.62;
     transform:translateY(-17px) scale(1);
@@ -153,19 +151,16 @@ button,a{font-family:inherit}
 }
 
 /* =========================
-   GOLD DUST
+   ΧΡΥΣΟΣΚΟΝΗ
 ========================= */
 
 .gold-dust{
   position:absolute;
   left:50%;
   top:46%;
-
   width:min(78vw,520px);
   height:210px;
-
   transform:translate(-50%,-50%);
-
   z-index:75;
   pointer-events:none;
   overflow:visible;
@@ -175,13 +170,10 @@ button,a{font-family:inherit}
   position:absolute;
   left:50%;
   top:58%;
-
   width:4px;
   height:4px;
-
   border-radius:50%;
   opacity:0;
-
   background:#e7c873;
 
   box-shadow:
@@ -208,20 +200,15 @@ button,a{font-family:inherit}
     opacity:0;
     transform:translate(0,12px) scale(.35);
   }
-
   18%{
     opacity:.9;
   }
-
   72%{
     opacity:.55;
   }
-
   100%{
     opacity:0;
-    transform:
-      translate(var(--x),var(--y))
-      scale(.15);
+    transform:translate(var(--x),var(--y)) scale(.15);
   }
 }
 
@@ -256,43 +243,31 @@ button,a{font-family:inherit}
 
 .envelope-stage{
   position:relative;
-
   width:min(90vw,620px);
   height:min(64vw,400px);
-
   perspective:1800px;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   z-index:10;
 }
 
 .envelope-shadow{
   position:absolute;
-
   width:82%;
   height:23%;
-
   left:9%;
   bottom:3%;
-
   border-radius:50%;
-
   background:rgba(0,0,0,.43);
-
   filter:blur(24px);
-
   transform:scaleX(1.04);
 }
 
 .envelope{
   position:relative;
-
   width:100%;
   height:100%;
-
   transform-style:preserve-3d;
 
   transition:
@@ -301,10 +276,7 @@ button,a{font-family:inherit}
 }
 
 .envelope.opened-completely{
-  transform:
-    translateY(35px)
-    scale(.94);
-
+  transform:translateY(35px) scale(.94);
   opacity:0;
 }
 
@@ -344,33 +316,121 @@ button,a{font-family:inherit}
 }
 
 /* =========================
+   ΧΡΥΣΗ ΛΑΜΨΗ ΒΟΥΛΟΚΕΡΙΟΥ
+========================= */
+
+.wax-seal.seal-glow{
+  animation:sealIgnite .72s ease-out forwards;
+}
+
+@keyframes sealIgnite{
+  0%{
+    box-shadow:
+      0 5px 14px rgba(0,0,0,.34),
+      inset 0 0 0 2px rgba(68,7,22,.24),
+      inset 0 0 14px rgba(0,0,0,.27);
+
+    filter:brightness(1);
+  }
+
+  38%{
+    box-shadow:
+      0 0 16px rgba(238,201,108,.92),
+      0 0 34px rgba(217,170,72,.66),
+      0 0 58px rgba(185,127,38,.32),
+      inset 0 0 12px rgba(255,224,142,.22);
+
+    filter:brightness(1.14);
+  }
+
+  100%{
+    box-shadow:
+      0 0 8px rgba(226,188,93,.28),
+      inset 0 0 10px rgba(255,220,137,.10);
+
+    filter:brightness(1.04);
+  }
+}
+
+/* =========================
+   ΧΡΥΣΗ ΛΑΜΨΗ ΦΑΚΕΛΟΥ
+========================= */
+
+.envelope.glow-active{
+  animation:envelopeWarmGlow 1.35s ease-out;
+}
+
+@keyframes envelopeWarmGlow{
+  0%{
+    filter:
+      brightness(1)
+      drop-shadow(0 0 0 rgba(229,190,92,0));
+  }
+
+  34%{
+    filter:
+      brightness(1.12)
+      drop-shadow(0 0 12px rgba(229,190,92,.58))
+      drop-shadow(0 0 28px rgba(194,137,43,.30));
+  }
+
+  72%{
+    filter:
+      brightness(1.06)
+      drop-shadow(0 0 10px rgba(229,190,92,.34))
+      drop-shadow(0 0 20px rgba(194,137,43,.18));
+  }
+
+  100%{
+    filter:
+      brightness(1)
+      drop-shadow(0 0 0 rgba(229,190,92,0));
+  }
+}
+
+.envelope.glow-active .envelope-back,
+.envelope.glow-active .fold-left,
+.envelope.glow-active .fold-right,
+.envelope.glow-active .fold-bottom,
+.envelope.glow-active .flap-front{
+  animation:paperGoldReflection 1.18s ease-out;
+}
+
+@keyframes paperGoldReflection{
+  0%{
+    filter:brightness(1);
+  }
+
+  42%{
+    filter:brightness(1.10);
+  }
+
+  100%{
+    filter:brightness(1);
+  }
+}
+
+/* =========================
    PAPER INSIDE
 ========================= */
 
 .paper-holder{
   position:absolute;
-
   left:7%;
   right:7%;
   top:7%;
   bottom:5%;
-
   overflow:hidden;
-
   z-index:15;
-
   pointer-events:none;
 }
 
 .inside-paper{
   position:absolute;
-
   left:4%;
   right:4%;
   top:84%;
-
   height:125%;
-
   padding:34px 28px;
 
   background:
@@ -388,18 +448,14 @@ button,a{font-family:inherit}
     0 -5px 17px rgba(0,0,0,.10),
     inset 0 0 28px rgba(106,73,25,.13);
 
-  transition:
-    top 2.25s cubic-bezier(.17,.76,.17,1);
+  transition:top 2.25s cubic-bezier(.17,.76,.17,1);
 }
 
 .inside-paper::after{
   content:"";
-
   position:absolute;
   inset:12px;
-
-  border:
-    1px solid rgba(123,91,38,.16);
+  border:1px solid rgba(123,91,38,.16);
 }
 
 .paper-rising .inside-paper{
@@ -409,26 +465,19 @@ button,a{font-family:inherit}
 .paper-mini-date{
   position:relative;
   z-index:2;
-
   text-align:center;
-
   color:#725524;
-
   font-size:17px;
   letter-spacing:3px;
 }
 
 .paper-preview-names{
   display:block;
-
   width:88%;
   max-width:430px;
   height:auto;
-
   object-fit:contain;
-
   margin:14px auto 0;
-
   position:relative;
   z-index:2;
 }
@@ -439,21 +488,17 @@ button,a{font-family:inherit}
 
 .fold-left{
   position:absolute;
-
   left:0;
   top:0;
   bottom:0;
-
   width:51%;
-
   z-index:25;
 
-  clip-path:
-    polygon(
-      0 0,
-      100% 50%,
-      0 100%
-    );
+  clip-path:polygon(
+    0 0,
+    100% 50%,
+    0 100%
+  );
 
   background:
     linear-gradient(
@@ -465,21 +510,17 @@ button,a{font-family:inherit}
 
 .fold-right{
   position:absolute;
-
   right:0;
   top:0;
   bottom:0;
-
   width:51%;
-
   z-index:25;
 
-  clip-path:
-    polygon(
-      100% 0,
-      0 50%,
-      100% 100%
-    );
+  clip-path:polygon(
+    100% 0,
+    0 50%,
+    100% 100%
+  );
 
   background:
     linear-gradient(
@@ -491,21 +532,17 @@ button,a{font-family:inherit}
 
 .fold-bottom{
   position:absolute;
-
   left:0;
   right:0;
   bottom:0;
-
   height:57%;
-
   z-index:30;
 
-  clip-path:
-    polygon(
-      0 100%,
-      50% 0,
-      100% 100%
-    );
+  clip-path:polygon(
+    0 100%,
+    50% 0,
+    100% 100%
+  );
 
   background:
     linear-gradient(
@@ -591,13 +628,10 @@ button,a{font-family:inherit}
 
 .flap{
   position:absolute;
-
   left:0;
   top:0;
-
   width:100%;
   height:59%;
-
   z-index:60;
 
   transform-origin:50% 0%;
@@ -617,7 +651,6 @@ button,a{font-family:inherit}
 }
 
 @keyframes softEnvelopeFlap{
-
   0%{
     transform:
       perspective(1600px)
@@ -662,12 +695,11 @@ button,a{font-family:inherit}
   backface-visibility:hidden;
   -webkit-backface-visibility:hidden;
 
-  clip-path:
-    polygon(
-      0 0,
-      100% 0,
-      50% 100%
-    );
+  clip-path:polygon(
+    0 0,
+    100% 0,
+    50% 100%
+  );
 
   background:
     linear-gradient(
@@ -683,20 +715,17 @@ button,a{font-family:inherit}
 
 .flap-front::before{
   content:"";
-
   position:absolute;
-
   left:10px;
   right:10px;
   top:10px;
   bottom:20px;
 
-  clip-path:
-    polygon(
-      0 0,
-      100% 0,
-      50% 100%
-    );
+  clip-path:polygon(
+    0 0,
+    100% 0,
+    50% 100%
+  );
 
   border:
     1px solid rgba(194,156,75,.54);
@@ -705,12 +734,9 @@ button,a{font-family:inherit}
 .flap-line-left,
 .flap-line-right{
   position:absolute;
-
   top:8px;
-
   width:1px;
   height:57%;
-
   opacity:.65;
 
   background:
@@ -724,14 +750,12 @@ button,a{font-family:inherit}
 
 .flap-line-left{
   left:11%;
-
   transform:rotate(29deg);
   transform-origin:top;
 }
 
 .flap-line-right{
   right:11%;
-
   transform:rotate(-29deg);
   transform-origin:top;
 }
@@ -740,18 +764,16 @@ button,a{font-family:inherit}
   position:absolute;
   inset:0;
 
-  transform:
-    rotateX(180deg);
+  transform:rotateX(180deg);
 
   backface-visibility:hidden;
   -webkit-backface-visibility:hidden;
 
-  clip-path:
-    polygon(
-      0 0,
-      100% 0,
-      50% 100%
-    );
+  clip-path:polygon(
+    0 0,
+    100% 0,
+    50% 100%
+  );
 
   background:
     linear-gradient(
@@ -778,10 +800,8 @@ button,a{font-family:inherit}
 
 .wax-seal{
   position:absolute;
-
   left:50%;
   top:47%;
-
   width:74px;
   height:74px;
 
@@ -821,7 +841,6 @@ button,a{font-family:inherit}
 
 .wax-seal::before{
   content:"";
-
   position:absolute;
   inset:6px;
 
@@ -840,24 +859,16 @@ button,a{font-family:inherit}
 
 .seal-crest{
   display:block;
-
   width:58px;
   height:58px;
-
   object-fit:cover;
   object-position:center;
-
   position:relative;
   z-index:2;
-
   pointer-events:none;
-
   border-radius:50%;
-
   background:#681326;
-
-  clip-path:
-    circle(50% at 50% 50%);
+  clip-path:circle(50% at 50% 50%);
 }
 
 /* =========================
@@ -866,9 +877,7 @@ button,a{font-family:inherit}
 
 .invitation{
   display:none;
-
   min-height:100vh;
-
   opacity:0;
 
   background:
@@ -882,12 +891,7 @@ button,a{font-family:inherit}
 
 .invitation.visible{
   display:block;
-
-  animation:
-    invitationAppear
-    1.45s
-    ease
-    forwards;
+  animation:invitationAppear 1.45s ease forwards;
 }
 
 @keyframes invitationAppear{
@@ -908,16 +912,9 @@ button,a{font-family:inherit}
 
 .paper-page{
   position:relative;
-
   width:min(94%,920px);
-
   margin:0 auto;
-
-  padding:
-    70px
-    30px
-    80px;
-
+  padding:70px 30px 80px;
   overflow:hidden;
 
   background:
@@ -949,31 +946,25 @@ button,a{font-family:inherit}
 
 .paper-page::before{
   content:"";
-
   position:absolute;
-
   inset:14px;
 
   border:
     1px solid rgba(100,19,38,.62);
 
   pointer-events:none;
-
   z-index:20;
 }
 
 .paper-page::after{
   content:"";
-
   position:absolute;
-
   inset:20px;
 
   border:
     1px solid rgba(100,19,38,.30);
 
   pointer-events:none;
-
   z-index:20;
 }
 
@@ -983,25 +974,18 @@ button,a{font-family:inherit}
 
 .corner{
   position:absolute;
-
   z-index:21;
-
   width:55px;
   height:55px;
-
   pointer-events:none;
-
   opacity:.72;
 }
 
 .corner::before,
 .corner::after{
   content:"";
-
   position:absolute;
-
   background:var(--burgundy);
-
   opacity:.58;
 }
 
@@ -1087,21 +1071,13 @@ button,a{font-family:inherit}
 
 .invitation-crest{
   display:block;
-
   width:118px;
   height:auto;
-
   object-fit:contain;
-
-  margin:
-    0 auto 18px;
-
+  margin:0 auto 18px;
   opacity:.78;
-
   background:#f1e7d4;
-
   border-radius:50%;
-
   mix-blend-mode:multiply;
 }
 
@@ -1111,61 +1087,41 @@ button,a{font-family:inherit}
 
 .names-image-wrap{
   display:flex;
-
   justify-content:center;
   align-items:center;
-
   width:100%;
-
   margin:2px auto 0;
 }
 
 .names-image{
   display:block;
-
   width:min(92%,720px);
-
   height:auto;
-
   object-fit:contain;
 }
 
 .date{
   margin-top:30px;
-
   text-align:center;
-
   font-size:24px;
-
   letter-spacing:3px;
-
   color:#4b3232;
 }
 
 .time{
   margin-top:7px;
-
   text-align:center;
-
   font-size:19px;
-
   letter-spacing:2px;
-
   color:#765b2d;
 }
 
 .intro{
   max-width:620px;
-
-  margin:
-    38px auto 0;
-
+  margin:38px auto 0;
   text-align:center;
-
   font-size:23px;
-
   line-height:1.55;
-
   color:#302225;
 }
 
@@ -1175,15 +1131,10 @@ button,a{font-family:inherit}
 
 .ornament{
   display:flex;
-
   align-items:center;
   justify-content:center;
-
   gap:14px;
-
-  margin:
-    38px auto;
-
+  margin:38px auto;
   color:var(--gold-dark);
 }
 
@@ -1206,10 +1157,7 @@ button,a{font-family:inherit}
 .ornament i{
   width:6px;
   height:6px;
-
-  border:
-    1px solid var(--gold-dark);
-
+  border:1px solid var(--gold-dark);
   transform:rotate(45deg);
 }
 
@@ -1223,83 +1171,49 @@ button,a{font-family:inherit}
 
 .venue{
   position:relative;
-
-  padding:
-    48px
-    18px
-    55px;
-
+  padding:48px 18px 55px;
   text-align:center;
 }
 
 .venue-title{
-  margin:
-    0 0 12px;
-
+  margin:0 0 12px;
   font-size:31px;
-
   font-weight:500;
-
   color:#2d2022;
-
   position:relative;
-
   z-index:2;
 }
 
 .venue-label{
   margin-bottom:10px;
-
   font-size:16px;
-
   letter-spacing:3px;
-
   text-transform:uppercase;
-
   color:#826631;
-
   position:relative;
-
   z-index:2;
 }
 
 .venue-address{
   max-width:520px;
-
   margin:0 auto;
-
   font-size:19px;
-
   line-height:1.45;
-
   color:#4a3839;
-
   position:relative;
-
   z-index:2;
 }
 
 .map-link{
   display:inline-block;
-
   margin-top:20px;
-
-  padding:
-    9px 20px;
-
-  border:
-    1px solid rgba(130,97,40,.55);
-
+  padding:9px 20px;
+  border:1px solid rgba(130,97,40,.55);
   color:#684d21;
-
   text-decoration:none;
-
   letter-spacing:1px;
-
   font-size:16px;
-
   position:relative;
-
   z-index:2;
 
   transition:
@@ -1309,17 +1223,13 @@ button,a{font-family:inherit}
 
 .map-link:hover{
   background:#6a142a;
-
   color:#f3e7cf;
 }
 
 .venue-divider{
   width:70%;
-
   max-width:500px;
-
   height:1px;
-
   margin:0 auto;
 
   background:
@@ -1337,15 +1247,11 @@ button,a{font-family:inherit}
 
 .church-sketch{
   position:absolute;
-
   left:1%;
   bottom:22px;
-
   width:180px;
   height:145px;
-
   opacity:.46;
-
   pointer-events:none;
 }
 
@@ -1356,22 +1262,16 @@ button,a{font-family:inherit}
 
 .sketch-line{
   fill:none;
-
   stroke:#70592f;
-
   stroke-width:1.3;
-
   stroke-linecap:round;
   stroke-linejoin:round;
 }
 
 .sketch-thin{
   fill:none;
-
   stroke:#806b43;
-
   stroke-width:.8;
-
   stroke-linecap:round;
   stroke-linejoin:round;
 }
@@ -1382,54 +1282,36 @@ button,a{font-family:inherit}
 
 .families{
   margin-top:25px;
-
-  padding:
-    45px 20px;
-
+  padding:45px 20px;
   text-align:center;
 }
 
 .section-title{
-  margin:
-    0 0 28px;
-
+  margin:0 0 28px;
   font-size:30px;
-
   font-weight:500;
-
   color:#2e2022;
 }
 
 .families-grid{
   display:grid;
-
-  grid-template-columns:
-    repeat(2,1fr);
-
+  grid-template-columns:repeat(2,1fr);
   gap:35px;
-
   max-width:720px;
-
   margin:0 auto;
 }
 
 .family{
   font-size:20px;
-
   line-height:1.6;
-
   color:#443436;
 }
 
 .family strong{
   display:block;
-
   margin-bottom:7px;
-
   font-size:17px;
-
   letter-spacing:1px;
-
   color:#765b2d;
 }
 
@@ -1438,32 +1320,21 @@ button,a{font-family:inherit}
 ========================= */
 
 .koumbaroi{
-  padding:
-    20px
-    20px
-    50px;
-
+  padding:20px 20px 50px;
   text-align:center;
 }
 
 .koumbaroi-list{
   display:flex;
-
   flex-wrap:wrap;
-
   justify-content:center;
-
-  gap:
-    10px 35px;
-
+  gap:10px 35px;
   max-width:650px;
-
   margin:0 auto;
 }
 
 .koumbaros{
   font-size:20px;
-
   color:#443436;
 }
 
@@ -1473,12 +1344,8 @@ button,a{font-family:inherit}
 
 .rsvp{
   max-width:670px;
-
   margin:0 auto;
-
-  padding:
-    45px 25px;
-
+  padding:45px 25px;
   text-align:center;
 
   border-top:
@@ -1490,41 +1357,31 @@ button,a{font-family:inherit}
 
 .rsvp-text{
   margin-bottom:25px;
-
   font-size:21px;
-
   line-height:1.5;
 }
 
 .rsvp-date{
   margin-bottom:20px;
-
   color:#745726;
-
   font-size:18px;
-
   letter-spacing:1px;
 }
 
 .contacts{
   display:flex;
-
   justify-content:center;
-
   gap:35px;
-
   flex-wrap:wrap;
 }
 
 .contact{
   font-size:18px;
-
   color:#473538;
 }
 
 .contact a{
   color:#684d21;
-
   text-decoration:none;
 }
 
@@ -1534,43 +1391,26 @@ button,a{font-family:inherit}
 
 .gift{
   max-width:650px;
-
   margin:0 auto;
-
-  padding:
-    45px 25px;
-
+  padding:45px 25px;
   text-align:center;
 }
 
 .gift-text{
   font-size:19px;
-
   line-height:1.6;
-
   color:#493839;
 }
 
 .iban{
   display:inline-block;
-
   margin-top:18px;
-
-  padding:
-    13px 15px;
-
-  border:
-    1px solid rgba(128,95,39,.38);
-
-  background:
-    rgba(255,255,255,.18);
-
+  padding:13px 15px;
+  border:1px solid rgba(128,95,39,.38);
+  background:rgba(255,255,255,.18);
   font-size:16px;
-
   letter-spacing:1px;
-
   word-break:break-word;
-
   color:#594323;
 }
 
@@ -1579,17 +1419,10 @@ button,a{font-family:inherit}
 ========================= */
 
 footer{
-  padding:
-    45px
-    20px
-    60px;
-
+  padding:45px 20px 60px;
   text-align:center;
-
   color:#7b6540;
-
   font-size:15px;
-
   letter-spacing:2px;
 }
 
@@ -1626,10 +1459,7 @@ footer{
   }
 
   .paper-page{
-    padding:
-      55px
-      18px
-      60px;
+    padding:55px 18px 60px;
   }
 
   .paper-page::before{
@@ -1650,30 +1480,24 @@ footer{
   }
 
   .venue-title{
-    padding:
-      0 25px;
-
+    padding:0 25px;
     font-size:27px;
   }
 
   .church-sketch{
     left:-8px;
-
     width:135px;
     height:115px;
-
     opacity:.32;
   }
 
   .families-grid{
     grid-template-columns:1fr;
-
     gap:25px;
   }
 
   .contacts{
     flex-direction:column;
-
     gap:8px;
   }
 }
@@ -1686,13 +1510,11 @@ footer{
   }
 
   .inside-paper{
-    padding:
-      20px 15px;
+    padding:20px 15px;
   }
 
   .date{
     font-size:21px;
-
     letter-spacing:2px;
   }
 
@@ -1724,11 +1546,7 @@ footer{
 
   <!-- ΧΡΥΣΟΣΚΟΝΗ -->
 
-  <div
-    class="gold-dust"
-    id="goldDust"
-    aria-hidden="true"
-  >
+  <div class="gold-dust" id="goldDust" aria-hidden="true">
     <span class="dust"></span>
     <span class="dust"></span>
     <span class="dust"></span>
@@ -1759,10 +1577,7 @@ footer{
 
     <div class="envelope-shadow"></div>
 
-    <div
-      class="envelope"
-      id="envelope"
-    >
+    <div class="envelope" id="envelope">
 
       <div class="envelope-back">
 
@@ -1799,23 +1614,18 @@ footer{
 
       <!-- ΚΑΠΑΚΙ -->
 
-      <div
-        class="flap"
-        id="flap"
-      >
+      <div class="flap" id="flap">
 
         <div class="flap-front">
-
           <div class="flap-line-left"></div>
           <div class="flap-line-right"></div>
-
         </div>
 
         <div class="flap-back"></div>
 
       </div>
 
-      <!-- ΣΦΡΑΓΙΔΑ -->
+      <!-- ΒΟΥΛΟΚΕΡΙ -->
 
       <button
         class="wax-seal"
@@ -1843,10 +1653,7 @@ footer{
      INVITATION
 ========================= -->
 
-<main
-  class="invitation"
-  id="invitation"
->
+<main class="invitation" id="invitation">
 
   <div class="paper-page">
 
@@ -1878,8 +1685,6 @@ footer{
 
     </div>
 
-    <!-- DATE -->
-
     <div class="date">
       2 Ιανουαρίου 2027
     </div>
@@ -1887,8 +1692,6 @@ footer{
     <div class="time">
       Ώρα 18:00
     </div>
-
-    <!-- INTRO -->
 
     <p class="intro">
       Με ιδιαίτερη χαρά και τιμή σας προσκαλούμε να παρευρεθείτε σε αυτή την ξεχωριστή στιγμή της ζωής μας.
@@ -1900,105 +1703,66 @@ footer{
       <span></span>
     </div>
 
-    <!-- =========================
-         CHURCH
-    ========================= -->
+    <!-- ΕΚΚΛΗΣΙΑ -->
 
     <section class="venue-section">
 
       <div class="venue">
 
-        <div
-          class="church-sketch"
-          aria-hidden="true"
-        >
+        <div class="church-sketch" aria-hidden="true">
 
           <svg viewBox="0 0 220 170">
 
-            <path
-              class="sketch-line"
-              d="M45 142 L45 78 L110 42 L175 78 L175 142 Z"
-            />
+            <path class="sketch-line"
+              d="M45 142 L45 78 L110 42 L175 78 L175 142 Z"/>
 
-            <path
-              class="sketch-line"
-              d="M83 78 C84 55 94 42 110 35 C126 42 136 55 137 78"
-            />
+            <path class="sketch-line"
+              d="M83 78 C84 55 94 42 110 35 C126 42 136 55 137 78"/>
 
-            <path
-              class="sketch-thin"
-              d="M90 67 C94 50 101 43 110 39 C119 43 126 50 130 67"
-            />
+            <path class="sketch-thin"
+              d="M90 67 C94 50 101 43 110 39 C119 43 126 50 130 67"/>
 
-            <path
-              class="sketch-line"
-              d="M110 19 L110 35 M103 25 L117 25"
-            />
+            <path class="sketch-line"
+              d="M110 19 L110 35 M103 25 L117 25"/>
 
-            <path
-              class="sketch-line"
-              d="M32 142 L32 68 L54 68 L54 142"
-            />
+            <path class="sketch-line"
+              d="M32 142 L32 68 L54 68 L54 142"/>
 
-            <path
-              class="sketch-line"
-              d="M30 68 L43 51 L56 68"
-            />
+            <path class="sketch-line"
+              d="M30 68 L43 51 L56 68"/>
 
-            <path
-              class="sketch-thin"
-              d="M43 51 L43 42 M37 47 L49 47"
-            />
+            <path class="sketch-thin"
+              d="M43 51 L43 42 M37 47 L49 47"/>
 
-            <path
-              class="sketch-line"
-              d="M166 142 L166 70 L188 70 L188 142"
-            />
+            <path class="sketch-line"
+              d="M166 142 L166 70 L188 70 L188 142"/>
 
-            <path
-              class="sketch-line"
-              d="M164 70 L177 53 L190 70"
-            />
+            <path class="sketch-line"
+              d="M164 70 L177 53 L190 70"/>
 
-            <path
-              class="sketch-thin"
-              d="M177 53 L177 44 M171 49 L183 49"
-            />
+            <path class="sketch-thin"
+              d="M177 53 L177 44 M171 49 L183 49"/>
 
-            <path
-              class="sketch-line"
-              d="M93 142 L93 113 C93 101 101 94 110 94 C119 94 127 101 127 113 L127 142"
-            />
+            <path class="sketch-line"
+              d="M93 142 L93 113 C93 101 101 94 110 94 C119 94 127 101 127 113 L127 142"/>
 
-            <path
-              class="sketch-thin"
-              d="M58 91 C58 82 65 76 72 76 C79 76 84 82 84 91 L84 105 L58 105 Z"
-            />
+            <path class="sketch-thin"
+              d="M58 91 C58 82 65 76 72 76 C79 76 84 82 84 91 L84 105 L58 105 Z"/>
 
-            <path
-              class="sketch-thin"
-              d="M136 91 C136 82 141 76 148 76 C155 76 162 82 162 91 L162 105 L136 105 Z"
-            />
+            <path class="sketch-thin"
+              d="M136 91 C136 82 141 76 148 76 C155 76 162 82 162 91 L162 105 L136 105 Z"/>
 
-            <path
-              class="sketch-thin"
-              d="M110 61 L110 77 M104 67 L116 67"
-            />
+            <path class="sketch-thin"
+              d="M110 61 L110 77 M104 67 L116 67"/>
 
-            <path
-              class="sketch-thin"
-              d="M47 120 L61 120 M66 120 L79 120 M141 120 L154 120 M159 120 L173 120"
-            />
+            <path class="sketch-thin"
+              d="M47 120 L61 120 M66 120 L79 120 M141 120 L154 120 M159 120 L173 120"/>
 
-            <path
-              class="sketch-line"
-              d="M20 143 C65 138 160 138 200 143"
-            />
+            <path class="sketch-line"
+              d="M20 143 C65 138 160 138 200 143"/>
 
-            <path
-              class="sketch-thin"
-              d="M25 149 C72 145 157 145 195 149"
-            />
+            <path class="sketch-thin"
+              d="M25 149 C72 145 157 145 195 149"/>
 
           </svg>
 
@@ -2032,7 +1796,7 @@ footer{
 
       <div class="venue-divider"></div>
 
-      <!-- RECEPTION -->
+      <!-- ΔΕΞΙΩΣΗ -->
 
       <div class="venue">
 
@@ -2067,9 +1831,7 @@ footer{
       <span></span>
     </div>
 
-    <!-- =========================
-         FAMILIES
-    ========================= -->
+    <!-- ΟΙΚΟΓΕΝΕΙΕΣ -->
 
     <section class="families">
 
@@ -2105,9 +1867,7 @@ footer{
 
     </section>
 
-    <!-- =========================
-         KOUMBAROI
-    ========================= -->
+    <!-- ΚΟΥΜΠΑΡΟΙ -->
 
     <section class="koumbaroi">
 
@@ -2133,9 +1893,7 @@ footer{
 
     </section>
 
-    <!-- =========================
-         RSVP
-    ========================= -->
+    <!-- RSVP -->
 
     <section class="rsvp">
 
@@ -2171,9 +1929,7 @@ footer{
 
     </section>
 
-    <!-- =========================
-         GIFT
-    ========================= -->
+    <!-- ΔΩΡΟ -->
 
     <section class="gift">
 
@@ -2221,18 +1977,28 @@ const goldDust =
 
 let opened = false;
 
-seal.addEventListener(
-  "click",
-  function(){
+seal.addEventListener("click", function(){
 
-    if(opened){
-      return;
-    }
+  if(opened){
+    return;
+  }
 
-    opened = true;
+  opened = true;
 
-    seal.style.pointerEvents =
-      "none";
+  seal.style.pointerEvents = "none";
+
+  /* 1. ΦΩΤΙΖΕΤΑΙ ΤΟ ΒΟΥΛΟΚΕΡΙ
+        ΚΑΙ ΟΛΟΣ Ο ΦΑΚΕΛΟΣ */
+
+  seal.classList.add("seal-glow");
+  envelope.classList.add("glow-active");
+
+  /*
+    Αφήνουμε για λίγο τη λάμψη να φανεί
+    πριν εξαφανιστεί το βουλοκέρι.
+  */
+
+  setTimeout(function(){
 
     seal.style.transition =
       "transform .55s cubic-bezier(.2,.8,.2,1), opacity .45s ease";
@@ -2240,85 +2006,59 @@ seal.addEventListener(
     seal.style.transform =
       "translate(-50%,-50%) translateZ(24px) scale(.82)";
 
-    seal.style.opacity =
-      "0";
+    seal.style.opacity = "0";
 
-    /* ΞΕΚΙΝΑ ΤΟ ΑΝΟΙΓΜΑ */
+  }, 420);
 
-    setTimeout(
-      function(){
+  /* 2. ΑΝΟΙΓΕΙ ΤΟ ΚΑΠΑΚΙ */
 
-        flap.classList.add(
-          "flap-open"
-        );
+  setTimeout(function(){
 
-      },
-      280
-    );
+    flap.classList.add("flap-open");
 
-    /* ΧΡΥΣΟΣΚΟΝΗ */
+  }, 560);
 
-    setTimeout(
-      function(){
+  /* 3. ΕΜΦΑΝΙΖΕΤΑΙ Η ΧΡΥΣΟΣΚΟΝΗ */
 
-        goldDust.classList.add(
-          "active"
-        );
+  setTimeout(function(){
 
-      },
-      430
-    );
+    goldDust.classList.add("active");
 
-    /* ΒΓΑΙΝΕΙ ΤΟ ΧΑΡΤΙ */
+  }, 720);
 
-    setTimeout(
-      function(){
+  /* 4. ΒΓΑΙΝΕΙ ΤΟ ΧΑΡΤΙ
+        ΜΕ ΤΟ ΚΑΛΛΙΓΡΑΦΙΚΟ
+        ΔΗΜΗΤΡΗΣ & ΜΑΡΙΑ */
 
-        envelope.classList.add(
-          "paper-rising"
-        );
+  setTimeout(function(){
 
-      },
-      1180
-    );
+    envelope.classList.add("paper-rising");
 
-    /* ΥΠΟΧΩΡΕΙ Ο ΦΑΚΕΛΟΣ */
+  }, 1350);
 
-    setTimeout(
-      function(){
+  /* 5. ΥΠΟΧΩΡΕΙ Ο ΦΑΚΕΛΟΣ */
 
-        envelope.classList.add(
-          "opened-completely"
-        );
+  setTimeout(function(){
 
-      },
-      2850
-    );
+    envelope.classList.add("opened-completely");
 
-    /* ΕΜΦΑΝΙΖΕΤΑΙ Η ΠΡΟΣΚΛΗΣΗ */
+  }, 3050);
 
-    setTimeout(
-      function(){
+  /* 6. ΕΜΦΑΝΙΖΕΤΑΙ ΤΟ ΠΡΟΣΚΛΗΤΗΡΙΟ */
 
-        opening.classList.add(
-          "opening-hidden"
-        );
+  setTimeout(function(){
 
-        invitation.classList.add(
-          "visible"
-        );
+    opening.classList.add("opening-hidden");
+    invitation.classList.add("visible");
 
-        window.scrollTo({
-          top:0,
-          behavior:"instant"
-        });
+    window.scrollTo({
+      top:0,
+      behavior:"instant"
+    });
 
-      },
-      3550
-    );
+  }, 3750);
 
-  }
-);
+});
 
 </script>
 
