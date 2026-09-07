@@ -6,9 +6,14 @@
 
   <title>ΔΗΜΗΤΡΗΣ & ΜΑΡΙΑ — 2 Ιανουαρίου 2027</title>
 
+  <!-- Elegant Greek-friendly fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Miama&display=swap"
+    rel="stylesheet"
+  >
 
   <style>
 
@@ -23,7 +28,6 @@
       --gold:#9b7b35;
       --gold-dark:#73571f;
       --gold-light:#c7ad69;
-      --gold-soft:rgba(195,160,83,.62);
 
       --ink:#211719;
 
@@ -34,13 +38,16 @@
       --opening-mid:#4a0b1c;
     }
 
+
     *{
       box-sizing:border-box;
     }
 
+
     html{
       scroll-behavior:smooth;
     }
+
 
     body{
       margin:0;
@@ -52,14 +59,16 @@
       font-family:"EB Garamond", Georgia, serif;
     }
 
+
     button,
     a{
       font-family:inherit;
     }
 
-    /* =========================================================
-       OPENING SCENE
-    ========================================================= */
+
+    /* =====================================================
+       OPENING
+    ====================================================== */
 
     .opening{
       position:fixed;
@@ -90,6 +99,7 @@
         opacity 1.15s ease,
         visibility 1.15s ease;
     }
+
 
     .opening::before{
       content:"";
@@ -129,6 +139,7 @@
         210px 210px;
     }
 
+
     .opening::after{
       content:"";
       position:absolute;
@@ -144,15 +155,17 @@
         );
     }
 
+
     .opening-hidden{
       opacity:0;
       visibility:hidden;
       pointer-events:none;
     }
 
-    /* =========================================================
+
+    /* =====================================================
        MAGIC PARTICLES
-    ========================================================= */
+    ====================================================== */
 
     .magic{
       position:absolute;
@@ -172,6 +185,7 @@
 
       animation:magicFloat 7s ease-in-out infinite;
     }
+
 
     .magic:nth-child(1){
       left:14%;
@@ -207,6 +221,7 @@
       animation-delay:-3s;
     }
 
+
     @keyframes magicFloat{
 
       0%,100%{
@@ -221,9 +236,10 @@
 
     }
 
-    /* =========================================================
+
+    /* =====================================================
        ENVELOPE STAGE
-    ========================================================= */
+    ====================================================== */
 
     .envelope-stage{
       position:relative;
@@ -239,6 +255,7 @@
 
       z-index:10;
     }
+
 
     .envelope-shadow{
       position:absolute;
@@ -258,9 +275,6 @@
       transform:scaleX(1.04);
     }
 
-    /* =========================================================
-       3D ENVELOPE
-    ========================================================= */
 
     .envelope{
       position:relative;
@@ -275,11 +289,6 @@
         opacity .9s ease;
     }
 
-    /*
-      Ολόκληρος ο φάκελος μετακινείται ελαφρά προς τα κάτω
-      καθώς το γράμμα ανεβαίνει, ώστε το γράμμα να φαίνεται
-      ότι παίρνει τη θέση του.
-    */
 
     .envelope.opened-completely{
       transform:
@@ -289,9 +298,10 @@
       opacity:0;
     }
 
-    /* =========================================================
+
+    /* =====================================================
        ENVELOPE BACK
-    ========================================================= */
+    ====================================================== */
 
     .envelope-back{
       position:absolute;
@@ -317,8 +327,10 @@
       transform-style:preserve-3d;
     }
 
+
     .envelope-back::before{
       content:"";
+
       position:absolute;
       inset:7px;
 
@@ -327,8 +339,10 @@
       pointer-events:none;
     }
 
+
     .envelope-back::after{
       content:"";
+
       position:absolute;
       inset:13px;
 
@@ -337,9 +351,10 @@
       pointer-events:none;
     }
 
-    /* =========================================================
-       PAPER — ΑΡΧΙΚΑ ΚΡΥΜΜΕΝΟ ΜΕΣΑ ΣΤΟΝ ΦΑΚΕΛΟ
-    ========================================================= */
+
+    /* =====================================================
+       PAPER INSIDE ENVELOPE
+    ====================================================== */
 
     .paper-holder{
       position:absolute;
@@ -357,16 +372,13 @@
       pointer-events:none;
     }
 
+
     .inside-paper{
       position:absolute;
 
       left:4%;
       right:4%;
 
-      /*
-        Βρίσκεται αρκετά χαμηλά ώστε να μην φαίνεται
-        καθόλου όταν ο φάκελος είναι κλειστός.
-      */
       top:84%;
 
       height:125%;
@@ -407,9 +419,6 @@
         top 2.25s cubic-bezier(.17,.76,.17,1);
     }
 
-    /*
-      Υφή παλιού χαρτιού
-    */
 
     .inside-paper::before{
       content:"";
@@ -446,6 +455,7 @@
         );
     }
 
+
     .inside-paper::after{
       content:"";
 
@@ -457,13 +467,11 @@
       pointer-events:none;
     }
 
+
     .paper-rising .inside-paper{
       top:-30%;
     }
 
-    /* =========================================================
-       PAPER CONTENT — ΜΙΚΡΗ ΠΡΟΕΠΙΣΚΟΠΗΣΗ
-    ========================================================= */
 
     .paper-mini-crest{
       width:50px;
@@ -487,6 +495,7 @@
       z-index:2;
     }
 
+
     .paper-mini-crest::before{
       content:"";
 
@@ -497,6 +506,7 @@
 
       border-radius:42% 42% 40% 40%;
     }
+
 
     .paper-mini-date{
       position:relative;
@@ -511,9 +521,10 @@
       letter-spacing:3px;
     }
 
-    /* =========================================================
-       FRONT FOLDS
-    ========================================================= */
+
+    /* =====================================================
+       ENVELOPE FOLDS
+    ====================================================== */
 
     .fold-left{
       position:absolute;
@@ -543,6 +554,7 @@
         drop-shadow(1px 0 rgba(171,132,51,.25));
     }
 
+
     .fold-right{
       position:absolute;
 
@@ -571,6 +583,7 @@
         drop-shadow(-1px 0 rgba(171,132,51,.25));
     }
 
+
     .fold-bottom{
       position:absolute;
 
@@ -596,9 +609,10 @@
         );
     }
 
-    /* =========================================================
+
+    /* =====================================================
        ANTIQUE GOLD DETAILS
-    ========================================================= */
+    ====================================================== */
 
     .gold-detail{
       position:absolute;
@@ -607,6 +621,7 @@
 
       pointer-events:none;
     }
+
 
     .gold-top{
       left:8%;
@@ -624,6 +639,7 @@
         );
     }
 
+
     .gold-bottom{
       left:8%;
       right:8%;
@@ -639,6 +655,7 @@
           transparent
         );
     }
+
 
     .gold-side-left{
       left:10px;
@@ -656,6 +673,7 @@
         );
     }
 
+
     .gold-side-right{
       right:10px;
       top:8%;
@@ -672,9 +690,10 @@
         );
     }
 
-    /* =========================================================
-       TOP FLAP — ΤΟ ΠΡΑΓΜΑΤΙΚΟ 3D ΚΑΠΑΚΙ
-    ========================================================= */
+
+    /* =====================================================
+       3D FLAP
+    ====================================================== */
 
     .flap{
       position:absolute;
@@ -695,11 +714,13 @@
         transform 1.65s cubic-bezier(.18,.77,.15,1);
     }
 
+
     .flap-open{
       transform:
         rotateX(-178deg)
         translateZ(-2px);
     }
+
 
     .flap-front{
       position:absolute;
@@ -725,9 +746,6 @@
         0 7px 18px rgba(0,0,0,.20);
     }
 
-    /*
-      Λεπτό antique gold περίγραμμα
-    */
 
     .flap-front::before{
       content:"";
@@ -749,6 +767,7 @@
 
       opacity:.8;
     }
+
 
     .flap-front::after{
       content:"";
@@ -772,6 +791,7 @@
         );
     }
 
+
     .flap-line-left,
     .flap-line-right{
       position:absolute;
@@ -792,11 +812,13 @@
         );
     }
 
+
     .flap-line-left{
       left:11%;
       transform:rotate(29deg);
       transform-origin:top;
     }
+
 
     .flap-line-right{
       right:11%;
@@ -804,11 +826,6 @@
       transform-origin:top;
     }
 
-    /*
-      Η πίσω πλευρά του καπακιού.
-      Όταν ανοίγει, βλέπουμε ένα πιο σκούρο εσωτερικό
-      αντί να "εξαφανίζεται" απότομα.
-    */
 
     .flap-back{
       position:absolute;
@@ -836,9 +853,10 @@
       border:1px solid rgba(165,126,47,.34);
     }
 
-    /* =========================================================
+
+    /* =====================================================
        WAX SEAL
-    ========================================================= */
+    ====================================================== */
 
     .wax-seal{
       position:absolute;
@@ -886,6 +904,7 @@
         box-shadow .35s ease;
     }
 
+
     .wax-seal::before{
       content:"";
 
@@ -897,17 +916,14 @@
       border-radius:50%;
     }
 
+
     .wax-seal:hover{
       transform:
         translate(-50%,-50%)
         translateZ(24px)
         scale(1.04);
-
-      box-shadow:
-        0 7px 17px rgba(0,0,0,.38),
-        0 0 14px rgba(211,174,85,.12),
-        inset 0 0 14px rgba(0,0,0,.28);
     }
+
 
     .seal-initials{
       font-size:20px;
@@ -919,6 +935,7 @@
       position:relative;
       z-index:2;
     }
+
 
     .seal-year{
       margin-top:4px;
@@ -932,9 +949,10 @@
       z-index:2;
     }
 
-    /* =========================================================
+
+    /* =====================================================
        INVITATION
-    ========================================================= */
+    ====================================================== */
 
     .invitation{
       display:none;
@@ -952,12 +970,14 @@
         var(--cream);
     }
 
+
     .invitation.visible{
       display:block;
 
       animation:
         invitationAppear 1.45s ease forwards;
     }
+
 
     @keyframes invitationAppear{
 
@@ -973,6 +993,11 @@
 
     }
 
+
+    /* =====================================================
+       INVITATION PAPER
+    ====================================================== */
+
     .paper-page{
       position:relative;
 
@@ -981,6 +1006,8 @@
       margin:0 auto;
 
       padding:70px 30px 80px;
+
+      overflow:hidden;
 
       background:
         radial-gradient(
@@ -1006,31 +1033,165 @@
         0 0 40px rgba(61,39,23,.08);
     }
 
+
+    /*
+      ΝΕΟ:
+      Διπλό λεπτό περίγραμμα όπως στο screenshot.
+    */
+
     .paper-page::before{
       content:"";
 
       position:absolute;
-      inset:18px;
 
-      border:1px solid rgba(126,94,40,.23);
+      inset:14px;
+
+      border:1px solid rgba(100,19,38,.62);
 
       pointer-events:none;
+
+      z-index:20;
     }
+
 
     .paper-page::after{
       content:"";
 
       position:absolute;
-      inset:28px;
 
-      border:1px solid rgba(126,94,40,.10);
+      inset:20px;
+
+      border:1px solid rgba(100,19,38,.30);
 
       pointer-events:none;
+
+      z-index:20;
     }
 
-    /* =========================================================
+
+    /*
+      Μικρά antique corner ornaments
+    */
+
+    .paper-page .corner{
+      position:absolute;
+
+      z-index:21;
+
+      width:55px;
+      height:55px;
+
+      pointer-events:none;
+
+      color:var(--burgundy);
+
+      opacity:.72;
+    }
+
+
+    .paper-page .corner::before,
+    .paper-page .corner::after{
+      content:"";
+
+      position:absolute;
+
+      background:var(--burgundy);
+
+      opacity:.58;
+    }
+
+
+    .corner-tl{
+      left:18px;
+      top:18px;
+    }
+
+
+    .corner-tl::before{
+      width:1px;
+      height:30px;
+      left:8px;
+      top:0;
+    }
+
+
+    .corner-tl::after{
+      width:30px;
+      height:1px;
+      left:0;
+      top:8px;
+    }
+
+
+    .corner-tr{
+      right:18px;
+      top:18px;
+    }
+
+
+    .corner-tr::before{
+      width:1px;
+      height:30px;
+      right:8px;
+      top:0;
+    }
+
+
+    .corner-tr::after{
+      width:30px;
+      height:1px;
+      right:0;
+      top:8px;
+    }
+
+
+    .corner-bl{
+      left:18px;
+      bottom:18px;
+    }
+
+
+    .corner-bl::before{
+      width:1px;
+      height:30px;
+      left:8px;
+      bottom:0;
+    }
+
+
+    .corner-bl::after{
+      width:30px;
+      height:1px;
+      left:0;
+      bottom:8px;
+    }
+
+
+    .corner-br{
+      right:18px;
+      bottom:18px;
+    }
+
+
+    .corner-br::before{
+      width:1px;
+      height:30px;
+      right:8px;
+      bottom:0;
+    }
+
+
+    .corner-br::after{
+      width:30px;
+      height:1px;
+      right:0;
+      bottom:8px;
+    }
+
+
+    /* =====================================================
        CREST
-    ========================================================= */
+    ====================================================== */
 
     .crest{
       width:100px;
@@ -1062,6 +1223,7 @@
         inset 0 0 0 4px rgba(151,115,43,.07);
     }
 
+
     .crest::before{
       content:"";
 
@@ -1073,12 +1235,14 @@
       border-radius:44% 44% 42% 42%;
     }
 
+
     .crest-main{
       font-size:28px;
       letter-spacing:2px;
 
       z-index:1;
     }
+
 
     .crest-year{
       font-size:12px;
@@ -1088,6 +1252,7 @@
 
       z-index:1;
     }
+
 
     .invitation-kicker{
       text-align:center;
@@ -1100,33 +1265,46 @@
       margin-bottom:14px;
     }
 
+
+    /*
+      ΝΕΟ:
+      Καλλιγραφική γραμματοσειρά όπως στο screenshot
+      μόνο στα ονόματα.
+    */
+
     .names{
       margin:0;
 
       text-align:center;
 
-      font-size:clamp(44px,8vw,76px);
+      font-family:"Miama","Brush Script MT",cursive;
 
-      line-height:.95;
+      font-size:clamp(55px,9vw,92px);
 
-      letter-spacing:4px;
+      line-height:.9;
 
-      font-weight:500;
+      font-weight:400;
 
-      color:#1e1718;
+      letter-spacing:0;
+
+      color:#211719;
     }
+
 
     .ampersand{
-      display:block;
+      display:inline;
 
-      margin:10px 0;
+      margin:0 8px;
 
-      font-size:34px;
+      font-family:"EB Garamond", Georgia, serif;
 
-      letter-spacing:1px;
+      font-size:.70em;
 
-      color:var(--gold-dark);
+      color:var(--burgundy);
+
+      vertical-align:middle;
     }
+
 
     .date{
       margin-top:30px;
@@ -1140,6 +1318,7 @@
       color:#4b3232;
     }
 
+
     .time{
       margin-top:7px;
 
@@ -1151,6 +1330,7 @@
 
       color:#765b2d;
     }
+
 
     .intro{
       max-width:620px;
@@ -1166,9 +1346,10 @@
       color:#302225;
     }
 
-    /* =========================================================
+
+    /* =====================================================
        ORNAMENT
-    ========================================================= */
+    ====================================================== */
 
     .ornament{
       display:flex;
@@ -1183,6 +1364,7 @@
       color:var(--gold-dark);
     }
 
+
     .ornament span{
       width:80px;
       height:1px;
@@ -1195,9 +1377,11 @@
         );
     }
 
+
     .ornament span:last-child{
       transform:rotate(180deg);
     }
+
 
     .ornament i{
       width:6px;
@@ -1208,13 +1392,15 @@
       transform:rotate(45deg);
     }
 
-    /* =========================================================
+
+    /* =====================================================
        VENUES
-    ========================================================= */
+    ====================================================== */
 
     .venue-section{
       margin-top:30px;
     }
+
 
     .venue{
       position:relative;
@@ -1223,6 +1409,7 @@
 
       text-align:center;
     }
+
 
     .venue-title{
       margin:0 0 12px;
@@ -1233,6 +1420,7 @@
 
       color:#2d2022;
     }
+
 
     .venue-label{
       margin-bottom:10px;
@@ -1246,6 +1434,7 @@
       color:#826631;
     }
 
+
     .venue-address{
       max-width:520px;
 
@@ -1257,6 +1446,7 @@
 
       color:#4a3839;
     }
+
 
     .map-link{
       display:inline-block;
@@ -1280,14 +1470,16 @@
         color .25s ease;
     }
 
+
     .map-link:hover{
       background:#6a142a;
       color:#f3e7cf;
     }
 
-    /* =========================================================
+
+    /* =====================================================
        CHURCH SKETCH
-    ========================================================= */
+    ====================================================== */
 
     .church-sketch{
       position:absolute;
@@ -1303,10 +1495,12 @@
       pointer-events:none;
     }
 
+
     .church-sketch svg{
       width:100%;
       height:100%;
     }
+
 
     .sketch-line{
       fill:none;
@@ -1319,6 +1513,7 @@
       stroke-linejoin:round;
     }
 
+
     .sketch-thin{
       fill:none;
 
@@ -1330,9 +1525,10 @@
       stroke-linejoin:round;
     }
 
-    /* =========================================================
+
+    /* =====================================================
        DIVIDER
-    ========================================================= */
+    ====================================================== */
 
     .venue-divider{
       width:70%;
@@ -1351,32 +1547,83 @@
         );
     }
 
-    /* =========================================================
-       CASTLE SKETCH
-    ========================================================= */
+
+    /* =====================================================
+       ΝΕΟ ΚΑΣΤΡΟ
+       Αχνό, λεπτομερές gothic castle όπως στο screenshot
+    ====================================================== */
 
     .castle-sketch{
       position:absolute;
 
       right:0;
-      bottom:10px;
+      bottom:8px;
 
-      width:190px;
-      height:165px;
+      width:205px;
+      height:175px;
 
-      opacity:.46;
+      opacity:.29;
 
       pointer-events:none;
+
+      z-index:0;
     }
+
 
     .castle-sketch svg{
       width:100%;
       height:100%;
     }
 
-    /* =========================================================
+
+    .castle-line{
+      fill:none;
+
+      stroke:#8c8069;
+
+      stroke-width:1.05;
+
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+
+
+    .castle-thin{
+      fill:none;
+
+      stroke:#a2967d;
+
+      stroke-width:.65;
+
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+
+
+    .castle-fill{
+      fill:#a49a84;
+
+      opacity:.10;
+    }
+
+
+    /*
+      Το κείμενο του venue πρέπει να παραμένει
+      μπροστά από το αχνό κάστρο.
+    */
+
+    .venue > .venue-label,
+    .venue > .venue-title,
+    .venue > .venue-address,
+    .venue > .map-link{
+      position:relative;
+      z-index:2;
+    }
+
+
+    /* =====================================================
        FAMILIES
-    ========================================================= */
+    ====================================================== */
 
     .families{
       margin-top:25px;
@@ -1385,6 +1632,7 @@
 
       text-align:center;
     }
+
 
     .section-title{
       margin:0 0 28px;
@@ -1395,6 +1643,7 @@
 
       color:#2e2022;
     }
+
 
     .families-grid{
       display:grid;
@@ -1408,6 +1657,7 @@
       margin:0 auto;
     }
 
+
     .family{
       font-size:20px;
 
@@ -1415,6 +1665,7 @@
 
       color:#443436;
     }
+
 
     .family strong{
       display:block;
@@ -1428,15 +1679,17 @@
       color:#765b2d;
     }
 
-    /* =========================================================
+
+    /* =====================================================
        KOUMBAROI
-    ========================================================= */
+    ====================================================== */
 
     .koumbaroi{
       padding:20px 20px 50px;
 
       text-align:center;
     }
+
 
     .koumbaroi-list{
       display:flex;
@@ -1452,15 +1705,17 @@
       margin:0 auto;
     }
 
+
     .koumbaros{
       font-size:20px;
 
       color:#443436;
     }
 
-    /* =========================================================
+
+    /* =====================================================
        RSVP
-    ========================================================= */
+    ====================================================== */
 
     .rsvp{
       max-width:670px;
@@ -1475,6 +1730,7 @@
       border-bottom:1px solid rgba(126,94,40,.25);
     }
 
+
     .rsvp-text{
       margin-bottom:25px;
 
@@ -1482,6 +1738,7 @@
 
       line-height:1.5;
     }
+
 
     .rsvp-date{
       margin-bottom:20px;
@@ -1493,6 +1750,7 @@
       letter-spacing:1px;
     }
 
+
     .contacts{
       display:flex;
 
@@ -1503,11 +1761,13 @@
       flex-wrap:wrap;
     }
 
+
     .contact{
       font-size:18px;
 
       color:#473538;
     }
+
 
     .contact a{
       color:#684d21;
@@ -1515,9 +1775,10 @@
       text-decoration:none;
     }
 
-    /* =========================================================
+
+    /* =====================================================
        GIFT
-    ========================================================= */
+    ====================================================== */
 
     .gift{
       max-width:650px;
@@ -1529,6 +1790,7 @@
       text-align:center;
     }
 
+
     .gift-text{
       font-size:19px;
 
@@ -1536,6 +1798,7 @@
 
       color:#493839;
     }
+
 
     .iban{
       display:inline-block;
@@ -1557,9 +1820,10 @@
       color:#594323;
     }
 
-    /* =========================================================
+
+    /* =====================================================
        FOOTER
-    ========================================================= */
+    ====================================================== */
 
     footer{
       padding:45px 20px 60px;
@@ -1573,9 +1837,10 @@
       letter-spacing:2px;
     }
 
-    /* =========================================================
+
+    /* =====================================================
        MOBILE
-    ========================================================= */
+    ====================================================== */
 
     @media(max-width:700px){
 
@@ -1585,46 +1850,67 @@
         max-height:360px;
       }
 
+
       .wax-seal{
         width:64px;
         height:64px;
       }
 
+
       .seal-initials{
         font-size:18px;
       }
+
 
       .paper-page{
         padding:55px 18px 60px;
       }
 
+
       .paper-page::before{
         inset:10px;
       }
 
+
       .paper-page::after{
-        inset:18px;
+        inset:16px;
       }
+
+
+      .paper-page .corner{
+        transform:scale(.78);
+      }
+
 
       .crest{
         width:86px;
         height:98px;
       }
 
+
       .names{
-        font-size:clamp(39px,11vw,60px);
-        letter-spacing:2px;
+        font-size:clamp(52px,14vw,75px);
+
+        white-space:nowrap;
       }
+
+
+      .ampersand{
+        margin:0 4px;
+      }
+
 
       .intro{
         font-size:20px;
       }
+
 
       .venue-title{
         padding:0 25px;
 
         font-size:27px;
       }
+
 
       .church-sketch{
         left:-8px;
@@ -1635,20 +1921,23 @@
         opacity:.32;
       }
 
+
       .castle-sketch{
-        right:-5px;
+        right:-10px;
 
-        width:145px;
-        height:125px;
+        width:155px;
+        height:135px;
 
-        opacity:.32;
+        opacity:.22;
       }
+
 
       .families-grid{
         grid-template-columns:1fr;
 
         gap:25px;
       }
+
 
       .contacts{
         flex-direction:column;
@@ -1657,6 +1946,7 @@
       }
     }
 
+
     @media(max-width:430px){
 
       .envelope-stage{
@@ -1664,27 +1954,37 @@
         height:62vw;
       }
 
+
       .inside-paper{
         padding:20px 15px;
       }
+
 
       .paper-mini-crest{
         width:40px;
         height:42px;
       }
 
+
       .date{
         font-size:21px;
         letter-spacing:2px;
       }
 
+
       .time{
         font-size:17px;
       }
 
+
       .venue{
         padding-left:10px;
         padding-right:10px;
+      }
+
+
+      .names{
+        font-size:54px;
       }
     }
 
@@ -1694,9 +1994,10 @@
 
 <body>
 
-  <!-- =======================================================
+
+  <!-- =====================================================
        OPENING
-  ======================================================== -->
+  ====================================================== -->
 
   <div class="opening" id="opening">
 
@@ -1714,7 +2015,7 @@
 
       <div class="envelope" id="envelope">
 
-        <!-- Πίσω μέρος φακέλου -->
+
         <div class="envelope-back">
 
           <div class="gold-detail gold-top"></div>
@@ -1725,9 +2026,7 @@
         </div>
 
 
-        <!-- =================================================
-             ΧΑΡΤΙ ΠΟΥ ΒΡΙΣΚΕΤΑΙ ΜΕΣΑ ΣΤΟΝ ΦΑΚΕΛΟ
-        ================================================== -->
+        <!-- ΧΑΡΤΙ ΜΕΣΑ ΣΤΟΝ ΦΑΚΕΛΟ -->
 
         <div class="paper-holder">
 
@@ -1746,19 +2045,14 @@
         </div>
 
 
-        <!-- Αριστερό δίπλωμα -->
         <div class="fold-left"></div>
 
-        <!-- Δεξί δίπλωμα -->
         <div class="fold-right"></div>
 
-        <!-- Κάτω δίπλωμα -->
         <div class="fold-bottom"></div>
 
 
-        <!-- =================================================
-             ΠΑΝΩ ΚΑΠΑΚΙ
-        ================================================== -->
+        <!-- 3D ΚΑΠΑΚΙ -->
 
         <div class="flap" id="flap">
 
@@ -1774,9 +2068,7 @@
         </div>
 
 
-        <!-- =================================================
-             ΚΕΡΙ
-        ================================================== -->
+        <!-- ΚΕΡΙ -->
 
         <button
           class="wax-seal"
@@ -1795,6 +2087,7 @@
 
         </button>
 
+
       </div>
 
     </div>
@@ -1802,18 +2095,24 @@
   </div>
 
 
-  <!-- =======================================================
+  <!-- =====================================================
        ΠΡΟΣΚΛΗΣΗ
-  ======================================================== -->
+  ====================================================== -->
 
   <main class="invitation" id="invitation">
 
     <div class="paper-page">
 
 
-      <!-- =================================================
-           CREST
-      ================================================== -->
+      <!-- Decorative corners -->
+
+      <span class="corner corner-tl"></span>
+      <span class="corner corner-tr"></span>
+      <span class="corner corner-bl"></span>
+      <span class="corner corner-br"></span>
+
+
+      <!-- CREST -->
 
       <div class="crest">
 
@@ -1828,9 +2127,7 @@
       </div>
 
 
-      <!-- =================================================
-           HERO
-      ================================================== -->
+      <!-- HERO -->
 
       <div class="invitation-kicker">
         Με χαρά σας προσκαλούμε
@@ -1874,20 +2171,16 @@
 
 
       <!-- =================================================
-           ΕΚΚΛΗΣΙΑ & ΚΤΗΜΑ
+           ΕΚΚΛΗΣΙΑ
       ================================================== -->
 
       <section class="venue-section">
 
 
-        <!-- ===============================================
-             ΕΚΚΛΗΣΙΑ
-        ================================================ -->
-
         <div class="venue">
 
 
-          <!-- Μικρό σκίτσο ορθόδοξης εκκλησίας -->
+          <!-- Εκκλησία -->
 
           <div class="church-sketch" aria-hidden="true">
 
@@ -1912,15 +2205,11 @@
                    C119 43 126 50 130 67"
               />
 
-              <!-- σταυρός τρούλου -->
-
               <path
                 class="sketch-line"
                 d="M110 19 L110 35
                    M103 25 L117 25"
               />
-
-              <!-- αριστερό καμπαναριό -->
 
               <path
                 class="sketch-line"
@@ -1938,8 +2227,6 @@
                    M37 47 L49 47"
               />
 
-              <!-- δεξί καμπαναριό -->
-
               <path
                 class="sketch-line"
                 d="M166 142 L166 70 L188 70 L188 142"
@@ -1956,8 +2243,6 @@
                    M171 49 L183 49"
               />
 
-              <!-- κεντρική είσοδος -->
-
               <path
                 class="sketch-line"
                 d="M93 142 L93 113
@@ -1965,8 +2250,6 @@
                    C119 94 127 101 127 113
                    L127 142"
               />
-
-              <!-- αριστερό παράθυρο -->
 
               <path
                 class="sketch-thin"
@@ -1977,8 +2260,6 @@
                    L58 105 Z"
               />
 
-              <!-- δεξί παράθυρο -->
-
               <path
                 class="sketch-thin"
                 d="M136 91
@@ -1988,15 +2269,11 @@
                    L136 105 Z"
               />
 
-              <!-- σταυρός πρόσοψης -->
-
               <path
                 class="sketch-thin"
                 d="M110 61 L110 77
                    M104 67 L116 67"
               />
-
-              <!-- πέτρες -->
 
               <path
                 class="sketch-thin"
@@ -2013,8 +2290,6 @@
                    M148 129 L158 129
                    M164 129 L173 129"
               />
-
-              <!-- έδαφος -->
 
               <path
                 class="sketch-line"
@@ -2064,210 +2339,403 @@
         <div class="venue-divider"></div>
 
 
-        <!-- ===============================================
+        <!-- =================================================
              ΚΤΗΜΑ
-        ================================================ -->
+        ================================================== -->
 
         <div class="venue">
 
 
-          <!-- Μικρό λεπτομερές gothic κάστρο -->
+          <!-- ΚΑΣΤΡΟ — νέο, αχνό και λεπτομερές -->
 
           <div class="castle-sketch" aria-hidden="true">
 
-            <svg viewBox="0 0 240 190">
+            <svg viewBox="0 0 260 210">
 
-              <!-- βουνά -->
-
-              <path
-                class="sketch-thin"
-                d="M8 147
-                   L38 117
-                   L55 130
-                   L88 91
-                   L111 118
-                   L145 82
-                   L183 123
-                   L205 104
-                   L233 147"
-              />
-
-              <!-- αριστερός πύργος -->
+              <!-- αχνή βάση -->
 
               <path
-                class="sketch-line"
-                d="M37 145 L37 63 L66 63 L66 145"
+                class="castle-fill"
+                d="
+                  M20 178
+                  L46 148
+                  L55 91
+                  L75 91
+                  L75 121
+                  L88 121
+                  L88 69
+                  L108 69
+                  L130 45
+                  L152 69
+                  L172 69
+                  L172 121
+                  L187 121
+                  L187 83
+                  L207 83
+                  L207 148
+                  L232 178
+                  Z
+                "
+              />
+
+
+              <!-- αριστερός ψηλός πύργος -->
+
+              <path
+                class="castle-line"
+                d="
+                  M48 178
+                  L48 78
+                  L78 78
+                  L78 178
+                "
               />
 
               <path
-                class="sketch-line"
-                d="M32 63 L51 28 L71 63"
+                class="castle-line"
+                d="
+                  M43 78
+                  L63 37
+                  L83 78
+                "
               />
 
-              <!-- δεξιός πύργος -->
+              <!-- δεξιός ψηλός πύργος -->
 
               <path
-                class="sketch-line"
-                d="M174 145 L174 57 L204 57 L204 145"
+                class="castle-line"
+                d="
+                  M182 178
+                  L182 71
+                  L212 71
+                  L212 178
+                "
               />
 
               <path
-                class="sketch-line"
-                d="M169 57 L189 22 L209 57"
+                class="castle-line"
+                d="
+                  M177 71
+                  L197 29
+                  L217 71
+                "
               />
+
 
               <!-- κεντρικό κτίριο -->
 
               <path
-                class="sketch-line"
-                d="M66 145 L66 78
-                   L89 64
-                   L151 64
-                   L174 78
-                   L174 145"
+                class="castle-line"
+                d="
+                  M78 178
+                  L78 91
+                  L98 77
+                  L162 77
+                  L182 91
+                  L182 178
+                "
               />
+
 
               <!-- κεντρική στέγη -->
 
               <path
-                class="sketch-line"
-                d="M78 64
-                   L120 34
-                   L162 64"
+                class="castle-line"
+                d="
+                  M88 77
+                  L130 42
+                  L172 77
+                "
               />
+
 
               <!-- κεντρικός πύργος -->
 
               <path
-                class="sketch-line"
-                d="M105 64 L105 43 L135 43 L135 64"
+                class="castle-line"
+                d="
+                  M111 77
+                  L111 50
+                  L149 50
+                  L149 77
+                "
               />
 
               <path
-                class="sketch-line"
-                d="M100 43 L120 14 L140 43"
+                class="castle-line"
+                d="
+                  M105 50
+                  L130 13
+                  L155 50
+                "
               />
+
 
               <!-- σημαία -->
 
               <path
-                class="sketch-thin"
-                d="M120 14 L120 4
-                   M120 5 L133 9 L120 12"
+                class="castle-thin"
+                d="
+                  M130 13
+                  L130 3
+                "
               />
+
+              <path
+                class="castle-thin"
+                d="
+                  M130 4
+                  L143 8
+                  L130 12
+                "
+              />
+
 
               <!-- αριστερά παράθυρα -->
 
               <path
-                class="sketch-thin"
-                d="M44 81
-                   L44 70
-                   C44 66 48 63 51 63
-                   C55 63 59 66 59 70
-                   L59 81 Z"
+                class="castle-thin"
+                d="
+                  M56 103
+                  L56 90
+                  C56 85 60 82 63 82
+                  C67 82 71 85 71 90
+                  L71 103
+                  Z
+                "
               />
 
               <path
-                class="sketch-thin"
-                d="M44 106
-                   L44 94
-                   C44 90 48 87 51 87
-                   C55 87 59 90 59 94
-                   L59 106 Z"
+                class="castle-thin"
+                d="
+                  M56 132
+                  L56 118
+                  C56 113 60 110 63 110
+                  C67 110 71 113 71 118
+                  L71 132
+                  Z
+                "
               />
+
+              <path
+                class="castle-thin"
+                d="
+                  M56 158
+                  L56 144
+                  C56 139 60 136 63 136
+                  C67 136 71 139 71 144
+                  L71 158
+                  Z
+                "
+              />
+
 
               <!-- δεξιά παράθυρα -->
 
               <path
-                class="sketch-thin"
-                d="M181 76
-                   L181 65
-                   C181 61 185 58 189 58
-                   C193 58 197 61 197 65
-                   L197 76 Z"
+                class="castle-thin"
+                d="
+                  M189 101
+                  L189 87
+                  C189 82 193 79 197 79
+                  C201 79 205 82 205 87
+                  L205 101
+                  Z
+                "
               />
 
               <path
-                class="sketch-thin"
-                d="M181 105
-                   L181 92
-                   C181 88 185 85 189 85
-                   C193 85 197 88 197 92
-                   L197 105 Z"
+                class="castle-thin"
+                d="
+                  M189 132
+                  L189 117
+                  C189 112 193 109 197 109
+                  C201 109 205 112 205 117
+                  L205 132
+                  Z
+                "
               />
+
+              <path
+                class="castle-thin"
+                d="
+                  M189 159
+                  L189 145
+                  C189 140 193 137 197 137
+                  C201 137 205 140 205 145
+                  L205 159
+                  Z
+                "
+              />
+
 
               <!-- κεντρικά παράθυρα -->
 
               <path
-                class="sketch-thin"
-                d="M91 86
-                   L91 74
-                   C91 69 96 65 101 65
-                   C106 65 111 69 111 74
-                   L111 86 Z"
+                class="castle-thin"
+                d="
+                  M91 104
+                  L91 91
+                  C91 86 95 83 100 83
+                  C105 83 109 86 109 91
+                  L109 104
+                  Z
+                "
               />
 
               <path
-                class="sketch-thin"
-                d="M129 86
-                   L129 74
-                   C129 69 134 65 139 65
-                   C144 65 149 69 149 74
-                   L149 86 Z"
+                class="castle-thin"
+                d="
+                  M151 104
+                  L151 91
+                  C151 86 155 83 160 83
+                  C165 83 169 86 169 91
+                  L169 104
+                  Z
+                "
               />
 
-              <!-- μεγάλη είσοδος -->
+
+              <!-- μεγάλο κεντρικό παράθυρο -->
 
               <path
-                class="sketch-line"
-                d="M102 145 L102 119
-                   C102 105 110 97 120 97
-                   C130 97 138 105 138 119
-                   L138 145"
+                class="castle-line"
+                d="
+                  M116 178
+                  L116 130
+                  C116 117 123 109 130 109
+                  C137 109 144 117 144 130
+                  L144 178
+                "
               />
+
+              <path
+                class="castle-thin"
+                d="
+                  M130 111
+                  L130 158
+                  M118 135
+                  L142 135
+                "
+              />
+
+
+              <!-- πέτρες / γραμμές τοίχων -->
+
+              <path
+                class="castle-thin"
+                d="
+                  M82 116 L94 116
+                  M151 116 L166 116
+                  M82 128 L96 128
+                  M151 128 L166 128
+                  M82 143 L95 143
+                  M151 143 L166 143
+                  M82 158 L96 158
+                  M151 158 L166 158
+                "
+              />
+
+
+              <!-- σημαίες στους πύργους -->
+
+              <path
+                class="castle-thin"
+                d="
+                  M63 37
+                  L63 26
+                "
+              />
+
+              <path
+                class="castle-thin"
+                d="
+                  M63 27
+                  L74 30
+                  L63 34
+                "
+              />
+
+              <path
+                class="castle-thin"
+                d="
+                  M197 29
+                  L197 18
+                "
+              />
+
+              <path
+                class="castle-thin"
+                d="
+                  M197 19
+                  L208 22
+                  L197 26
+                "
+              />
+
 
               <!-- γέφυρα -->
 
               <path
-                class="sketch-line"
-                d="M15 145
-                   C40 132 67 131 91 145"
+                class="castle-line"
+                d="
+                  M16 178
+                  C53 158 84 158 116 178
+                "
               />
 
               <path
-                class="sketch-thin"
-                d="M17 151
-                   C42 138 67 137 90 151"
+                class="castle-thin"
+                d="
+                  M19 185
+                  C54 166 84 166 114 185
+                "
               />
+
 
               <!-- δέντρα -->
 
               <path
-                class="sketch-thin"
-                d="M20 145 L20 125
-                   M20 127 L11 139
-                   M20 132 L29 140"
+                class="castle-thin"
+                d="
+                  M24 178
+                  L24 145
+                  M24 151
+                  L14 163
+                  M24 157
+                  L34 166
+                "
               />
 
               <path
-                class="sketch-thin"
-                d="M220 145 L220 120
-                   M220 123 L210 136
-                   M220 128 L231 138"
+                class="castle-thin"
+                d="
+                  M228 178
+                  L228 141
+                  M228 148
+                  L217 160
+                  M228 155
+                  L239 165
+                "
               />
+
 
               <!-- έδαφος -->
 
               <path
-                class="sketch-line"
-                d="M7 151
-                   C63 146 178 146 233 151"
+                class="castle-line"
+                d="
+                  M9 184
+                  C64 178 196 178 249 184
+                "
               />
 
               <path
-                class="sketch-thin"
-                d="M13 158
-                   C68 153 175 153 227 158"
+                class="castle-thin"
+                d="
+                  M17 191
+                  C71 186 190 186 242 191
+                "
               />
 
             </svg>
@@ -2312,13 +2780,13 @@
 
 
       <!-- =================================================
-           ΟΙΚΟΓΕΝΕΙΑ ΓΑΜΠΡΟΥ / ΝΥΦΗΣ
+           ΟΙΚΟΓΕΝΕΙΕΣ
       ================================================== -->
 
       <section class="families">
 
         <h2 class="section-title">
-          Οι οικογένειές μας
+          ΟΙΚΟΓΕΝΕΙΕΣ
         </h2>
 
 
@@ -2450,10 +2918,6 @@
       </section>
 
 
-      <!-- =================================================
-           FOOTER
-      ================================================== -->
-
       <footer>
         ΔΗΜΗΤΡΗΣ &amp; ΜΑΡΙΑ · 02 · 01 · 2027
       </footer>
@@ -2464,9 +2928,9 @@
   </main>
 
 
-  <!-- =======================================================
-       JAVASCRIPT — ΣΤΑΔΙΑΚΟ 3D ΑΝΟΙΓΜΑ
-  ======================================================== -->
+  <!-- =====================================================
+       JAVASCRIPT — ΔΕΝ ΑΛΛΑΖΕΙ ΤΟ ΑΝΟΙΓΜΑ
+  ====================================================== -->
 
   <script>
 
@@ -2488,12 +2952,7 @@
       opened = true;
 
 
-      /*
-       * ΣΤΑΔΙΟ 1
-       *
-       * Το κερί απομακρύνεται ελαφρά,
-       * ώστε να ξεκινήσει η κίνηση.
-       */
+      /* 1. Απομακρύνεται το κερί */
 
       seal.style.pointerEvents = "none";
 
@@ -2506,14 +2965,7 @@
       seal.style.opacity = "0";
 
 
-      /*
-       * ΣΤΑΔΙΟ 2
-       *
-       * Ανοίγει το πραγματικό επάνω καπάκι.
-       *
-       * Το καπάκι έχει δικό του transform-origin
-       * στην πάνω ακμή του φακέλου.
-       */
+      /* 2. Ανοίγει το καπάκι */
 
       setTimeout(function(){
 
@@ -2522,13 +2974,7 @@
       }, 280);
 
 
-      /*
-       * ΣΤΑΔΙΟ 3
-       *
-       * Αφού αρχίσει να ανοίγει το καπάκι,
-       * το χαρτί ξεκινάει να ανεβαίνει
-       * από το εσωτερικό του φακέλου.
-       */
+      /* 3. Το χαρτί βγαίνει από μέσα */
 
       setTimeout(function(){
 
@@ -2537,16 +2983,7 @@
       }, 760);
 
 
-      /*
-       * ΣΤΑΔΙΟ 4
-       *
-       * Το χαρτί έχει πλέον βγει αρκετά
-       * ώστε να δίνει την αίσθηση ότι
-       * τραβιέται από μέσα.
-       *
-       * Μετακινούμε ολόκληρο τον φάκελο
-       * προς τα κάτω και ελαφρά μικρότερο.
-       */
+      /* 4. Ο φάκελος απομακρύνεται */
 
       setTimeout(function(){
 
@@ -2555,13 +2992,7 @@
       }, 2500);
 
 
-      /*
-       * ΣΤΑΔΙΟ 5
-       *
-       * Ο φάκελος εξαφανίζεται εντελώς
-       * και εμφανίζεται η πρώτη σελίδα
-       * της πραγματικής πρόσκλησης.
-       */
+      /* 5. Εμφανίζεται η πρόσκληση */
 
       setTimeout(function(){
 
@@ -2579,6 +3010,7 @@
     });
 
   </script>
+
 
 </body>
 </html>
