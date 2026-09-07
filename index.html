@@ -1,3016 +1,1811 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>ΔΗΜΗΤΡΗΣ & ΜΑΡΙΑ — 2 Ιανουαρίου 2027</title>
-
-  <!-- Elegant Greek-friendly fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Miama&display=swap"
-    rel="stylesheet"
-  >
-
-  <style>
-
-    :root{
-      --cream:#f1e7d4;
-      --cream-deep:#dfd0b7;
-
-      --burgundy:#641326;
-      --burgundy-dark:#430b19;
-      --burgundy-light:#791a32;
-
-      --gold:#9b7b35;
-      --gold-dark:#73571f;
-      --gold-light:#c7ad69;
-
-      --ink:#211719;
-
-      --paper:#eee1c6;
-      --paper-dark:#d4bd91;
-
-      --opening-dark:#360713;
-      --opening-mid:#4a0b1c;
-    }
-
-
-    *{
-      box-sizing:border-box;
-    }
-
-
-    html{
-      scroll-behavior:smooth;
-    }
-
-
-    body{
-      margin:0;
-      overflow-x:hidden;
-
-      background:var(--cream);
-      color:var(--ink);
-
-      font-family:"EB Garamond", Georgia, serif;
-    }
-
-
-    button,
-    a{
-      font-family:inherit;
-    }
-
-
-    /* =====================================================
-       OPENING
-    ====================================================== */
-
-    .opening{
-      position:fixed;
-      inset:0;
-      z-index:1000;
-
-      display:flex;
-      align-items:center;
-      justify-content:center;
-
-      overflow:hidden;
-
-      background:
-        radial-gradient(
-          ellipse at center 45%,
-          rgba(119,29,52,.48) 0%,
-          rgba(77,10,29,.25) 35%,
-          transparent 65%
-        ),
-        linear-gradient(
-          145deg,
-          #360713 0%,
-          #4a0b1c 48%,
-          #30050f 100%
-        );
-
-      transition:
-        opacity 1.15s ease,
-        visibility 1.15s ease;
-    }
-
-
-    .opening::before{
-      content:"";
-      position:absolute;
-      inset:0;
-
-      pointer-events:none;
-
-      opacity:.5;
-
-      background:
-        radial-gradient(
-          circle at 12% 25%,
-          rgba(224,195,119,.08) 0 1px,
-          transparent 2px
-        ),
-        radial-gradient(
-          circle at 83% 18%,
-          rgba(224,195,119,.07) 0 1px,
-          transparent 2px
-        ),
-        radial-gradient(
-          circle at 76% 75%,
-          rgba(224,195,119,.06) 0 1px,
-          transparent 2px
-        ),
-        radial-gradient(
-          circle at 23% 82%,
-          rgba(224,195,119,.05) 0 1px,
-          transparent 2px
-        );
-
-      background-size:
-        190px 190px,
-        230px 230px,
-        250px 250px,
-        210px 210px;
-    }
-
-
-    .opening::after{
-      content:"";
-      position:absolute;
-      inset:0;
-
-      pointer-events:none;
-
-      background:
-        radial-gradient(
-          ellipse at center,
-          transparent 45%,
-          rgba(0,0,0,.18) 100%
-        );
-    }
-
-
-    .opening-hidden{
-      opacity:0;
-      visibility:hidden;
-      pointer-events:none;
-    }
-
-
-    /* =====================================================
-       MAGIC PARTICLES
-    ====================================================== */
-
-    .magic{
-      position:absolute;
-
-      width:4px;
-      height:4px;
-
-      border-radius:50%;
-
-      background:rgba(220,193,119,.7);
-
-      box-shadow:
-        0 0 5px rgba(220,193,119,.45),
-        0 0 12px rgba(220,193,119,.15);
-
-      opacity:.35;
-
-      animation:magicFloat 7s ease-in-out infinite;
-    }
-
-
-    .magic:nth-child(1){
-      left:14%;
-      top:25%;
-      animation-delay:-2s;
-    }
-
-    .magic:nth-child(2){
-      left:81%;
-      top:20%;
-      transform:scale(.65);
-      animation-delay:-4s;
-    }
-
-    .magic:nth-child(3){
-      left:76%;
-      top:76%;
-      transform:scale(.55);
-      animation-delay:-1s;
-    }
-
-    .magic:nth-child(4){
-      left:19%;
-      top:79%;
-      transform:scale(.7);
-      animation-delay:-5s;
-    }
-
-    .magic:nth-child(5){
-      left:88%;
-      top:50%;
-      transform:scale(.5);
-      animation-delay:-3s;
-    }
-
-
-    @keyframes magicFloat{
-
-      0%,100%{
-        opacity:.15;
-        transform:translateY(0) scale(.7);
-      }
-
-      50%{
-        opacity:.62;
-        transform:translateY(-17px) scale(1);
-      }
-
-    }
-
-
-    /* =====================================================
-       ENVELOPE STAGE
-    ====================================================== */
-
-    .envelope-stage{
-      position:relative;
-
-      width:min(90vw,620px);
-      height:min(64vw,400px);
-
-      perspective:1800px;
-
-      display:flex;
-      align-items:center;
-      justify-content:center;
-
-      z-index:10;
-    }
-
-
-    .envelope-shadow{
-      position:absolute;
-
-      width:82%;
-      height:23%;
-
-      left:9%;
-      bottom:3%;
-
-      border-radius:50%;
-
-      background:rgba(0,0,0,.43);
-
-      filter:blur(24px);
-
-      transform:scaleX(1.04);
-    }
-
-
-    .envelope{
-      position:relative;
-
-      width:100%;
-      height:100%;
-
-      transform-style:preserve-3d;
-
-      transition:
-        transform 1.9s cubic-bezier(.16,.78,.18,1),
-        opacity .9s ease;
-    }
-
-
-    .envelope.opened-completely{
-      transform:
-        translateY(35px)
-        scale(.94);
-
-      opacity:0;
-    }
-
-
-    /* =====================================================
-       ENVELOPE BACK
-    ====================================================== */
-
-    .envelope-back{
-      position:absolute;
-      inset:0;
-
-      z-index:5;
-
-      background:
-        linear-gradient(
-          145deg,
-          #74182f 0%,
-          #681429 42%,
-          #560e20 100%
-        );
-
-      border:1px solid rgba(177,140,63,.65);
-
-      box-shadow:
-        inset 0 0 0 1px rgba(225,193,111,.18),
-        inset 0 0 35px rgba(0,0,0,.22),
-        0 20px 38px rgba(0,0,0,.26);
-
-      transform-style:preserve-3d;
-    }
-
-
-    .envelope-back::before{
-      content:"";
-
-      position:absolute;
-      inset:7px;
-
-      border:1px solid rgba(190,151,70,.42);
-
-      pointer-events:none;
-    }
-
-
-    .envelope-back::after{
-      content:"";
-
-      position:absolute;
-      inset:13px;
-
-      border:1px solid rgba(111,76,24,.25);
-
-      pointer-events:none;
-    }
-
-
-    /* =====================================================
-       PAPER INSIDE ENVELOPE
-    ====================================================== */
-
-    .paper-holder{
-      position:absolute;
-
-      left:7%;
-      right:7%;
-
-      top:7%;
-      bottom:5%;
-
-      overflow:hidden;
-
-      z-index:15;
-
-      pointer-events:none;
-    }
-
-
-    .inside-paper{
-      position:absolute;
-
-      left:4%;
-      right:4%;
-
-      top:84%;
-
-      height:125%;
-
-      padding:34px 28px;
-
-      background:
-        radial-gradient(
-          ellipse at 15% 14%,
-          rgba(255,255,255,.55),
-          transparent 30%
-        ),
-        radial-gradient(
-          ellipse at 83% 77%,
-          rgba(112,78,27,.18),
-          transparent 35%
-        ),
-        radial-gradient(
-          ellipse at 48% 52%,
-          rgba(255,255,255,.16),
-          transparent 46%
-        ),
-        linear-gradient(
-          90deg,
-          #d5bf91 0%,
-          #eee0c0 12%,
-          #f1e4c8 86%,
-          #d2b988 100%
-        );
-
-      border:1px solid rgba(113,81,29,.48);
-
-      box-shadow:
-        0 -5px 17px rgba(0,0,0,.10),
-        inset 0 0 28px rgba(106,73,25,.13);
-
-      transition:
-        top 2.25s cubic-bezier(.17,.76,.17,1);
-    }
-
-
-    .inside-paper::before{
-      content:"";
-
-      position:absolute;
-      inset:0;
-
-      pointer-events:none;
-
-      opacity:.55;
-
-      background:
-        radial-gradient(
-          ellipse at 17% 21%,
-          rgba(119,83,31,.13),
-          transparent 19%
-        ),
-        radial-gradient(
-          ellipse at 77% 63%,
-          rgba(119,83,31,.10),
-          transparent 22%
-        ),
-        radial-gradient(
-          ellipse at 43% 89%,
-          rgba(119,83,31,.08),
-          transparent 17%
-        ),
-        repeating-linear-gradient(
-          0deg,
-          rgba(94,66,28,.018) 0px,
-          rgba(94,66,28,.018) 1px,
-          transparent 1px,
-          transparent 4px
-        );
-    }
-
-
-    .inside-paper::after{
-      content:"";
-
-      position:absolute;
-      inset:12px;
-
-      border:1px solid rgba(123,91,38,.16);
-
-      pointer-events:none;
-    }
-
-
-    .paper-rising .inside-paper{
-      top:-30%;
-    }
-
-
-    .paper-mini-crest{
-      width:50px;
-      height:55px;
-
-      margin:0 auto 16px;
-
-      border:1px solid rgba(121,88,30,.55);
-
-      border-radius:46% 46% 42% 42%;
-
-      display:flex;
-      align-items:center;
-      justify-content:center;
-
-      color:#76561e;
-
-      font-size:15px;
-
-      position:relative;
-      z-index:2;
-    }
-
-
-    .paper-mini-crest::before{
-      content:"";
-
-      position:absolute;
-      inset:5px;
-
-      border:1px solid rgba(121,88,30,.28);
-
-      border-radius:42% 42% 40% 40%;
-    }
-
-
-    .paper-mini-date{
-      position:relative;
-      z-index:2;
-
-      text-align:center;
-
-      color:#725524;
-
-      font-size:17px;
-
-      letter-spacing:3px;
-    }
-
-
-    /* =====================================================
-       ENVELOPE FOLDS
-    ====================================================== */
-
-    .fold-left{
-      position:absolute;
-
-      left:0;
-      top:0;
-      bottom:0;
-
-      width:51%;
-
-      z-index:25;
-
-      clip-path:polygon(
-        0 0,
-        100% 50%,
-        0 100%
-      );
-
-      background:
-        linear-gradient(
-          135deg,
-          #70162e,
-          #5b1023
-        );
-
-      filter:
-        drop-shadow(1px 0 rgba(171,132,51,.25));
-    }
-
-
-    .fold-right{
-      position:absolute;
-
-      right:0;
-      top:0;
-      bottom:0;
-
-      width:51%;
-
-      z-index:25;
-
-      clip-path:polygon(
-        100% 0,
-        0 50%,
-        100% 100%
-      );
-
-      background:
-        linear-gradient(
-          225deg,
-          #72172f,
-          #5b1023
-        );
-
-      filter:
-        drop-shadow(-1px 0 rgba(171,132,51,.25));
-    }
-
-
-    .fold-bottom{
-      position:absolute;
-
-      left:0;
-      right:0;
-      bottom:0;
-
-      height:57%;
-
-      z-index:30;
-
-      clip-path:polygon(
-        0 100%,
-        50% 0,
-        100% 100%
-      );
-
-      background:
-        linear-gradient(
-          145deg,
-          #73182f,
-          #4c0c1c
-        );
-    }
-
-
-    /* =====================================================
-       ANTIQUE GOLD DETAILS
-    ====================================================== */
-
-    .gold-detail{
-      position:absolute;
-
-      z-index:32;
-
-      pointer-events:none;
-    }
-
-
-    .gold-top{
-      left:8%;
-      right:8%;
-      top:10px;
-
-      height:1px;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          rgba(205,169,86,.58),
-          transparent
-        );
-    }
-
-
-    .gold-bottom{
-      left:8%;
-      right:8%;
-      bottom:10px;
-
-      height:1px;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          rgba(169,130,51,.42),
-          transparent
-        );
-    }
-
-
-    .gold-side-left{
-      left:10px;
-      top:8%;
-      bottom:8%;
-
-      width:1px;
-
-      background:
-        linear-gradient(
-          to bottom,
-          transparent,
-          rgba(201,163,78,.50),
-          transparent
-        );
-    }
-
-
-    .gold-side-right{
-      right:10px;
-      top:8%;
-      bottom:8%;
-
-      width:1px;
-
-      background:
-        linear-gradient(
-          to bottom,
-          transparent,
-          rgba(201,163,78,.50),
-          transparent
-        );
-    }
-
-
-    /* =====================================================
-       3D FLAP
-    ====================================================== */
-
-    .flap{
-      position:absolute;
-
-      left:0;
-      top:0;
-
-      width:100%;
-      height:59%;
-
-      z-index:60;
-
-      transform-origin:50% 0%;
-
-      transform-style:preserve-3d;
-
-      transition:
-        transform 1.65s cubic-bezier(.18,.77,.15,1);
-    }
-
-
-    .flap-open{
-      transform:
-        rotateX(-178deg)
-        translateZ(-2px);
-    }
-
-
-    .flap-front{
-      position:absolute;
-      inset:0;
-
-      backface-visibility:hidden;
-
-      clip-path:polygon(
-        0 0,
-        100% 0,
-        50% 100%
-      );
-
-      background:
-        linear-gradient(
-          145deg,
-          #791a32 0%,
-          #681428 52%,
-          #500c1d 100%
-        );
-
-      box-shadow:
-        0 7px 18px rgba(0,0,0,.20);
-    }
-
-
-    .flap-front::before{
-      content:"";
-
-      position:absolute;
-
-      left:10px;
-      right:10px;
-      top:10px;
-      bottom:20px;
-
-      clip-path:polygon(
-        0 0,
-        100% 0,
-        50% 100%
-      );
-
-      border:1px solid rgba(194,156,75,.54);
-
-      opacity:.8;
-    }
-
-
-    .flap-front::after{
-      content:"";
-
-      position:absolute;
-
-      left:50%;
-      top:11px;
-
-      width:43%;
-      height:1px;
-
-      transform:translateX(-50%);
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          rgba(211,176,91,.64),
-          transparent
-        );
-    }
-
-
-    .flap-line-left,
-    .flap-line-right{
-      position:absolute;
-
-      top:8px;
-
-      width:1px;
-      height:57%;
-
-      opacity:.65;
-
-      background:
-        linear-gradient(
-          to bottom,
-          rgba(211,176,91,.52),
-          rgba(145,106,36,.22),
-          transparent
-        );
-    }
-
-
-    .flap-line-left{
-      left:11%;
-      transform:rotate(29deg);
-      transform-origin:top;
-    }
-
-
-    .flap-line-right{
-      right:11%;
-      transform:rotate(-29deg);
-      transform-origin:top;
-    }
-
-
-    .flap-back{
-      position:absolute;
-      inset:0;
-
-      transform:
-        rotateX(180deg)
-        translateZ(1px);
-
-      backface-visibility:hidden;
-
-      clip-path:polygon(
-        0 0,
-        100% 0,
-        50% 100%
-      );
-
-      background:
-        linear-gradient(
-          145deg,
-          #4b0c1c,
-          #5c1023
-        );
-
-      border:1px solid rgba(165,126,47,.34);
-    }
-
-
-    /* =====================================================
-       WAX SEAL
-    ====================================================== */
-
-    .wax-seal{
-      position:absolute;
-
-      left:50%;
-      top:47%;
-
-      width:74px;
-      height:74px;
-
-      transform:
-        translate(-50%,-50%)
-        translateZ(24px);
-
-      z-index:80;
-
-      border-radius:50%;
-
-      border:1px solid rgba(210,173,84,.75);
-
-      background:
-        radial-gradient(
-          circle at 34% 28%,
-          #8d263f 0%,
-          #681326 44%,
-          #49091a 100%
-        );
-
-      color:#d7bc70;
-
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-
-      cursor:pointer;
-
-      box-shadow:
-        0 5px 14px rgba(0,0,0,.34),
-        inset 0 0 0 2px rgba(68,7,22,.24),
-        inset 0 0 14px rgba(0,0,0,.27);
-
-      transition:
-        transform .35s ease,
-        box-shadow .35s ease;
-    }
-
-
-    .wax-seal::before{
-      content:"";
-
-      position:absolute;
-      inset:6px;
-
-      border:1px solid rgba(216,185,102,.57);
-
-      border-radius:50%;
-    }
-
-
-    .wax-seal:hover{
-      transform:
-        translate(-50%,-50%)
-        translateZ(24px)
-        scale(1.04);
-    }
-
-
-    .seal-initials{
-      font-size:20px;
-      line-height:1;
-
-      letter-spacing:1px;
-      font-weight:600;
-
-      position:relative;
-      z-index:2;
-    }
-
-
-    .seal-year{
-      margin-top:4px;
-
-      font-size:9px;
-      letter-spacing:2px;
-
-      opacity:.78;
-
-      position:relative;
-      z-index:2;
-    }
-
-
-    /* =====================================================
-       INVITATION
-    ====================================================== */
-
-    .invitation{
-      display:none;
-
-      min-height:100vh;
-
-      opacity:0;
-
-      background:
-        radial-gradient(
-          ellipse at top,
-          rgba(255,255,255,.7),
-          transparent 52%
-        ),
-        var(--cream);
-    }
-
-
-    .invitation.visible{
-      display:block;
-
-      animation:
-        invitationAppear 1.45s ease forwards;
-    }
-
-
-    @keyframes invitationAppear{
-
-      from{
-        opacity:0;
-        transform:translateY(18px);
-      }
-
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
-
-    }
-
-
-    /* =====================================================
-       INVITATION PAPER
-    ====================================================== */
-
-    .paper-page{
-      position:relative;
-
-      width:min(94%,920px);
-
-      margin:0 auto;
-
-      padding:70px 30px 80px;
-
-      overflow:hidden;
-
-      background:
-        radial-gradient(
-          ellipse at 10% 12%,
-          rgba(151,110,45,.10),
-          transparent 30%
-        ),
-        radial-gradient(
-          ellipse at 88% 80%,
-          rgba(151,110,45,.09),
-          transparent 30%
-        ),
-        linear-gradient(
-          90deg,
-          rgba(126,91,35,.04),
-          transparent 12%,
-          transparent 88%,
-          rgba(126,91,35,.04)
-        ),
-        var(--cream);
-
-      box-shadow:
-        0 0 40px rgba(61,39,23,.08);
-    }
-
-
-    /*
-      ΝΕΟ:
-      Διπλό λεπτό περίγραμμα όπως στο screenshot.
-    */
-
-    .paper-page::before{
-      content:"";
-
-      position:absolute;
-
-      inset:14px;
-
-      border:1px solid rgba(100,19,38,.62);
-
-      pointer-events:none;
-
-      z-index:20;
-    }
-
-
-    .paper-page::after{
-      content:"";
-
-      position:absolute;
-
-      inset:20px;
-
-      border:1px solid rgba(100,19,38,.30);
-
-      pointer-events:none;
-
-      z-index:20;
-    }
-
-
-    /*
-      Μικρά antique corner ornaments
-    */
-
-    .paper-page .corner{
-      position:absolute;
-
-      z-index:21;
-
-      width:55px;
-      height:55px;
-
-      pointer-events:none;
-
-      color:var(--burgundy);
-
-      opacity:.72;
-    }
-
-
-    .paper-page .corner::before,
-    .paper-page .corner::after{
-      content:"";
-
-      position:absolute;
-
-      background:var(--burgundy);
-
-      opacity:.58;
-    }
-
-
-    .corner-tl{
-      left:18px;
-      top:18px;
-    }
-
-
-    .corner-tl::before{
-      width:1px;
-      height:30px;
-      left:8px;
-      top:0;
-    }
-
-
-    .corner-tl::after{
-      width:30px;
-      height:1px;
-      left:0;
-      top:8px;
-    }
-
-
-    .corner-tr{
-      right:18px;
-      top:18px;
-    }
-
-
-    .corner-tr::before{
-      width:1px;
-      height:30px;
-      right:8px;
-      top:0;
-    }
-
-
-    .corner-tr::after{
-      width:30px;
-      height:1px;
-      right:0;
-      top:8px;
-    }
-
-
-    .corner-bl{
-      left:18px;
-      bottom:18px;
-    }
-
-
-    .corner-bl::before{
-      width:1px;
-      height:30px;
-      left:8px;
-      bottom:0;
-    }
-
-
-    .corner-bl::after{
-      width:30px;
-      height:1px;
-      left:0;
-      bottom:8px;
-    }
-
-
-    .corner-br{
-      right:18px;
-      bottom:18px;
-    }
-
-
-    .corner-br::before{
-      width:1px;
-      height:30px;
-      right:8px;
-      bottom:0;
-    }
-
-
-    .corner-br::after{
-      width:30px;
-      height:1px;
-      right:0;
-      bottom:8px;
-    }
-
-
-    /* =====================================================
-       CREST
-    ====================================================== */
-
-    .crest{
-      width:100px;
-      height:112px;
-
-      margin:0 auto 22px;
-
-      position:relative;
-
-      border:1px solid var(--gold);
-
-      border-radius:48% 48% 44% 44%;
-
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-
-      color:var(--gold-dark);
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255,255,255,.25),
-          rgba(215,194,151,.10)
-        );
-
-      box-shadow:
-        inset 0 0 0 4px rgba(151,115,43,.07);
-    }
-
-
-    .crest::before{
-      content:"";
-
-      position:absolute;
-      inset:6px;
-
-      border:1px solid rgba(146,108,37,.55);
-
-      border-radius:44% 44% 42% 42%;
-    }
-
-
-    .crest-main{
-      font-size:28px;
-      letter-spacing:2px;
-
-      z-index:1;
-    }
-
-
-    .crest-year{
-      font-size:12px;
-      letter-spacing:3px;
-
-      margin-top:6px;
-
-      z-index:1;
-    }
-
-
-    .invitation-kicker{
-      text-align:center;
-
-      color:#725624;
-
-      font-size:20px;
-      letter-spacing:3px;
-
-      margin-bottom:14px;
-    }
-
-
-    /*
-      ΝΕΟ:
-      Καλλιγραφική γραμματοσειρά όπως στο screenshot
-      μόνο στα ονόματα.
-    */
-
-    .names{
-      margin:0;
-
-      text-align:center;
-
-      font-family:"Miama","Brush Script MT",cursive;
-
-      font-size:clamp(55px,9vw,92px);
-
-      line-height:.9;
-
-      font-weight:400;
-
-      letter-spacing:0;
-
-      color:#211719;
-    }
-
-
-    .ampersand{
-      display:inline;
-
-      margin:0 8px;
-
-      font-family:"EB Garamond", Georgia, serif;
-
-      font-size:.70em;
-
-      color:var(--burgundy);
-
-      vertical-align:middle;
-    }
-
-
-    .date{
-      margin-top:30px;
-
-      text-align:center;
-
-      font-size:24px;
-
-      letter-spacing:3px;
-
-      color:#4b3232;
-    }
-
-
-    .time{
-      margin-top:7px;
-
-      text-align:center;
-
-      font-size:19px;
-
-      letter-spacing:2px;
-
-      color:#765b2d;
-    }
-
-
-    .intro{
-      max-width:620px;
-
-      margin:38px auto 0;
-
-      text-align:center;
-
-      font-size:23px;
-
-      line-height:1.55;
-
-      color:#302225;
-    }
-
-
-    /* =====================================================
-       ORNAMENT
-    ====================================================== */
-
-    .ornament{
-      display:flex;
-
-      align-items:center;
-      justify-content:center;
-
-      gap:14px;
-
-      margin:38px auto;
-
-      color:var(--gold-dark);
-    }
-
-
-    .ornament span{
-      width:80px;
-      height:1px;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          rgba(143,106,39,.65)
-        );
-    }
-
-
-    .ornament span:last-child{
-      transform:rotate(180deg);
-    }
-
-
-    .ornament i{
-      width:6px;
-      height:6px;
-
-      border:1px solid var(--gold-dark);
-
-      transform:rotate(45deg);
-    }
-
-
-    /* =====================================================
-       VENUES
-    ====================================================== */
-
-    .venue-section{
-      margin-top:30px;
-    }
-
-
-    .venue{
-      position:relative;
-
-      padding:48px 18px 55px;
-
-      text-align:center;
-    }
-
-
-    .venue-title{
-      margin:0 0 12px;
-
-      font-size:31px;
-
-      font-weight:500;
-
-      color:#2d2022;
-    }
-
-
-    .venue-label{
-      margin-bottom:10px;
-
-      font-size:16px;
-
-      letter-spacing:3px;
-
-      text-transform:uppercase;
-
-      color:#826631;
-    }
-
-
-    .venue-address{
-      max-width:520px;
-
-      margin:0 auto;
-
-      font-size:19px;
-
-      line-height:1.45;
-
-      color:#4a3839;
-    }
-
-
-    .map-link{
-      display:inline-block;
-
-      margin-top:20px;
-
-      padding:9px 20px;
-
-      border:1px solid rgba(130,97,40,.55);
-
-      color:#684d21;
-
-      text-decoration:none;
-
-      letter-spacing:1px;
-
-      font-size:16px;
-
-      transition:
-        background .25s ease,
-        color .25s ease;
-    }
-
-
-    .map-link:hover{
-      background:#6a142a;
-      color:#f3e7cf;
-    }
-
-
-    /* =====================================================
-       CHURCH SKETCH
-    ====================================================== */
-
-    .church-sketch{
-      position:absolute;
-
-      left:1%;
-      bottom:22px;
-
-      width:180px;
-      height:145px;
-
-      opacity:.46;
-
-      pointer-events:none;
-    }
-
-
-    .church-sketch svg{
-      width:100%;
-      height:100%;
-    }
-
-
-    .sketch-line{
-      fill:none;
-
-      stroke:#70592f;
-
-      stroke-width:1.3;
-
-      stroke-linecap:round;
-      stroke-linejoin:round;
-    }
-
-
-    .sketch-thin{
-      fill:none;
-
-      stroke:#806b43;
-
-      stroke-width:.8;
-
-      stroke-linecap:round;
-      stroke-linejoin:round;
-    }
-
-
-    /* =====================================================
-       DIVIDER
-    ====================================================== */
-
-    .venue-divider{
-      width:70%;
-      max-width:500px;
-
-      height:1px;
-
-      margin:0 auto;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          rgba(132,98,39,.42),
-          transparent
-        );
-    }
-
-
-    /* =====================================================
-       ΝΕΟ ΚΑΣΤΡΟ
-       Αχνό, λεπτομερές gothic castle όπως στο screenshot
-    ====================================================== */
-
-    .castle-sketch{
-      position:absolute;
-
-      right:0;
-      bottom:8px;
-
-      width:205px;
-      height:175px;
-
-      opacity:.29;
-
-      pointer-events:none;
-
-      z-index:0;
-    }
-
-
-    .castle-sketch svg{
-      width:100%;
-      height:100%;
-    }
-
-
-    .castle-line{
-      fill:none;
-
-      stroke:#8c8069;
-
-      stroke-width:1.05;
-
-      stroke-linecap:round;
-      stroke-linejoin:round;
-    }
-
-
-    .castle-thin{
-      fill:none;
-
-      stroke:#a2967d;
-
-      stroke-width:.65;
-
-      stroke-linecap:round;
-      stroke-linejoin:round;
-    }
-
-
-    .castle-fill{
-      fill:#a49a84;
-
-      opacity:.10;
-    }
-
-
-    /*
-      Το κείμενο του venue πρέπει να παραμένει
-      μπροστά από το αχνό κάστρο.
-    */
-
-    .venue > .venue-label,
-    .venue > .venue-title,
-    .venue > .venue-address,
-    .venue > .map-link{
-      position:relative;
-      z-index:2;
-    }
-
-
-    /* =====================================================
-       FAMILIES
-    ====================================================== */
-
-    .families{
-      margin-top:25px;
-
-      padding:45px 20px;
-
-      text-align:center;
-    }
-
-
-    .section-title{
-      margin:0 0 28px;
-
-      font-size:30px;
-
-      font-weight:500;
-
-      color:#2e2022;
-    }
-
-
-    .families-grid{
-      display:grid;
-
-      grid-template-columns:repeat(2,1fr);
-
-      gap:35px;
-
-      max-width:720px;
-
-      margin:0 auto;
-    }
-
-
-    .family{
-      font-size:20px;
-
-      line-height:1.6;
-
-      color:#443436;
-    }
-
-
-    .family strong{
-      display:block;
-
-      margin-bottom:7px;
-
-      font-size:17px;
-
-      letter-spacing:1px;
-
-      color:#765b2d;
-    }
-
-
-    /* =====================================================
-       KOUMBAROI
-    ====================================================== */
-
-    .koumbaroi{
-      padding:20px 20px 50px;
-
-      text-align:center;
-    }
-
-
-    .koumbaroi-list{
-      display:flex;
-
-      flex-wrap:wrap;
-
-      justify-content:center;
-
-      gap:10px 35px;
-
-      max-width:650px;
-
-      margin:0 auto;
-    }
-
-
-    .koumbaros{
-      font-size:20px;
-
-      color:#443436;
-    }
-
-
-    /* =====================================================
-       RSVP
-    ====================================================== */
-
-    .rsvp{
-      max-width:670px;
-
-      margin:0 auto;
-
-      padding:45px 25px;
-
-      text-align:center;
-
-      border-top:1px solid rgba(126,94,40,.25);
-      border-bottom:1px solid rgba(126,94,40,.25);
-    }
-
-
-    .rsvp-text{
-      margin-bottom:25px;
-
-      font-size:21px;
-
-      line-height:1.5;
-    }
-
-
-    .rsvp-date{
-      margin-bottom:20px;
-
-      color:#745726;
-
-      font-size:18px;
-
-      letter-spacing:1px;
-    }
-
-
-    .contacts{
-      display:flex;
-
-      justify-content:center;
-
-      gap:35px;
-
-      flex-wrap:wrap;
-    }
-
-
-    .contact{
-      font-size:18px;
-
-      color:#473538;
-    }
-
-
-    .contact a{
-      color:#684d21;
-
-      text-decoration:none;
-    }
-
-
-    /* =====================================================
-       GIFT
-    ====================================================== */
-
-    .gift{
-      max-width:650px;
-
-      margin:0 auto;
-
-      padding:45px 25px;
-
-      text-align:center;
-    }
-
-
-    .gift-text{
-      font-size:19px;
-
-      line-height:1.6;
-
-      color:#493839;
-    }
-
-
-    .iban{
-      display:inline-block;
-
-      margin-top:18px;
-
-      padding:13px 15px;
-
-      border:1px solid rgba(128,95,39,.38);
-
-      background:rgba(255,255,255,.18);
-
-      font-size:16px;
-
-      letter-spacing:1px;
-
-      word-break:break-word;
-
-      color:#594323;
-    }
-
-
-    /* =====================================================
-       FOOTER
-    ====================================================== */
-
-    footer{
-      padding:45px 20px 60px;
-
-      text-align:center;
-
-      color:#7b6540;
-
-      font-size:15px;
-
-      letter-spacing:2px;
-    }
-
-
-    /* =====================================================
-       MOBILE
-    ====================================================== */
-
-    @media(max-width:700px){
-
-      .envelope-stage{
-        width:92vw;
-        height:61vw;
-        max-height:360px;
-      }
-
-
-      .wax-seal{
-        width:64px;
-        height:64px;
-      }
-
-
-      .seal-initials{
-        font-size:18px;
-      }
-
-
-      .paper-page{
-        padding:55px 18px 60px;
-      }
-
-
-      .paper-page::before{
-        inset:10px;
-      }
-
-
-      .paper-page::after{
-        inset:16px;
-      }
-
-
-      .paper-page .corner{
-        transform:scale(.78);
-      }
-
-
-      .crest{
-        width:86px;
-        height:98px;
-      }
-
-
-      .names{
-        font-size:clamp(52px,14vw,75px);
-
-        white-space:nowrap;
-      }
-
-
-      .ampersand{
-        margin:0 4px;
-      }
-
-
-      .intro{
-        font-size:20px;
-      }
-
-
-      .venue-title{
-        padding:0 25px;
-
-        font-size:27px;
-      }
-
-
-      .church-sketch{
-        left:-8px;
-
-        width:135px;
-        height:115px;
-
-        opacity:.32;
-      }
-
-
-      .castle-sketch{
-        right:-10px;
-
-        width:155px;
-        height:135px;
-
-        opacity:.22;
-      }
-
-
-      .families-grid{
-        grid-template-columns:1fr;
-
-        gap:25px;
-      }
-
-
-      .contacts{
-        flex-direction:column;
-
-        gap:8px;
-      }
-    }
-
-
-    @media(max-width:430px){
-
-      .envelope-stage{
-        width:94vw;
-        height:62vw;
-      }
-
-
-      .inside-paper{
-        padding:20px 15px;
-      }
-
-
-      .paper-mini-crest{
-        width:40px;
-        height:42px;
-      }
-
-
-      .date{
-        font-size:21px;
-        letter-spacing:2px;
-      }
-
-
-      .time{
-        font-size:17px;
-      }
-
-
-      .venue{
-        padding-left:10px;
-        padding-right:10px;
-      }
-
-
-      .names{
-        font-size:54px;
-      }
-    }
-
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Δημήτρης &amp; Μαρία — 2 Ιανουαρίου 2027</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=GFS+Neohellenic:ital@1&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --cream:#f1e7d4;
+  --burgundy:#641326;
+  --burgundy-dark:#430b19;
+  --gold:#9b7b35;
+  --gold-dark:#73571f;
+  --ink:#211719;
+}
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  overflow-x:hidden;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:"GFS Neohellenic",serif;
+  font-style:italic;
+}
+
+button,a{font-family:inherit}
+
+/* =========================
+   OPENING
+========================= */
+
+.opening{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:
+    radial-gradient(
+      ellipse at center 45%,
+      rgba(119,29,52,.48) 0%,
+      rgba(77,10,29,.25) 35%,
+      transparent 65%
+    ),
+    linear-gradient(
+      145deg,
+      #360713 0%,
+      #4a0b1c 48%,
+      #30050f 100%
+    );
+  transition:opacity 1.15s ease,visibility 1.15s ease;
+}
+
+.opening::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(
+      ellipse at center,
+      transparent 45%,
+      rgba(0,0,0,.18) 100%
+    );
+}
+
+.opening-hidden{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+/* =========================
+   MAGIC
+========================= */
+
+.magic{
+  position:absolute;
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  background:rgba(220,193,119,.7);
+  box-shadow:
+    0 0 5px rgba(220,193,119,.45),
+    0 0 12px rgba(220,193,119,.15);
+  opacity:.35;
+  animation:magicFloat 7s ease-in-out infinite;
+}
+
+.magic:nth-child(1){
+  left:14%;
+  top:25%;
+  animation-delay:-2s;
+}
+
+.magic:nth-child(2){
+  left:81%;
+  top:20%;
+  transform:scale(.65);
+  animation-delay:-4s;
+}
+
+.magic:nth-child(3){
+  left:76%;
+  top:76%;
+  transform:scale(.55);
+  animation-delay:-1s;
+}
+
+.magic:nth-child(4){
+  left:19%;
+  top:79%;
+  transform:scale(.7);
+  animation-delay:-5s;
+}
+
+.magic:nth-child(5){
+  left:88%;
+  top:50%;
+  transform:scale(.5);
+  animation-delay:-3s;
+}
+
+@keyframes magicFloat{
+  0%,100%{
+    opacity:.15;
+    transform:translateY(0) scale(.7);
+  }
+
+  50%{
+    opacity:.62;
+    transform:translateY(-17px) scale(1);
+  }
+}
+
+/* =========================
+   ENVELOPE
+========================= */
+
+.envelope-stage{
+  position:relative;
+  width:min(90vw,620px);
+  height:min(64vw,400px);
+  perspective:1800px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:10;
+}
+
+.envelope-shadow{
+  position:absolute;
+  width:82%;
+  height:23%;
+  left:9%;
+  bottom:3%;
+  border-radius:50%;
+  background:rgba(0,0,0,.43);
+  filter:blur(24px);
+  transform:scaleX(1.04);
+}
+
+.envelope{
+  position:relative;
+  width:100%;
+  height:100%;
+  transform-style:preserve-3d;
+  transition:
+    transform 1.9s cubic-bezier(.16,.78,.18,1),
+    opacity .9s ease;
+}
+
+.envelope.opened-completely{
+  transform:translateY(35px) scale(.94);
+  opacity:0;
+}
+
+.envelope-back{
+  position:absolute;
+  inset:0;
+  z-index:5;
+  background:
+    linear-gradient(
+      145deg,
+      #74182f 0%,
+      #681429 42%,
+      #560e20 100%
+    );
+  border:1px solid rgba(177,140,63,.65);
+  box-shadow:
+    inset 0 0 0 1px rgba(225,193,111,.18),
+    inset 0 0 35px rgba(0,0,0,.22),
+    0 20px 38px rgba(0,0,0,.26);
+}
+
+.envelope-back::before{
+  content:"";
+  position:absolute;
+  inset:7px;
+  border:1px solid rgba(190,151,70,.42);
+}
+
+.envelope-back::after{
+  content:"";
+  position:absolute;
+  inset:13px;
+  border:1px solid rgba(111,76,24,.25);
+}
+
+/* =========================
+   PAPER INSIDE ENVELOPE
+========================= */
+
+.paper-holder{
+  position:absolute;
+  left:7%;
+  right:7%;
+  top:7%;
+  bottom:5%;
+  overflow:hidden;
+  z-index:15;
+  pointer-events:none;
+}
+
+.inside-paper{
+  position:absolute;
+  left:4%;
+  right:4%;
+  top:84%;
+  height:125%;
+  padding:34px 28px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #d5bf91 0%,
+      #eee0c0 12%,
+      #f1e4c8 86%,
+      #d2b988 100%
+    );
+
+  border:1px solid rgba(113,81,29,.48);
+
+  box-shadow:
+    0 -5px 17px rgba(0,0,0,.10),
+    inset 0 0 28px rgba(106,73,25,.13);
+
+  transition:
+    top 2.25s cubic-bezier(.17,.76,.17,1);
+}
+
+.inside-paper::after{
+  content:"";
+  position:absolute;
+  inset:12px;
+  border:1px solid rgba(123,91,38,.16);
+}
+
+.paper-rising .inside-paper{
+  top:-30%;
+}
+
+.paper-mini-date{
+  position:relative;
+  z-index:2;
+  text-align:center;
+  color:#725524;
+  font-size:17px;
+  letter-spacing:3px;
+}
+
+.paper-preview-names{
+  display:block;
+  width:88%;
+  max-width:430px;
+  height:auto;
+  object-fit:contain;
+  margin:14px auto 0;
+  position:relative;
+  z-index:2;
+}
+
+/* =========================
+   ENVELOPE FOLDS
+========================= */
+
+.fold-left{
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:51%;
+  z-index:25;
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 50%,
+      0 100%
+    );
+
+  background:
+    linear-gradient(
+      135deg,
+      #70162e,
+      #5b1023
+    );
+}
+
+.fold-right{
+  position:absolute;
+  right:0;
+  top:0;
+  bottom:0;
+  width:51%;
+  z-index:25;
+
+  clip-path:
+    polygon(
+      100% 0,
+      0 50%,
+      100% 100%
+    );
+
+  background:
+    linear-gradient(
+      225deg,
+      #72172f,
+      #5b1023
+    );
+}
+
+.fold-bottom{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:57%;
+  z-index:30;
+
+  clip-path:
+    polygon(
+      0 100%,
+      50% 0,
+      100% 100%
+    );
+
+  background:
+    linear-gradient(
+      145deg,
+      #73182f,
+      #4c0c1c
+    );
+}
+
+/* =========================
+   GOLD DETAILS
+========================= */
+
+.gold-detail{
+  position:absolute;
+  z-index:32;
+  pointer-events:none;
+}
+
+.gold-top{
+  left:8%;
+  right:8%;
+  top:10px;
+  height:1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(205,169,86,.58),
+      transparent
+    );
+}
+
+.gold-bottom{
+  left:8%;
+  right:8%;
+  bottom:10px;
+  height:1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(169,130,51,.42),
+      transparent
+    );
+}
+
+.gold-side-left{
+  left:10px;
+  top:8%;
+  bottom:8%;
+  width:1px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      transparent,
+      rgba(201,163,78,.50),
+      transparent
+    );
+}
+
+.gold-side-right{
+  right:10px;
+  top:8%;
+  bottom:8%;
+  width:1px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      transparent,
+      rgba(201,163,78,.50),
+      transparent
+    );
+}
+
+/* =========================
+   FLAP
+========================= */
+
+.flap{
+  position:absolute;
+  left:0;
+  top:0;
+  width:100%;
+  height:59%;
+  z-index:60;
+  transform-origin:50% 0%;
+  transform-style:preserve-3d;
+
+  transition:
+    transform 1.65s cubic-bezier(.18,.77,.15,1);
+}
+
+.flap-open{
+  transform:
+    rotateX(-178deg)
+    translateZ(-2px);
+}
+
+.flap-front{
+  position:absolute;
+  inset:0;
+  backface-visibility:hidden;
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 0,
+      50% 100%
+    );
+
+  background:
+    linear-gradient(
+      145deg,
+      #791a32 0%,
+      #681428 52%,
+      #500c1d 100%
+    );
+
+  box-shadow:
+    0 7px 18px rgba(0,0,0,.20);
+}
+
+.flap-front::before{
+  content:"";
+  position:absolute;
+  left:10px;
+  right:10px;
+  top:10px;
+  bottom:20px;
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 0,
+      50% 100%
+    );
+
+  border:1px solid rgba(194,156,75,.54);
+}
+
+.flap-line-left,
+.flap-line-right{
+  position:absolute;
+  top:8px;
+  width:1px;
+  height:57%;
+  opacity:.65;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(211,176,91,.52),
+      rgba(145,106,36,.22),
+      transparent
+    );
+}
+
+.flap-line-left{
+  left:11%;
+  transform:rotate(29deg);
+  transform-origin:top;
+}
+
+.flap-line-right{
+  right:11%;
+  transform:rotate(-29deg);
+  transform-origin:top;
+}
+
+.flap-back{
+  position:absolute;
+  inset:0;
+
+  transform:
+    rotateX(180deg)
+    translateZ(1px);
+
+  backface-visibility:hidden;
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 0,
+      50% 100%
+    );
+
+  background:
+    linear-gradient(
+      145deg,
+      #4b0c1c,
+      #5c1023
+    );
+
+  border:1px solid rgba(165,126,47,.34);
+}
+
+/* =========================
+   WAX SEAL
+========================= */
+
+.wax-seal{
+  position:absolute;
+  left:50%;
+  top:47%;
+  width:74px;
+  height:74px;
+
+  transform:
+    translate(-50%,-50%)
+    translateZ(24px);
+
+  z-index:80;
+
+  border-radius:50%;
+  border:1px solid rgba(210,173,84,.75);
+
+  background:
+    radial-gradient(
+      circle at 34% 28%,
+      #8d263f 0%,
+      #681326 44%,
+      #49091a 100%
+    );
+
+  color:#d7bc70;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 5px 14px rgba(0,0,0,.34),
+    inset 0 0 0 2px rgba(68,7,22,.24),
+    inset 0 0 14px rgba(0,0,0,.27);
+
+  transition:
+    transform .35s ease;
+}
+
+.wax-seal::before{
+  content:"";
+  position:absolute;
+  inset:6px;
+  border:1px solid rgba(216,185,102,.57);
+  border-radius:50%;
+}
+
+.wax-seal:hover{
+  transform:
+    translate(-50%,-50%)
+    translateZ(24px)
+    scale(1.04);
+}
+
+.seal-crest{
+  display:block;
+  width:58px;
+  height:58px;
+  object-fit:cover;
+  object-position:center;
+  position:relative;
+  z-index:2;
+  pointer-events:none;
+  border-radius:50%;
+  background:#681326;
+  clip-path:circle(50% at 50% 50%);
+}
+
+/* =========================
+   INVITATION
+========================= */
+
+.invitation{
+  display:none;
+  min-height:100vh;
+  opacity:0;
+
+  background:
+    radial-gradient(
+      ellipse at top,
+      rgba(255,255,255,.7),
+      transparent 52%
+    ),
+    var(--cream);
+}
+
+.invitation.visible{
+  display:block;
+
+  animation:
+    invitationAppear 1.45s ease forwards;
+}
+
+@keyframes invitationAppear{
+  from{
+    opacity:0;
+    transform:translateY(18px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* =========================
+   PAPER
+========================= */
+
+.paper-page{
+  position:relative;
+  width:min(94%,920px);
+  margin:0 auto;
+  padding:70px 30px 80px;
+  overflow:hidden;
+
+  background:
+    radial-gradient(
+      ellipse at 10% 12%,
+      rgba(151,110,45,.10),
+      transparent 30%
+    ),
+    radial-gradient(
+      ellipse at 88% 80%,
+      rgba(151,110,45,.09),
+      transparent 30%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(126,91,35,.04),
+      transparent 12%,
+      transparent 88%,
+      rgba(126,91,35,.04)
+    ),
+    var(--cream);
+
+  box-shadow:
+    0 0 40px rgba(61,39,23,.08);
+
+  border:1px solid rgba(155,123,53,.72);
+}
+
+.paper-page::before{
+  content:"";
+  position:absolute;
+  inset:14px;
+  border:1px solid rgba(100,19,38,.62);
+  pointer-events:none;
+  z-index:20;
+}
+
+.paper-page::after{
+  content:"";
+  position:absolute;
+  inset:20px;
+  border:1px solid rgba(100,19,38,.30);
+  pointer-events:none;
+  z-index:20;
+}
+
+/* =========================
+   CORNERS
+========================= */
+
+.corner{
+  position:absolute;
+  z-index:21;
+  width:55px;
+  height:55px;
+  pointer-events:none;
+  opacity:.72;
+}
+
+.corner::before,
+.corner::after{
+  content:"";
+  position:absolute;
+  background:var(--burgundy);
+  opacity:.58;
+}
+
+.corner-tl{
+  left:18px;
+  top:18px;
+}
+
+.corner-tl::before{
+  width:1px;
+  height:30px;
+  left:8px;
+  top:0;
+}
+
+.corner-tl::after{
+  width:30px;
+  height:1px;
+  left:0;
+  top:8px;
+}
+
+.corner-tr{
+  right:18px;
+  top:18px;
+}
+
+.corner-tr::before{
+  width:1px;
+  height:30px;
+  right:8px;
+  top:0;
+}
+
+.corner-tr::after{
+  width:30px;
+  height:1px;
+  right:0;
+  top:8px;
+}
+
+.corner-bl{
+  left:18px;
+  bottom:18px;
+}
+
+.corner-bl::before{
+  width:1px;
+  height:30px;
+  left:8px;
+  bottom:0;
+}
+
+.corner-bl::after{
+  width:30px;
+  height:1px;
+  left:0;
+  bottom:8px;
+}
+
+.corner-br{
+  right:18px;
+  bottom:18px;
+}
+
+.corner-br::before{
+  width:1px;
+  height:30px;
+  right:8px;
+  bottom:0;
+}
+
+.corner-br::after{
+  width:30px;
+  height:1px;
+  right:0;
+  bottom:8px;
+}
+
+/* =========================
+   CREST
+========================= */
+
+.invitation-crest{
+  display:block;
+  width:118px;
+  height:auto;
+  object-fit:contain;
+  margin:0 auto 18px;
+  opacity:.78;
+  background:#f1e7d4;
+  border-radius:50%;
+  mix-blend-mode:multiply;
+}
+
+/* =========================
+   NAMES
+========================= */
+
+.names-image-wrap{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+  margin:2px auto 0;
+}
+
+.names-image{
+  display:block;
+  width:min(92%,720px);
+  height:auto;
+  object-fit:contain;
+}
+
+.date{
+  margin-top:30px;
+  text-align:center;
+  font-size:24px;
+  letter-spacing:3px;
+  color:#4b3232;
+}
+
+.time{
+  margin-top:7px;
+  text-align:center;
+  font-size:19px;
+  letter-spacing:2px;
+  color:#765b2d;
+}
+
+.intro{
+  max-width:620px;
+  margin:38px auto 0;
+  text-align:center;
+  font-size:23px;
+  line-height:1.55;
+  color:#302225;
+}
+
+/* =========================
+   ORNAMENT
+========================= */
+
+.ornament{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  margin:38px auto;
+  color:var(--gold-dark);
+}
+
+.ornament span{
+  width:80px;
+  height:1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(143,106,39,.65)
+    );
+}
+
+.ornament span:last-child{
+  transform:rotate(180deg);
+}
+
+.ornament i{
+  width:6px;
+  height:6px;
+  border:1px solid var(--gold-dark);
+  transform:rotate(45deg);
+}
+
+/* =========================
+   VENUES
+========================= */
+
+.venue-section{
+  margin-top:30px;
+}
+
+.venue{
+  position:relative;
+  padding:48px 18px 55px;
+  text-align:center;
+}
+
+.venue-title{
+  margin:0 0 12px;
+  font-size:31px;
+  font-weight:500;
+  color:#2d2022;
+  position:relative;
+  z-index:2;
+}
+
+.venue-label{
+  margin-bottom:10px;
+  font-size:16px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:#826631;
+  position:relative;
+  z-index:2;
+}
+
+.venue-address{
+  max-width:520px;
+  margin:0 auto;
+  font-size:19px;
+  line-height:1.45;
+  color:#4a3839;
+  position:relative;
+  z-index:2;
+}
+
+.map-link{
+  display:inline-block;
+  margin-top:20px;
+  padding:9px 20px;
+  border:1px solid rgba(130,97,40,.55);
+  color:#684d21;
+  text-decoration:none;
+  letter-spacing:1px;
+  font-size:16px;
+  position:relative;
+  z-index:2;
+
+  transition:
+    background .25s ease,
+    color .25s ease;
+}
+
+.map-link:hover{
+  background:#6a142a;
+  color:#f3e7cf;
+}
+
+.venue-divider{
+  width:70%;
+  max-width:500px;
+  height:1px;
+  margin:0 auto;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(132,98,39,.42),
+      transparent
+    );
+}
+
+/* =========================
+   CHURCH
+========================= */
+
+.church-sketch{
+  position:absolute;
+  left:1%;
+  bottom:22px;
+  width:180px;
+  height:145px;
+  opacity:.46;
+  pointer-events:none;
+}
+
+.church-sketch svg{
+  width:100%;
+  height:100%;
+}
+
+.sketch-line{
+  fill:none;
+  stroke:#70592f;
+  stroke-width:1.3;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.sketch-thin{
+  fill:none;
+  stroke:#806b43;
+  stroke-width:.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+/* =========================
+   FAMILIES
+========================= */
+
+.families{
+  margin-top:25px;
+  padding:45px 20px;
+  text-align:center;
+}
+
+.section-title{
+  margin:0 0 28px;
+  font-size:30px;
+  font-weight:500;
+  color:#2e2022;
+}
+
+.families-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:35px;
+  max-width:720px;
+  margin:0 auto;
+}
+
+.family{
+  font-size:20px;
+  line-height:1.6;
+  color:#443436;
+}
+
+.family strong{
+  display:block;
+  margin-bottom:7px;
+  font-size:17px;
+  letter-spacing:1px;
+  color:#765b2d;
+}
+
+/* =========================
+   KOUMBAROI
+========================= */
+
+.koumbaroi{
+  padding:20px 20px 50px;
+  text-align:center;
+}
+
+.koumbaroi-list{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px 35px;
+  max-width:650px;
+  margin:0 auto;
+}
+
+.koumbaros{
+  font-size:20px;
+  color:#443436;
+}
+
+/* =========================
+   RSVP
+========================= */
+
+.rsvp{
+  max-width:670px;
+  margin:0 auto;
+  padding:45px 25px;
+  text-align:center;
+  border-top:1px solid rgba(126,94,40,.25);
+  border-bottom:1px solid rgba(126,94,40,.25);
+}
+
+.rsvp-text{
+  margin-bottom:25px;
+  font-size:21px;
+  line-height:1.5;
+}
+
+.rsvp-date{
+  margin-bottom:20px;
+  color:#745726;
+  font-size:18px;
+  letter-spacing:1px;
+}
+
+.contacts{
+  display:flex;
+  justify-content:center;
+  gap:35px;
+  flex-wrap:wrap;
+}
+
+.contact{
+  font-size:18px;
+  color:#473538;
+}
+
+.contact a{
+  color:#684d21;
+  text-decoration:none;
+}
+
+/* =========================
+   GIFT
+========================= */
+
+.gift{
+  max-width:650px;
+  margin:0 auto;
+  padding:45px 25px;
+  text-align:center;
+}
+
+.gift-text{
+  font-size:19px;
+  line-height:1.6;
+  color:#493839;
+}
+
+.iban{
+  display:inline-block;
+  margin-top:18px;
+  padding:13px 15px;
+  border:1px solid rgba(128,95,39,.38);
+  background:rgba(255,255,255,.18);
+  font-size:16px;
+  letter-spacing:1px;
+  word-break:break-word;
+  color:#594323;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  padding:45px 20px 60px;
+  text-align:center;
+  color:#7b6540;
+  font-size:15px;
+  letter-spacing:2px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px){
+
+  .envelope-stage{
+    width:92vw;
+    height:61vw;
+    max-height:360px;
+  }
+
+  .wax-seal{
+    width:64px;
+    height:64px;
+  }
+
+  .seal-crest{
+    width:50px;
+    height:50px;
+  }
+
+  .paper-page{
+    padding:55px 18px 60px;
+  }
+
+  .paper-page::before{
+    inset:10px;
+  }
+
+  .paper-page::after{
+    inset:16px;
+  }
+
+  .invitation-crest{
+    width:100px;
+    opacity:.76;
+  }
+
+  .paper-preview-names{
+    width:92%;
+    margin-top:10px;
+  }
+
+  .intro{
+    font-size:20px;
+  }
+
+  .venue-title{
+    padding:0 25px;
+    font-size:27px;
+  }
+
+  .church-sketch{
+    left:-8px;
+    width:135px;
+    height:115px;
+    opacity:.32;
+  }
+
+  .families-grid{
+    grid-template-columns:1fr;
+    gap:25px;
+  }
+
+  .contacts{
+    flex-direction:column;
+    gap:8px;
+  }
+}
+
+@media(max-width:430px){
+
+  .envelope-stage{
+    width:94vw;
+    height:62vw;
+  }
+
+  .inside-paper{
+    padding:20px 15px;
+  }
+
+  .date{
+    font-size:21px;
+    letter-spacing:2px;
+  }
+
+  .time{
+    font-size:17px;
+  }
+
+  .venue{
+    padding-left:10px;
+    padding-right:10px;
+  }
+}
+</style>
 </head>
-
 
 <body>
 
+<!-- OPENING -->
 
-  <!-- =====================================================
-       OPENING
-  ====================================================== -->
+<div class="opening" id="opening">
 
-  <div class="opening" id="opening">
+  <span class="magic"></span>
+  <span class="magic"></span>
+  <span class="magic"></span>
+  <span class="magic"></span>
+  <span class="magic"></span>
 
-    <span class="magic"></span>
-    <span class="magic"></span>
-    <span class="magic"></span>
-    <span class="magic"></span>
-    <span class="magic"></span>
+  <div class="envelope-stage">
 
+    <div class="envelope-shadow"></div>
 
-    <div class="envelope-stage">
+    <div class="envelope" id="envelope">
 
-      <div class="envelope-shadow"></div>
+      <div class="envelope-back">
 
-
-      <div class="envelope" id="envelope">
-
-
-        <div class="envelope-back">
-
-          <div class="gold-detail gold-top"></div>
-          <div class="gold-detail gold-bottom"></div>
-          <div class="gold-detail gold-side-left"></div>
-          <div class="gold-detail gold-side-right"></div>
-
-        </div>
-
-
-        <!-- ΧΑΡΤΙ ΜΕΣΑ ΣΤΟΝ ΦΑΚΕΛΟ -->
-
-        <div class="paper-holder">
-
-          <div class="inside-paper">
-
-            <div class="paper-mini-crest">
-              Δ &amp; Μ
-            </div>
-
-            <div class="paper-mini-date">
-              02 · 01 · 2027
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="fold-left"></div>
-
-        <div class="fold-right"></div>
-
-        <div class="fold-bottom"></div>
-
-
-        <!-- 3D ΚΑΠΑΚΙ -->
-
-        <div class="flap" id="flap">
-
-          <div class="flap-front">
-
-            <div class="flap-line-left"></div>
-            <div class="flap-line-right"></div>
-
-          </div>
-
-          <div class="flap-back"></div>
-
-        </div>
-
-
-        <!-- ΚΕΡΙ -->
-
-        <button
-          class="wax-seal"
-          id="seal"
-          type="button"
-          aria-label="Άνοιγμα πρόσκλησης"
-        >
-
-          <span class="seal-initials">
-            Δ &amp; Μ
-          </span>
-
-          <span class="seal-year">
-            2027
-          </span>
-
-        </button>
-
+        <div class="gold-detail gold-top"></div>
+        <div class="gold-detail gold-bottom"></div>
+        <div class="gold-detail gold-side-left"></div>
+        <div class="gold-detail gold-side-right"></div>
 
       </div>
+
+      <!-- ΧΑΡΤΙ ΜΕΣΑ ΣΤΟΝ ΦΑΚΕΛΟ -->
+
+      <div class="paper-holder">
+
+        <div class="inside-paper">
+
+          <div class="paper-mini-date">
+            02 · 01 · 2027
+          </div>
+
+          <img
+            class="paper-preview-names"
+            src="names.png"
+            alt="Δημήτρης &amp; Μαρία"
+          >
+
+        </div>
+
+      </div>
+
+      <div class="fold-left"></div>
+      <div class="fold-right"></div>
+      <div class="fold-bottom"></div>
+
+      <!-- ΚΑΠΑΚΙ -->
+
+      <div class="flap" id="flap">
+
+        <div class="flap-front">
+          <div class="flap-line-left"></div>
+          <div class="flap-line-right"></div>
+        </div>
+
+        <div class="flap-back"></div>
+
+      </div>
+
+      <!-- ΣΦΡΑΓΙΔΑ -->
+
+      <button
+        class="wax-seal"
+        id="seal"
+        type="button"
+        aria-label="Άνοιγμα πρόσκλησης"
+      >
+
+        <img
+          class="seal-crest"
+          src="crest.png"
+          alt=""
+          aria-hidden="true"
+        >
+
+      </button>
 
     </div>
 
   </div>
 
+</div>
 
-  <!-- =====================================================
-       ΠΡΟΣΚΛΗΣΗ
-  ====================================================== -->
+<!-- ΠΡΟΣΚΛΗΣΗ -->
 
-  <main class="invitation" id="invitation">
+<main class="invitation" id="invitation">
 
-    <div class="paper-page">
+  <div class="paper-page">
 
+    <span class="corner corner-tl"></span>
+    <span class="corner corner-tr"></span>
+    <span class="corner corner-bl"></span>
+    <span class="corner corner-br"></span>
 
-      <!-- Decorative corners -->
+    <!-- ΟΙΚΟΣΗΜΟ -->
 
-      <span class="corner corner-tl"></span>
-      <span class="corner corner-tr"></span>
-      <span class="corner corner-bl"></span>
-      <span class="corner corner-br"></span>
+    <img
+      class="invitation-crest"
+      src="crest.png"
+      alt="Οικόσημο Δημήτρη και Μαρίας"
+    >
 
+    <!-- ΟΝΟΜΑΤΑ -->
 
-      <!-- CREST -->
+    <div
+      class="names-image-wrap"
+      aria-label="Δημήτρης και Μαρία"
+    >
 
-      <div class="crest">
-
-        <div class="crest-main">
-          Δ &amp; Μ
-        </div>
-
-        <div class="crest-year">
-          2027
-        </div>
-
-      </div>
-
-
-      <!-- HERO -->
-
-      <div class="invitation-kicker">
-        Με χαρά σας προσκαλούμε
-      </div>
-
-
-      <h1 class="names">
-
-        ΔΗΜΗΤΡΗΣ
-
-        <span class="ampersand">
-          &amp;
-        </span>
-
-        ΜΑΡΙΑ
-
-      </h1>
-
-
-      <div class="date">
-        2 Ιανουαρίου 2027
-      </div>
-
-
-      <div class="time">
-        Ώρα 18:00
-      </div>
-
-
-      <p class="intro">
-        Να μοιραστούμε μαζί σας την πιο μαγική στιγμή
-        της ζωής μας.
-      </p>
-
-
-      <div class="ornament">
-        <span></span>
-        <i></i>
-        <span></span>
-      </div>
-
-
-      <!-- =================================================
-           ΕΚΚΛΗΣΙΑ
-      ================================================== -->
-
-      <section class="venue-section">
-
-
-        <div class="venue">
-
-
-          <!-- Εκκλησία -->
-
-          <div class="church-sketch" aria-hidden="true">
-
-            <svg viewBox="0 0 220 170">
-
-              <path
-                class="sketch-line"
-                d="M45 142 L45 78 L110 42 L175 78 L175 142 Z"
-              />
-
-              <path
-                class="sketch-line"
-                d="M83 78
-                   C84 55 94 42 110 35
-                   C126 42 136 55 137 78"
-              />
-
-              <path
-                class="sketch-thin"
-                d="M90 67
-                   C94 50 101 43 110 39
-                   C119 43 126 50 130 67"
-              />
-
-              <path
-                class="sketch-line"
-                d="M110 19 L110 35
-                   M103 25 L117 25"
-              />
-
-              <path
-                class="sketch-line"
-                d="M32 142 L32 68 L54 68 L54 142"
-              />
-
-              <path
-                class="sketch-line"
-                d="M30 68 L43 51 L56 68"
-              />
-
-              <path
-                class="sketch-thin"
-                d="M43 51 L43 42
-                   M37 47 L49 47"
-              />
-
-              <path
-                class="sketch-line"
-                d="M166 142 L166 70 L188 70 L188 142"
-              />
-
-              <path
-                class="sketch-line"
-                d="M164 70 L177 53 L190 70"
-              />
-
-              <path
-                class="sketch-thin"
-                d="M177 53 L177 44
-                   M171 49 L183 49"
-              />
-
-              <path
-                class="sketch-line"
-                d="M93 142 L93 113
-                   C93 101 101 94 110 94
-                   C119 94 127 101 127 113
-                   L127 142"
-              />
-
-              <path
-                class="sketch-thin"
-                d="M58 91
-                   C58 82 65 76 72 76
-                   C79 76 84 82 84 91
-                   L84 105
-                   L58 105 Z"
-              />
-
-              <path
-                class="sketch-thin"
-                d="M136 91
-                   C136 82 141 76 148 76
-                   C155 76 162 82 162 91
-                   L162 105
-                   L136 105 Z"
-              />
-
-              <path
-                class="sketch-thin"
-                d="M110 61 L110 77
-                   M104 67 L116 67"
-              />
-
-              <path
-                class="sketch-thin"
-                d="M47 120 L61 120
-                   M66 120 L79 120
-                   M141 120 L154 120
-                   M159 120 L173 120"
-              />
-
-              <path
-                class="sketch-thin"
-                d="M48 129 L57 129
-                   M62 129 L72 129
-                   M148 129 L158 129
-                   M164 129 L173 129"
-              />
-
-              <path
-                class="sketch-line"
-                d="M20 143 C65 138 160 138 200 143"
-              />
-
-              <path
-                class="sketch-thin"
-                d="M25 149 C72 145 157 145 195 149"
-              />
-
-            </svg>
-
-          </div>
-
-
-          <div class="venue-label">
-            Ιερός Ναός
-          </div>
-
-
-          <h2 class="venue-title">
-            Ιερός Καθεδρικός Ναός
-            Μεταμορφώσεως του Σωτήρος
-          </h2>
-
-
-          <p class="venue-address">
-            Χλόης και Οδυσσέως,
-            Μεταμόρφωση Αττικής,
-            Αθήνα 14452
-          </p>
-
-
-          <a
-            class="map-link"
-            href="https://www.google.com/maps/search/?api=1&query=Ιερός+Καθεδρικός+Ναός+Μεταμορφώσεως+του+Σωτήρος,+Χλόης+και+Οδυσσέως,+Μεταμόρφωση+Αττικής"
-            target="_blank"
-            rel="noopener"
-          >
-            Άνοιγμα στους Χάρτες
-          </a>
-
-        </div>
-
-
-        <div class="venue-divider"></div>
-
-
-        <!-- =================================================
-             ΚΤΗΜΑ
-        ================================================== -->
-
-        <div class="venue">
-
-
-          <!-- ΚΑΣΤΡΟ — νέο, αχνό και λεπτομερές -->
-
-          <div class="castle-sketch" aria-hidden="true">
-
-            <svg viewBox="0 0 260 210">
-
-              <!-- αχνή βάση -->
-
-              <path
-                class="castle-fill"
-                d="
-                  M20 178
-                  L46 148
-                  L55 91
-                  L75 91
-                  L75 121
-                  L88 121
-                  L88 69
-                  L108 69
-                  L130 45
-                  L152 69
-                  L172 69
-                  L172 121
-                  L187 121
-                  L187 83
-                  L207 83
-                  L207 148
-                  L232 178
-                  Z
-                "
-              />
-
-
-              <!-- αριστερός ψηλός πύργος -->
-
-              <path
-                class="castle-line"
-                d="
-                  M48 178
-                  L48 78
-                  L78 78
-                  L78 178
-                "
-              />
-
-              <path
-                class="castle-line"
-                d="
-                  M43 78
-                  L63 37
-                  L83 78
-                "
-              />
-
-              <!-- δεξιός ψηλός πύργος -->
-
-              <path
-                class="castle-line"
-                d="
-                  M182 178
-                  L182 71
-                  L212 71
-                  L212 178
-                "
-              />
-
-              <path
-                class="castle-line"
-                d="
-                  M177 71
-                  L197 29
-                  L217 71
-                "
-              />
-
-
-              <!-- κεντρικό κτίριο -->
-
-              <path
-                class="castle-line"
-                d="
-                  M78 178
-                  L78 91
-                  L98 77
-                  L162 77
-                  L182 91
-                  L182 178
-                "
-              />
-
-
-              <!-- κεντρική στέγη -->
-
-              <path
-                class="castle-line"
-                d="
-                  M88 77
-                  L130 42
-                  L172 77
-                "
-              />
-
-
-              <!-- κεντρικός πύργος -->
-
-              <path
-                class="castle-line"
-                d="
-                  M111 77
-                  L111 50
-                  L149 50
-                  L149 77
-                "
-              />
-
-              <path
-                class="castle-line"
-                d="
-                  M105 50
-                  L130 13
-                  L155 50
-                "
-              />
-
-
-              <!-- σημαία -->
-
-              <path
-                class="castle-thin"
-                d="
-                  M130 13
-                  L130 3
-                "
-              />
-
-              <path
-                class="castle-thin"
-                d="
-                  M130 4
-                  L143 8
-                  L130 12
-                "
-              />
-
-
-              <!-- αριστερά παράθυρα -->
-
-              <path
-                class="castle-thin"
-                d="
-                  M56 103
-                  L56 90
-                  C56 85 60 82 63 82
-                  C67 82 71 85 71 90
-                  L71 103
-                  Z
-                "
-              />
-
-              <path
-                class="castle-thin"
-                d="
-                  M56 132
-                  L56 118
-                  C56 113 60 110 63 110
-                  C67 110 71 113 71 118
-                  L71 132
-                  Z
-                "
-              />
-
-              <path
-                class="castle-thin"
-                d="
-                  M56 158
-                  L56 144
-                  C56 139 60 136 63 136
-                  C67 136 71 139 71 144
-                  L71 158
-                  Z
-                "
-              />
-
-
-              <!-- δεξιά παράθυρα -->
-
-              <path
-                class="castle-thin"
-                d="
-                  M189 101
-                  L189 87
-                  C189 82 193 79 197 79
-                  C201 79 205 82 205 87
-                  L205 101
-                  Z
-                "
-              />
-
-              <path
-                class="castle-thin"
-                d="
-                  M189 132
-                  L189 117
-                  C189 112 193 109 197 109
-                  C201 109 205 112 205 117
-                  L205 132
-                  Z
-                "
-              />
-
-              <path
-                class="castle-thin"
-                d="
-                  M189 159
-                  L189 145
-                  C189 140 193 137 197 137
-                  C201 137 205 140 205 145
-                  L205 159
-                  Z
-                "
-              />
-
-
-              <!-- κεντρικά παράθυρα -->
-
-              <path
-                class="castle-thin"
-                d="
-                  M91 104
-                  L91 91
-                  C91 86 95 83 100 83
-                  C105 83 109 86 109 91
-                  L109 104
-                  Z
-                "
-              />
-
-              <path
-                class="castle-thin"
-                d="
-                  M151 104
-                  L151 91
-                  C151 86 155 83 160 83
-                  C165 83 169 86 169 91
-                  L169 104
-                  Z
-                "
-              />
-
-
-              <!-- μεγάλο κεντρικό παράθυρο -->
-
-              <path
-                class="castle-line"
-                d="
-                  M116 178
-                  L116 130
-                  C116 117 123 109 130 109
-                  C137 109 144 117 144 130
-                  L144 178
-                "
-              />
-
-              <path
-                class="castle-thin"
-                d="
-                  M130 111
-                  L130 158
-                  M118 135
-                  L142 135
-                "
-              />
-
-
-              <!-- πέτρες / γραμμές τοίχων -->
-
-              <path
-                class="castle-thin"
-                d="
-                  M82 116 L94 116
-                  M151 116 L166 116
-                  M82 128 L96 128
-                  M151 128 L166 128
-                  M82 143 L95 143
-                  M151 143 L166 143
-                  M82 158 L96 158
-                  M151 158 L166 158
-                "
-              />
-
-
-              <!-- σημαίες στους πύργους -->
-
-              <path
-                class="castle-thin"
-                d="
-                  M63 37
-                  L63 26
-                "
-              />
-
-              <path
-                class="castle-thin"
-                d="
-                  M63 27
-                  L74 30
-                  L63 34
-                "
-              />
-
-              <path
-                class="castle-thin"
-                d="
-                  M197 29
-                  L197 18
-                "
-              />
-
-              <path
-                class="castle-thin"
-                d="
-                  M197 19
-                  L208 22
-                  L197 26
-                "
-              />
-
-
-              <!-- γέφυρα -->
-
-              <path
-                class="castle-line"
-                d="
-                  M16 178
-                  C53 158 84 158 116 178
-                "
-              />
-
-              <path
-                class="castle-thin"
-                d="
-                  M19 185
-                  C54 166 84 166 114 185
-                "
-              />
-
-
-              <!-- δέντρα -->
-
-              <path
-                class="castle-thin"
-                d="
-                  M24 178
-                  L24 145
-                  M24 151
-                  L14 163
-                  M24 157
-                  L34 166
-                "
-              />
-
-              <path
-                class="castle-thin"
-                d="
-                  M228 178
-                  L228 141
-                  M228 148
-                  L217 160
-                  M228 155
-                  L239 165
-                "
-              />
-
-
-              <!-- έδαφος -->
-
-              <path
-                class="castle-line"
-                d="
-                  M9 184
-                  C64 178 196 178 249 184
-                "
-              />
-
-              <path
-                class="castle-thin"
-                d="
-                  M17 191
-                  C71 186 190 186 242 191
-                "
-              />
-
-            </svg>
-
-          </div>
-
-
-          <div class="venue-label">
-            Δεξίωση
-          </div>
-
-
-          <h2 class="venue-title">
-            Κτήμα Santa Maria Estate
-          </h2>
-
-
-          <p class="venue-address">
-            Παιανία Αττικής
-          </p>
-
-
-          <a
-            class="map-link"
-            href="https://www.google.com/maps/search/?api=1&query=Κτήμα+Santa+Maria+Estate+Παιανία"
-            target="_blank"
-            rel="noopener"
-          >
-            Άνοιγμα στους Χάρτες
-          </a>
-
-        </div>
-
-      </section>
-
-
-      <div class="ornament">
-        <span></span>
-        <i></i>
-        <span></span>
-      </div>
-
-
-      <!-- =================================================
-           ΟΙΚΟΓΕΝΕΙΕΣ
-      ================================================== -->
-
-      <section class="families">
-
-        <h2 class="section-title">
-          ΟΙΚΟΓΕΝΕΙΕΣ
-        </h2>
-
-
-        <div class="families-grid">
-
-
-          <div class="family">
-
-            <strong>
-              Η οικογένεια του γαμπρού
-            </strong>
-
-            Γεωργίου Μπαντή
-            και Κωνσταντίνας Μπαντή
-
-          </div>
-
-
-          <div class="family">
-
-            <strong>
-              Η οικογένεια της νύφης
-            </strong>
-
-            Βασιλείου Παπαδημητρίου
-            και Άννας Ντάγκα
-
-          </div>
-
-
-        </div>
-
-      </section>
-
-
-      <!-- =================================================
-           ΚΟΥΜΠΑΡΟΙ
-      ================================================== -->
-
-      <section class="koumbaroi">
-
-        <h2 class="section-title">
-          Οι κουμπάροι μας
-        </h2>
-
-
-        <div class="koumbaroi-list">
-
-          <div class="koumbaros">
-            Ηλίας Πέτσας
-          </div>
-
-          <div class="koumbaros">
-            Έφη Τσιομπανίδη
-          </div>
-
-          <div class="koumbaros">
-            Ελένη Γκίννη
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- =================================================
-           RSVP
-      ================================================== -->
-
-      <section class="rsvp">
-
-        <h2 class="section-title">
-          Παρουσία
-        </h2>
-
-
-        <p class="rsvp-text">
-          Παρακαλούμε ενημερώστε μας για την παρουσία σας έως 1/12/2026.
-        </p>
-
-
-        <div class="rsvp-date">
-          RSVP
-        </div>
-
-
-        <div class="contacts">
-
-          <div class="contact">
-            Δημήτρης:
-            <a href="tel:6983799690">
-              6983799690
-            </a>
-          </div>
-
-
-          <div class="contact">
-            Μαρία:
-            <a href="tel:6978247830">
-              6978247830
-            </a>
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- =================================================
-           ΛΙΣΤΑ ΓΑΜΟΥ
-      ================================================== -->
-
-      <section class="gift">
-
-        <h2 class="section-title">
-          Προαιρετική λίστα γάμου
-        </h2>
-
-
-        <p class="gift-text">
-          Προαιρετική λίστα γάμου Εθνική Τράπεζα iban:
-        </p>
-
-
-        <div class="iban">
-          GR000000000000000000
-        </div>
-
-      </section>
-
-
-      <footer>
-        ΔΗΜΗΤΡΗΣ &amp; ΜΑΡΙΑ · 02 · 01 · 2027
-      </footer>
-
+      <img
+        class="names-image"
+        src="names.png"
+        alt="Δημήτρης &amp; Μαρία"
+      >
 
     </div>
 
-  </main>
+    <!-- ΗΜΕΡΟΜΗΝΙΑ -->
 
+    <div class="date">
+      2 Ιανουαρίου 2027
+    </div>
 
-  <!-- =====================================================
-       JAVASCRIPT — ΔΕΝ ΑΛΛΑΖΕΙ ΤΟ ΑΝΟΙΓΜΑ
-  ====================================================== -->
+    <div class="time">
+      Ώρα 18:00
+    </div>
 
-  <script>
+    <!-- ΕΙΣΑΓΩΓΗ -->
 
-    const seal = document.getElementById("seal");
-    const envelope = document.getElementById("envelope");
-    const flap = document.getElementById("flap");
-    const opening = document.getElementById("opening");
-    const invitation = document.getElementById("invitation");
+    <p class="intro">
+      Με ιδιαίτερη χαρά και τιμή σας προσκαλούμε να παρευρεθείτε σε αυτή την ξεχωριστή στιγμή της ζωής μας.
+    </p>
 
-    let opened = false;
+    <div class="ornament">
+      <span></span>
+      <i></i>
+      <span></span>
+    </div>
 
+    <!-- ΕΚΚΛΗΣΙΑ -->
 
-    seal.addEventListener("click", function(){
+    <section class="venue-section">
 
-      if(opened){
-        return;
-      }
+      <div class="venue">
 
-      opened = true;
+        <div
+          class="church-sketch"
+          aria-hidden="true"
+        >
 
+          <svg viewBox="0 0 220 170">
 
-      /* 1. Απομακρύνεται το κερί */
+            <path
+              class="sketch-line"
+              d="M45 142 L45 78 L110 42 L175 78 L175 142 Z"
+            />
 
-      seal.style.pointerEvents = "none";
+            <path
+              class="sketch-line"
+              d="M83 78 C84 55 94 42 110 35 C126 42 136 55 137 78"
+            />
 
-      seal.style.transition =
-        "transform .55s cubic-bezier(.2,.8,.2,1), opacity .45s ease";
+            <path
+              class="sketch-thin"
+              d="M90 67 C94 50 101 43 110 39 C119 43 126 50 130 67"
+            />
 
-      seal.style.transform =
-        "translate(-50%,-50%) translateZ(24px) scale(.82)";
+            <path
+              class="sketch-line"
+              d="M110 19 L110 35 M103 25 L117 25"
+            />
 
-      seal.style.opacity = "0";
+            <path
+              class="sketch-line"
+              d="M32 142 L32 68 L54 68 L54 142"
+            />
 
+            <path
+              class="sketch-line"
+              d="M30 68 L43 51 L56 68"
+            />
 
-      /* 2. Ανοίγει το καπάκι */
+            <path
+              class="sketch-thin"
+              d="M43 51 L43 42 M37 47 L49 47"
+            />
 
-      setTimeout(function(){
+            <path
+              class="sketch-line"
+              d="M166 142 L166 70 L188 70 L188 142"
+            />
 
-        flap.classList.add("flap-open");
+            <path
+              class="sketch-line"
+              d="M164 70 L177 53 L190 70"
+            />
 
-      }, 280);
+            <path
+              class="sketch-thin"
+              d="M177 53 L177 44 M171 49 L183 49"
+            />
 
+            <path
+              class="sketch-line"
+              d="M93 142 L93 113 C93 101 101 94 110 94 C119 94 127 101 127 113 L127 142"
+            />
 
-      /* 3. Το χαρτί βγαίνει από μέσα */
+            <path
+              class="sketch-thin"
+              d="M58 91 C58 82 65 76 72 76 C79 76 84 82 84 91 L84 105 L58 105 Z"
+            />
 
-      setTimeout(function(){
+            <path
+              class="sketch-thin"
+              d="M136 91 C136 82 141 76 148 76 C155 76 162 82 162 91 L162 105 L136 105 Z"
+            />
 
-        envelope.classList.add("paper-rising");
+            <path
+              class="sketch-thin"
+              d="M110 61 L110 77 M104 67 L116 67"
+            />
 
-      }, 760);
+            <path
+              class="sketch-thin"
+              d="M47 120 L61 120 M66 120 L79 120 M141 120 L154 120 M159 120 L173 120"
+            />
 
+            <path
+              class="sketch-line"
+              d="M20 143 C65 138 160 138 200 143"
+            />
 
-      /* 4. Ο φάκελος απομακρύνεται */
+            <path
+              class="sketch-thin"
+              d="M25 149 C72 145 157 145 195 149"
+            />
 
-      setTimeout(function(){
+          </svg>
 
-        envelope.classList.add("opened-completely");
+        </div>
 
-      }, 2500);
+        <div class="venue-label">
+          Ιερός Ναός
+        </div>
 
+        <h2 class="venue-title">
+          Ιερός Καθεδρικός Ναός
+          Μεταμορφώσεως του Σωτήρος
+        </h2>
 
-      /* 5. Εμφανίζεται η πρόσκληση */
+        <p class="venue-address">
+          Χλόης και Οδυσσέως,
+          Μεταμόρφωση Αττικής,
+          Αθήνα 14452
+        </p>
 
-      setTimeout(function(){
+        <a
+          class="map-link"
+          href="https://www.google.com/maps/search/?api=1&query=Ιερός+Καθεδρικός+Ναός+Μεταμορφώσεως+του+Σωτήρος,+Χλόης+και+Οδυσσέως,+Μεταμόρφωση+Αττικής"
+          target="_blank"
+          rel="noopener"
+        >
+          Άνοιγμα στους Χάρτες
+        </a>
 
-        opening.classList.add("opening-hidden");
+      </div>
 
-        invitation.classList.add("visible");
+      <div class="venue-divider"></div>
+
+      <!-- ΔΕΞΙΩΣΗ -->
+
+      <div class="venue">
+
+        <div class="venue-label">
+          Δεξίωση
+        </div>
+
+        <h2 class="venue-title">
+          Κτήμα Santa Maria Estate
+        </h2>
+
+        <p class="venue-address">
+          Παιανία Αττικής
+        </p>
+
+        <a
+          class="map-link"
+          href="https://www.google.com/maps/search/?api=1&query=Κτήμα+Santa+Maria+Estate+Παιανία"
+          target="_blank"
+          rel="noopener"
+        >
+          Άνοιγμα στους Χάρτες
+        </a>
+
+      </div>
+
+    </section>
+
+    <div class="ornament">
+      <span></span>
+      <i></i>
+      <span></span>
+    </div>
+
+    <!-- ΟΙΚΟΓΕΝΕΙΕΣ -->
+
+    <section class="families">
+
+      <h2 class="section-title">
+        ΟΙΚΟΓΕΝΕΙΕΣ
+      </h2>
+
+      <div class="families-grid">
+
+        <div class="family">
+
+          <strong>
+            Η οικογένεια του γαμπρού
+          </strong>
+
+          Γεωργίου Μπαντή
+          και Κωνσταντίνας Μπαντή
+
+        </div>
+
+        <div class="family">
+
+          <strong>
+            Η οικογένεια της νύφης
+          </strong>
+
+          Βασιλείου Παπαδημητρίου
+          και Άννας Ντάγκα
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ΚΟΥΜΠΑΡΟΙ -->
+
+    <section class="koumbaroi">
+
+      <h2 class="section-title">
+        Οι κουμπάροι μας
+      </h2>
+
+      <div class="koumbaroi-list">
+
+        <div class="koumbaros">
+          Ηλίας Πέτσας
+        </div>
+
+        <div class="koumbaros">
+          Έφη Τσιομπανίδη
+        </div>
+
+        <div class="koumbaros">
+          Ελένη Γκίννη
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- RSVP -->
+
+    <section class="rsvp">
+
+      <h2 class="section-title">
+        Παρουσία
+      </h2>
+
+      <p class="rsvp-text">
+        Παρακαλούμε ενημερώστε μας για την παρουσία σας έως 1/12/2026.
+      </p>
+
+      <div class="rsvp-date">
+        RSVP
+      </div>
+
+      <div class="contacts">
+
+        <div class="contact">
+          Δημήτρης:
+          <a href="tel:6983799690">
+            6983799690
+          </a>
+        </div>
+
+        <div class="contact">
+          Μαρία:
+          <a href="tel:6978247830">
+            6978247830
+          </a>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ΛΙΣΤΑ ΓΑΜΟΥ -->
+
+    <section class="gift">
+
+      <h2 class="section-title">
+        Προαιρετική λίστα γάμου
+      </h2>
+
+      <p class="gift-text">
+        Προαιρετική λίστα γάμου Εθνική Τράπεζα iban:
+      </p>
+
+      <div class="iban">
+        GR000000000000000000
+      </div>
+
+    </section>
+
+    <footer>
+      Δημήτρης &amp; Μαρία · 02 · 01 · 2027
+    </footer>
+
+  </div>
+
+</main>
+
+<script>
+
+const seal =
+  document.getElementById("seal");
+
+const envelope =
+  document.getElementById("envelope");
+
+const flap =
+  document.getElementById("flap");
+
+const opening =
+  document.getElementById("opening");
+
+const invitation =
+  document.getElementById("invitation");
+
+let opened = false;
+
+seal.addEventListener(
+  "click",
+  function(){
+
+    if(opened){
+      return;
+    }
+
+    opened = true;
+
+    seal.style.pointerEvents =
+      "none";
+
+    seal.style.transition =
+      "transform .55s cubic-bezier(.2,.8,.2,1), opacity .45s ease";
+
+    seal.style.transform =
+      "translate(-50%,-50%) translateZ(24px) scale(.82)";
+
+    seal.style.opacity =
+      "0";
+
+    setTimeout(
+      function(){
+
+        flap.classList.add(
+          "flap-open"
+        );
+
+      },
+      280
+    );
+
+    setTimeout(
+      function(){
+
+        envelope.classList.add(
+          "paper-rising"
+        );
+
+      },
+      760
+    );
+
+    setTimeout(
+      function(){
+
+        envelope.classList.add(
+          "opened-completely"
+        );
+
+      },
+      2500
+    );
+
+    setTimeout(
+      function(){
+
+        opening.classList.add(
+          "opening-hidden"
+        );
+
+        invitation.classList.add(
+          "visible"
+        );
 
         window.scrollTo({
           top:0,
           behavior:"instant"
         });
 
-      }, 3250);
+      },
+      3250
+    );
 
-    });
+  }
+);
 
-  </script>
-
+</script>
 
 </body>
 </html>
