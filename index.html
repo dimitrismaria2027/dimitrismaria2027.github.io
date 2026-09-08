@@ -1295,8 +1295,8 @@ button,a{font-family:inherit}
     right:-5px;
     bottom:3px;
     width:175px;
-    max-width:46%;
-    opacity:.11;
+    max-width:55%;
+    opacity:.13;
   }
 }
 
@@ -1612,6 +1612,26 @@ footer{
     padding-right:10px;
   }
 }
+
+/* FOOTER - ΚΙΝΗΤΟ */
+@media(max-width:700px){
+
+  .footer-names,
+  .footer-date{
+    display:block;
+  }
+
+  .footer-separator{
+    display:none;
+  }
+
+  .footer-date{
+    margin-top:8px;
+  }
+
+}
+
+  
 </style>
 </head>
 
@@ -2056,9 +2076,10 @@ footer{
     >
 
     <footer>
-      Δημήτρης &amp; Μαρία 
-      02 · Ιανουαρίου · 2027
-    </footer>
+  <span class="footer-names">Δημήτρης &amp; Μαρία</span>
+  <span class="footer-separator"> · </span>
+  <span class="footer-date">02 · Ιανουαρίου · 2027</span>
+</footer>
 
   </div>
 
