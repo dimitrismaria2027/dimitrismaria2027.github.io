@@ -2296,6 +2296,50 @@ footer{
 
 }
 
+/* SHIRE — ΚΟΥΜΠΑΡΟΙ */
+
+.koumbaroi{
+  position:relative;
+  overflow:hidden;
+}
+
+.shire-koumbaroi{
+  position:absolute;
+  left:-8px;
+  top:50%;
+  transform:translateY(-50%);
+
+  width:250px;
+  max-width:38%;
+  height:auto;
+
+  opacity:.18;
+  mix-blend-mode:darken;
+
+  pointer-events:none;
+  z-index:1;
+}
+
+.koumbaroi .section-title,
+.koumbaroi .koumbaroi-grid{
+  position:relative;
+  z-index:2;
+}
+
+@media(max-width:700px){
+
+  .shire-koumbaroi{
+    left:-18px;
+    top:52%;
+
+    width:190px;
+    max-width:48%;
+
+    opacity:.16;
+  }
+
+}
+  
 </style>
 </head>
 
@@ -2688,7 +2732,13 @@ footer{
 
     <section class="koumbaroi">
 
-
+<img
+  class="shire-koumbaroi"
+  src="shire.png"
+  alt=""
+  aria-hidden="true"
+>
+      
       <h2 class="section-title">
         Οι κουμπάροι μας
       </h2>
@@ -2791,18 +2841,6 @@ footer{
 
 
     </section>
-
-
-    <!-- =========================
-         SHIRE - ΚΑΤΩ ΑΡΙΣΤΕΡΑ
-    ========================= -->
-
-    <img
-      class="shire-bottom"
-      src="shire.png"
-      alt=""
-      aria-hidden="true"
-    >
 
 
     <!-- =========================
