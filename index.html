@@ -1461,6 +1461,26 @@ button,a{font-family:inherit}
 }
 
 /* =========================
+   HUG ART
+========================= */
+
+.hug-art{
+  position:absolute;
+  left:18px;
+  bottom:24px;
+
+  width:48%;
+  max-width:410px;
+  height:auto;
+
+  opacity:.14;
+  mix-blend-mode:multiply;
+
+  pointer-events:none;
+  z-index:1;
+}
+
+/* =========================
    CASTLE ART
    ΝΕΑ ΠΡΟΣΘΗΚΗ
 ========================= */
@@ -1571,7 +1591,15 @@ footer{
     flex-direction:column;
     gap:8px;
   }
-
+  
+  .hug-art{
+  left:4px;
+  bottom:16px;
+  width:64%;
+  max-width:270px;
+  opacity:.12;
+}
+  
   .castle-art{
     right:8px;
     bottom:18px;
@@ -2051,6 +2079,15 @@ footer{
 
     </section>
 
+    <!-- ΑΓΚΑΛΙΑ -->
+
+<img
+  class="hug-art"
+  src="hug.png"
+  alt=""
+  aria-hidden="true"
+>
+    
     <!-- ΚΑΣΤΡΟ -->
 
     <img
