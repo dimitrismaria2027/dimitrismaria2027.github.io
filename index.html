@@ -1975,9 +1975,23 @@ a{
 }
 
 .contact a{
-  color:#684d21;
+  display:inline-block;
 
+  color:#684d21;
   text-decoration:none;
+
+  border-bottom:1px solid rgba(104,77,33,.35);
+
+  padding:3px 4px;
+
+  transition:
+    color .25s ease,
+    border-color .25s ease;
+}
+
+.contact a:hover{
+  color:#641326;
+  border-color:#641326;
 }
 
 
@@ -2738,30 +2752,19 @@ footer{
 
       <div class="contacts">
 
+  <div class="contact">
+    <a href="tel:6983799690">
+      Τηλέφωνο Δημήτρη
+    </a>
+  </div>
 
-        <div class="contact">
+  <div class="contact">
+    <a href="tel:6978247830">
+      Τηλέφωνο Μαρίας
+    </a>
+  </div>
 
-          Δημήτρης:
-
-          <a href="tel:6983799690">
-            6983799690
-          </a>
-
-        </div>
-
-
-        <div class="contact">
-
-          Μαρία:
-
-          <a href="tel:6978247830">
-            6978247830
-          </a>
-
-        </div>
-
-
-      </div>
+</div>
 
 
     </section>
