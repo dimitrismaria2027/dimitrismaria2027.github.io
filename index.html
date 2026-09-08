@@ -1262,9 +1262,34 @@ button,a{font-family:inherit}
 ========================= */
 
 .families{
+  position:relative;
   margin-top:25px;
   padding:45px 20px;
   text-align:center;
+  overflow:hidden;
+}
+
+.family-tree{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+
+  width:330px;
+  max-width:62%;
+  height:auto;
+
+  opacity:.10;
+  mix-blend-mode:multiply;
+
+  pointer-events:none;
+  z-index:0;
+}
+
+.families .section-title,
+.families-grid{
+  position:relative;
+  z-index:2;
 }
 
 .section-title{
@@ -1511,6 +1536,12 @@ footer{
     width:58%;
     opacity:.14;
   }
+}
+
+  .family-tree{
+  width:270px;
+  max-width:78%;
+  opacity:.09;
 }
 
 @media(max-width:430px){
@@ -1846,11 +1877,18 @@ footer{
 
     <section class="families">
 
-      <h2 class="section-title">
-        ΟΙΚΟΓΕΝΕΙΕΣ
-      </h2>
+  <img
+    class="family-tree"
+    src="tree.png"
+    alt=""
+    aria-hidden="true"
+  >
 
-      <div class="families-grid">
+  <h2 class="section-title">
+    ΟΙΚΟΓΕΝΕΙΕΣ
+  </h2>
+
+  <div class="families-grid">
 
         <div class="family">
 
