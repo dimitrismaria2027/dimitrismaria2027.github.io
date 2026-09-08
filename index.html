@@ -1258,6 +1258,49 @@ button,a{font-family:inherit}
 }
 
 /* =========================
+   SHIRE ART
+========================= */
+
+.reception-venue{
+  position:relative;
+  overflow:hidden;
+}
+
+.shire-art{
+  position:absolute;
+  right:8px;
+  bottom:4px;
+
+  width:230px;
+  max-width:38%;
+  height:auto;
+
+  opacity:.13;
+  mix-blend-mode:multiply;
+
+  pointer-events:none;
+  z-index:1;
+}
+
+.reception-venue .venue-label,
+.reception-venue .venue-title,
+.reception-venue .venue-address,
+.reception-venue .map-link{
+  position:relative;
+  z-index:2;
+}
+
+@media(max-width:700px){
+  .shire-art{
+    right:-5px;
+    bottom:3px;
+    width:175px;
+    max-width:46%;
+    opacity:.11;
+  }
+}
+
+/* =========================
    FAMILIES
 ========================= */
 
@@ -1840,30 +1883,37 @@ footer{
 
       <!-- ΔΕΞΙΩΣΗ -->
 
-      <div class="venue">
+<div class="venue reception-venue">
 
-        <div class="venue-label">
-          Δεξίωση
-        </div>
+  <div class="venue-label">
+    Δεξίωση
+  </div>
 
-        <h2 class="venue-title">
-          Κτήμα Santa Maria Estate
-        </h2>
+  <h2 class="venue-title">
+    Κτήμα Santa Maria Estate
+  </h2>
 
-        <p class="venue-address">
-          Παιανία Αττικής
-        </p>
+  <p class="venue-address">
+    Παιανία Αττικής
+  </p>
 
-        <a
-          class="map-link"
-          href="https://www.google.com/maps/search/?api=1&query=Κτήμα+Santa+Maria+Estate+Παιανία"
-          target="_blank"
-          rel="noopener"
-        >
-          Άνοιγμα στους Χάρτες
-        </a>
+  <a
+    class="map-link"
+    href="https://www.google.com/maps/search/?api=1&query=Κτήμα+Santa+Maria+Estate+Παιανία"
+    target="_blank"
+    rel="noopener"
+  >
+    Άνοιγμα στους Χάρτες
+  </a>
 
-      </div>
+  <img
+    class="shire-art"
+    src="shire.png"
+    alt=""
+    aria-hidden="true"
+  >
+
+</div>
 
     </section>
 
