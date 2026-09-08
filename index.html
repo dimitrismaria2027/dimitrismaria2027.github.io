@@ -1271,11 +1271,11 @@ button,a{font-family:inherit}
   right:8px;
   bottom:4px;
 
-  width:230px;
-  max-width:38%;
+  width:270px;
+  max-width:44%;
   height:auto;
 
-  opacity:.13;
+  opacity:.16;
   mix-blend-mode:multiply;
 
   pointer-events:none;
@@ -1294,9 +1294,9 @@ button,a{font-family:inherit}
   .shire-art{
     right:-5px;
     bottom:3px;
-    width:175px;
-    max-width:55%;
-    opacity:.13;
+    width:205px;
+    max-width:60%;
+    opacity:.16;
   }
 }
 
@@ -1322,7 +1322,7 @@ button,a{font-family:inherit}
   max-width:62%;
   height:auto;
 
-  opacity:.10;
+  opacity:.13;
   mix-blend-mode:multiply;
 
   pointer-events:none;
@@ -1475,7 +1475,7 @@ button,a{font-family:inherit}
   max-width:360px;
   height:auto;
 
-  opacity:.18;
+  opacity:.22;
 
   mix-blend-mode:multiply;
 
@@ -1577,14 +1577,14 @@ footer{
     right:8px;
     bottom:18px;
     width:58%;
-    opacity:.14;
+    opacity:.18;
   }
 }
 
-  .family-tree{
+.family-tree{
   width:270px;
   max-width:78%;
-  opacity:.09;
+  opacity:.12;
 }
 
 @media(max-width:430px){
@@ -1613,6 +1613,41 @@ footer{
   }
 }
 
+/* =========================
+   OPENING INSTRUCTION
+========================= */
+
+.opening-instruction{
+  position:absolute;
+  left:50%;
+  top:calc(50% + min(32vw,200px) + 30px);
+  transform:translateX(-50%);
+  width:min(90vw,620px);
+  margin:0;
+  padding:0 18px;
+
+  text-align:center;
+  color:#d8b765;
+  font-size:18px;
+  line-height:1.4;
+  letter-spacing:.5px;
+
+  text-shadow:
+    0 0 8px rgba(216,183,101,.20);
+
+  z-index:90;
+  pointer-events:none;
+}
+
+@media(max-width:700px){
+  .opening-instruction{
+    top:calc(50% + min(30.5vw,180px) + 24px);
+    width:92vw;
+    font-size:16px;
+    padding:0 20px;
+  }
+}
+
 /* FOOTER - ΚΙΝΗΤΟ */
 @media(max-width:700px){
 
@@ -1631,7 +1666,6 @@ footer{
 
 }
 
-  
 </style>
 </head>
 
@@ -1751,6 +1785,10 @@ footer{
     </div>
 
   </div>
+
+  <p class="opening-instruction">
+    Πάτα πάνω στη σφραγίδα για να ανοίξει ο φάκελος.
+  </p>
 
 </div>
 
@@ -1903,37 +1941,37 @@ footer{
 
       <!-- ΔΕΞΙΩΣΗ -->
 
-<div class="venue reception-venue">
+      <div class="venue reception-venue">
 
-  <div class="venue-label">
-    Δεξίωση
-  </div>
+        <div class="venue-label">
+          Δεξίωση
+        </div>
 
-  <h2 class="venue-title">
-    Κτήμα Santa Maria Estate
-  </h2>
+        <h2 class="venue-title">
+          Κτήμα Santa Maria Estate
+        </h2>
 
-  <p class="venue-address">
-    Παιανία Αττικής
-  </p>
+        <p class="venue-address">
+          Παιανία Αττικής
+        </p>
 
-  <a
-    class="map-link"
-    href="https://www.google.com/maps/search/?api=1&query=Κτήμα+Santa+Maria+Estate+Παιανία"
-    target="_blank"
-    rel="noopener"
-  >
-    Άνοιγμα στους Χάρτες
-  </a>
+        <a
+          class="map-link"
+          href="https://www.google.com/maps/search/?api=1&query=Κτήμα+Santa+Maria+Estate+Παιανία"
+          target="_blank"
+          rel="noopener"
+        >
+          Άνοιγμα στους Χάρτες
+        </a>
 
-  <img
-    class="shire-art"
-    src="shire.png"
-    alt=""
-    aria-hidden="true"
-  >
+        <img
+          class="shire-art"
+          src="shire.png"
+          alt=""
+          aria-hidden="true"
+        >
 
-</div>
+      </div>
 
     </section>
 
@@ -1947,18 +1985,18 @@ footer{
 
     <section class="families">
 
-  <img
-    class="family-tree"
-    src="tree.png"
-    alt=""
-    aria-hidden="true"
-  >
+      <img
+        class="family-tree"
+        src="tree.png"
+        alt=""
+        aria-hidden="true"
+      >
 
-  <h2 class="section-title">
-    ΟΙΚΟΓΕΝΕΙΕΣ
-  </h2>
+      <h2 class="section-title">
+        ΟΙΚΟΓΕΝΕΙΕΣ
+      </h2>
 
-  <div class="families-grid">
+      <div class="families-grid">
 
         <div class="family">
 
@@ -2076,10 +2114,10 @@ footer{
     >
 
     <footer>
-  <span class="footer-names">Δημήτρης &amp; Μαρία</span>
-  <span class="footer-separator"> · </span>
-  <span class="footer-date">02 · Ιανουαρίου · 2027</span>
-</footer>
+      <span class="footer-names">Δημήτρης &amp; Μαρία</span>
+      <span class="footer-separator"> · </span>
+      <span class="footer-date">02 · Ιανουαρίου · 2027</span>
+    </footer>
 
   </div>
 
