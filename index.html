@@ -1518,18 +1518,29 @@ a{
 
 .hall-art{
   position:absolute;
-  right:0;
-  bottom:0;
 
-  width:55%;
+  right:10px;
+  bottom:8px;
+
+  width:220px;
+  max-width:34%;
+
   height:auto;
 
-  opacity:1;
+  opacity:.12;
 
-  z-index:10;
+  mix-blend-mode:multiply;
+
   pointer-events:none;
+
+  z-index:1;
 }
 
+.reception-venue{
+  position:relative;
+  overflow:hidden;
+}
+  
 .reception-venue .venue-label,
 .reception-venue .venue-title,
 .reception-venue .venue-address,
@@ -1939,16 +1950,13 @@ footer{
   }
 
   .hall-art{
-  right:-5px;
-  left:auto;
-  bottom:3px;
+  right:-4px;
+  bottom:4px;
 
-  width:205px;
-  max-width:58%;
+  width:170px;
+  max-width:46%;
 
-  opacity:.17;
-
-  transform:none;
+  opacity:.11;
 }
 
   .family-tree{
