@@ -2344,6 +2344,38 @@ footer{
 }
 
 }
+
+/* COPY IBAN */
+
+.copy-iban{
+  display:inline-block;
+  cursor:pointer;
+  color:#641326;
+  border-bottom:1px dotted rgba(100,19,38,.45);
+  padding:2px 3px;
+}
+
+.copy-icon{
+  margin-left:5px;
+  font-size:.9em;
+  color:#9b7b35;
+}
+
+.copy-message{
+  display:block;
+  min-height:20px;
+  margin-top:6px;
+
+  color:#9b7b35;
+  font-size:14px;
+
+  opacity:0;
+  transition:opacity .3s ease;
+}
+
+.copy-message.show{
+  opacity:1;
+}
   
 </style>
 </head>
@@ -2840,9 +2872,20 @@ footer{
       </p>
 
 
-      <div class="iban">
-        GR000000000000000000
-      </div>
+      <span
+  class="copy-iban"
+  id="copyIban"
+  onclick="copyIban()"
+  role="button"
+  tabindex="0"
+>
+  GR000000000000000000
+  <span class="copy-icon">⧉</span>
+</span>
+
+<span class="copy-message" id="copyMessage">
+  Αντιγράφηκε ✓
+</span>
 
 
     </section>
@@ -2998,6 +3041,28 @@ seal.addEventListener("click", function(){
 
 });
 
+function copyIban(){
+
+  const iban = document
+    .getElementById("copyIban")
+    .childNodes[0]
+    .textContent
+    .trim();
+
+  navigator.clipboard.writeText(iban).then(function(){
+
+    const message = document.getElementById("copyMessage");
+
+    message.classList.add("show");
+
+    setTimeout(function(){
+      message.classList.remove("show");
+    }, 1800);
+
+  });
+
+}
+  
 </script>
 
 
