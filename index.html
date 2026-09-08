@@ -1390,6 +1390,9 @@ button,a{font-family:inherit}
 ========================= */
 
 .rsvp{
+  position:relative;
+  overflow:hidden;
+
   max-width:670px;
   margin:0 auto;
   padding:45px 25px;
@@ -1466,18 +1469,26 @@ button,a{font-family:inherit}
 
 .hug-art{
   position:absolute;
-  left:18px;
-  bottom:24px;
+  left:-12px;
+  bottom:-10px;
 
-  width:48%;
-  max-width:410px;
+  width:56%;
+  max-width:360px;
   height:auto;
 
-  opacity:.14;
+  opacity:.18;
   mix-blend-mode:multiply;
 
   pointer-events:none;
   z-index:1;
+}
+
+.rsvp .section-title,
+.rsvp .rsvp-text,
+.rsvp .rsvp-date,
+.rsvp .contacts{
+  position:relative;
+  z-index:2;
 }
 
 /* =========================
@@ -1592,13 +1603,13 @@ footer{
     gap:8px;
   }
   
-  .hug-art{
-  left:4px;
-  bottom:16px;
-  width:64%;
-  max-width:270px;
-  opacity:.12;
-}
+ .hug-art{
+    left:-18px;
+    bottom:-8px;
+    width:72%;
+    max-width:280px;
+    opacity:.17;
+  }
   
   .castle-art{
     right:8px;
@@ -2029,6 +2040,13 @@ footer{
 
     <section class="rsvp">
 
+      <img
+  class="hug-art"
+  src="hug.png"
+  alt=""
+  aria-hidden="true"
+>
+
       <h2 class="section-title">
         Παρουσία
       </h2>
@@ -2078,15 +2096,6 @@ footer{
       </div>
 
     </section>
-
-    <!-- ΑΓΚΑΛΙΑ -->
-
-<img
-  class="hug-art"
-  src="hug.png"
-  alt=""
-  aria-hidden="true"
->
     
     <!-- ΚΑΣΤΡΟ -->
 
