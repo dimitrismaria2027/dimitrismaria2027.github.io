@@ -190,8 +190,9 @@ a{
 
 .dust{
   position:absolute;
+
+  top:-12%;
   left:50%;
-  top:58%;
 
   width:4px;
   height:4px;
@@ -203,8 +204,8 @@ a{
   background:#e7c873;
 
   box-shadow:
-    0 0 5px rgba(231,200,115,.75),
-    0 0 12px rgba(231,200,115,.30);
+    0 0 5px rgba(231,200,115,.85),
+    0 0 11px rgba(231,200,115,.38);
 }
 
 .dust:nth-child(3n){
@@ -213,60 +214,284 @@ a{
 }
 
 .dust:nth-child(4n){
-  width:6px;
-  height:6px;
+  width:5px;
+  height:5px;
 }
+
+
+/* Η ΧΡΥΣΟΣΚΟΝΗ ΠΕΦΤΕΙ ΣΑΝ ΧΙΟΝΙ */
 
 .gold-dust.active .dust{
-  animation:dustRise 1.85s ease-out forwards;
+  animation:
+    goldenSnow
+    var(--duration)
+    ease-in
+    forwards;
+
+  animation-delay:var(--delay);
 }
 
-@keyframes dustRise{
+
+@keyframes goldenSnow{
 
   0%{
     opacity:0;
-    transform:translate(0,12px) scale(.35);
+
+    transform:
+      translate3d(0,-20px,0)
+      rotate(0deg)
+      scale(.5);
   }
 
-  18%{
+  12%{
     opacity:.9;
   }
 
-  72%{
-    opacity:.55;
+  45%{
+    transform:
+      translate3d(var(--drift1),90px,0)
+      rotate(100deg)
+      scale(1);
+  }
+
+  75%{
+    opacity:.7;
+
+    transform:
+      translate3d(var(--drift2),165px,0)
+      rotate(210deg)
+      scale(.8);
   }
 
   100%{
     opacity:0;
-    transform:translate(var(--x),var(--y)) scale(.15);
+
+    transform:
+      translate3d(var(--drift3),245px,0)
+      rotate(330deg)
+      scale(.35);
   }
 
 }
 
-.dust:nth-child(1){--x:-210px;--y:-120px;animation-delay:.04s}
-.dust:nth-child(2){--x:-165px;--y:-155px;animation-delay:.12s}
-.dust:nth-child(3){--x:-125px;--y:-105px;animation-delay:.20s}
-.dust:nth-child(4){--x:-85px;--y:-175px;animation-delay:.07s}
-.dust:nth-child(5){--x:-45px;--y:-130px;animation-delay:.28s}
-.dust:nth-child(6){--x:-18px;--y:-190px;animation-delay:.15s}
-.dust:nth-child(7){--x:20px;--y:-145px;animation-delay:.03s}
-.dust:nth-child(8){--x:55px;--y:-185px;animation-delay:.22s}
-.dust:nth-child(9){--x:92px;--y:-125px;animation-delay:.10s}
-.dust:nth-child(10){--x:130px;--y:-165px;animation-delay:.26s}
-.dust:nth-child(11){--x:170px;--y:-110px;animation-delay:.06s}
-.dust:nth-child(12){--x:210px;--y:-145px;animation-delay:.18s}
-.dust:nth-child(13){--x:-185px;--y:-70px;animation-delay:.32s}
-.dust:nth-child(14){--x:-140px;--y:-210px;animation-delay:.24s}
-.dust:nth-child(15){--x:-70px;--y:-90px;animation-delay:.38s}
-.dust:nth-child(16){--x:-28px;--y:-225px;animation-delay:.30s}
-.dust:nth-child(17){--x:35px;--y:-95px;animation-delay:.36s}
-.dust:nth-child(18){--x:78px;--y:-215px;animation-delay:.14s}
-.dust:nth-child(19){--x:145px;--y:-85px;animation-delay:.34s}
-.dust:nth-child(20){--x:195px;--y:-195px;animation-delay:.29s}
-.dust:nth-child(21){--x:-105px;--y:-235px;animation-delay:.18s}
-.dust:nth-child(22){--x:-5px;--y:-115px;animation-delay:.42s}
-.dust:nth-child(23){--x:105px;--y:-235px;animation-delay:.20s}
-.dust:nth-child(24){--x:225px;--y:-80px;animation-delay:.40s}
+
+/* ΘΕΣΕΙΣ / ΤΑΧΥΤΗΤΕΣ */
+
+.dust:nth-child(1){
+  left:4%;
+  --drift1:8px;
+  --drift2:-5px;
+  --drift3:12px;
+  --duration:2.4s;
+  --delay:.02s;
+}
+
+.dust:nth-child(2){
+  left:9%;
+  --drift1:-10px;
+  --drift2:7px;
+  --drift3:-8px;
+  --duration:2.8s;
+  --delay:.18s;
+}
+
+.dust:nth-child(3){
+  left:14%;
+  --drift1:12px;
+  --drift2:4px;
+  --drift3:17px;
+  --duration:2.5s;
+  --delay:.08s;
+}
+
+.dust:nth-child(4){
+  left:19%;
+  --drift1:-7px;
+  --drift2:-15px;
+  --drift3:5px;
+  --duration:3s;
+  --delay:.28s;
+}
+
+.dust:nth-child(5){
+  left:24%;
+  --drift1:9px;
+  --drift2:18px;
+  --drift3:3px;
+  --duration:2.6s;
+  --delay:.12s;
+}
+
+.dust:nth-child(6){
+  left:29%;
+  --drift1:-12px;
+  --drift2:4px;
+  --drift3:-16px;
+  --duration:2.9s;
+  --delay:.38s;
+}
+
+.dust:nth-child(7){
+  left:34%;
+  --drift1:14px;
+  --drift2:6px;
+  --drift3:20px;
+  --duration:2.5s;
+  --delay:.04s;
+}
+
+.dust:nth-child(8){
+  left:39%;
+  --drift1:-9px;
+  --drift2:-18px;
+  --drift3:-3px;
+  --duration:3.1s;
+  --delay:.22s;
+}
+
+.dust:nth-child(9){
+  left:44%;
+  --drift1:7px;
+  --drift2:16px;
+  --drift3:2px;
+  --duration:2.7s;
+  --delay:.32s;
+}
+
+.dust:nth-child(10){
+  left:48%;
+  --drift1:-13px;
+  --drift2:-4px;
+  --drift3:-19px;
+  --duration:2.5s;
+  --delay:.10s;
+}
+
+.dust:nth-child(11){
+  left:52%;
+  --drift1:11px;
+  --drift2:2px;
+  --drift3:15px;
+  --duration:3s;
+  --delay:.42s;
+}
+
+.dust:nth-child(12){
+  left:56%;
+  --drift1:-6px;
+  --drift2:-17px;
+  --drift3:-2px;
+  --duration:2.6s;
+  --delay:.16s;
+}
+
+.dust:nth-child(13){
+  left:60%;
+  --drift1:15px;
+  --drift2:7px;
+  --drift3:21px;
+  --duration:2.9s;
+  --delay:.26s;
+}
+
+.dust:nth-child(14){
+  left:64%;
+  --drift1:-11px;
+  --drift2:3px;
+  --drift3:-15px;
+  --duration:2.4s;
+  --delay:.06s;
+}
+
+.dust:nth-child(15){
+  left:68%;
+  --drift1:8px;
+  --drift2:18px;
+  --drift3:4px;
+  --duration:3.1s;
+  --delay:.36s;
+}
+
+.dust:nth-child(16){
+  left:72%;
+  --drift1:-14px;
+  --drift2:-6px;
+  --drift3:-20px;
+  --duration:2.7s;
+  --delay:.20s;
+}
+
+.dust:nth-child(17){
+  left:76%;
+  --drift1:10px;
+  --drift2:2px;
+  --drift3:16px;
+  --duration:2.5s;
+  --delay:.46s;
+}
+
+.dust:nth-child(18){
+  left:80%;
+  --drift1:-8px;
+  --drift2:-17px;
+  --drift3:-3px;
+  --duration:3s;
+  --delay:.14s;
+}
+
+.dust:nth-child(19){
+  left:84%;
+  --drift1:13px;
+  --drift2:5px;
+  --drift3:19px;
+  --duration:2.8s;
+  --delay:.30s;
+}
+
+.dust:nth-child(20){
+  left:88%;
+  --drift1:-10px;
+  --drift2:5px;
+  --drift3:-14px;
+  --duration:2.6s;
+  --delay:.08s;
+}
+
+.dust:nth-child(21){
+  left:92%;
+  --drift1:7px;
+  --drift2:15px;
+  --drift3:2px;
+  --duration:3.1s;
+  --delay:.40s;
+}
+
+.dust:nth-child(22){
+  left:96%;
+  --drift1:-12px;
+  --drift2:-4px;
+  --drift3:-18px;
+  --duration:2.7s;
+  --delay:.24s;
+}
+
+.dust:nth-child(23){
+  left:32%;
+  --drift1:18px;
+  --drift2:7px;
+  --drift3:23px;
+  --duration:3s;
+  --delay:.52s;
+}
+
+.dust:nth-child(24){
+  left:70%;
+  --drift1:-16px;
+  --drift2:-5px;
+  --drift3:-21px;
+  --duration:2.8s;
+  --delay:.48s;
+}
 
 
 /* =========================
