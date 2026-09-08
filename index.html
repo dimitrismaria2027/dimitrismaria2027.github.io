@@ -1223,38 +1223,36 @@ button,a{font-family:inherit}
 }
 
 /* =========================
-   CHURCH SKETCH
+   CHURCH ART
 ========================= */
 
-.church-sketch{
+.church-venue{
+  position:relative;
+  overflow:hidden;
+}
+
+.church-art{
   position:absolute;
-  left:1%;
-  bottom:22px;
-  width:180px;
-  height:145px;
-  opacity:.46;
+  left:6px;
+  bottom:4px;
+
+  width:250px;
+  max-width:42%;
+  height:auto;
+
+  opacity:.16;
+  mix-blend-mode:multiply;
+
   pointer-events:none;
+  z-index:1;
 }
 
-.church-sketch svg{
-  width:100%;
-  height:100%;
-}
-
-.sketch-line{
-  fill:none;
-  stroke:#70592f;
-  stroke-width:1.3;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-
-.sketch-thin{
-  fill:none;
-  stroke:#806b43;
-  stroke-width:.8;
-  stroke-linecap:round;
-  stroke-linejoin:round;
+.church-venue .venue-label,
+.church-venue .venue-title,
+.church-venue .venue-address,
+.church-venue .map-link{
+  position:relative;
+  z-index:2;
 }
 
 /* =========================
@@ -1556,12 +1554,13 @@ footer{
     font-size:27px;
   }
 
-  .church-sketch{
-    left:-8px;
-    width:135px;
-    height:115px;
-    opacity:.32;
-  }
+  .church-art{
+  left:-8px;
+  bottom:3px;
+  width:190px;
+  max-width:55%;
+  opacity:.14;
+}
 
   .families-grid{
     grid-template-columns:1fr;
@@ -1848,132 +1847,80 @@ footer{
 
     <!-- ΕΚΚΛΗΣΙΑ -->
 
-    <section class="venue-section">
+<section class="venue-section">
 
-      <div class="venue">
+  <div class="venue church-venue">
 
-        <div class="church-sketch" aria-hidden="true">
+    <div class="venue-label">
+      Ιερός Ναός
+    </div>
 
-          <svg viewBox="0 0 220 170">
+    <h2 class="venue-title">
+      Ιερός Καθεδρικός Ναός
+      Μεταμορφώσεως του Σωτήρος
+    </h2>
 
-            <path class="sketch-line"
-              d="M45 142 L45 78 L110 42 L175 78 L175 142 Z"/>
+    <p class="venue-address">
+      Χλόης και Οδυσσέως,
+      Μεταμόρφωση Αττικής,
+      Αθήνα 14452
+    </p>
 
-            <path class="sketch-line"
-              d="M83 78 C84 55 94 42 110 35 C126 42 136 55 137 78"/>
+    <a
+      class="map-link"
+      href="https://www.google.com/maps/search/?api=1&query=Ιερός+Καθεδρικός+Ναός+Μεταμορφώσεως+του+Σωτήρος,+Χλόης+και+Οδυσσέως,+Μεταμόρφωση+Αττικής"
+      target="_blank"
+      rel="noopener"
+    >
+      Άνοιγμα στους Χάρτες
+    </a>
 
-            <path class="sketch-thin"
-              d="M90 67 C94 50 101 43 110 39 C119 43 126 50 130 67"/>
+    <img
+      class="church-art"
+      src="church.png"
+      alt=""
+      aria-hidden="true"
+    >
 
-            <path class="sketch-line"
-              d="M110 19 L110 35 M103 25 L117 25"/>
+  </div>
 
-            <path class="sketch-line"
-              d="M32 142 L32 68 L54 68 L54 142"/>
+  <div class="venue-divider"></div>
 
-            <path class="sketch-line"
-              d="M30 68 L43 51 L56 68"/>
+  <!-- ΔΕΞΙΩΣΗ -->
 
-            <path class="sketch-thin"
-              d="M43 51 L43 42 M37 47 L49 47"/>
+  <div class="venue reception-venue">
 
-            <path class="sketch-line"
-              d="M166 142 L166 70 L188 70 L188 142"/>
+    <div class="venue-label">
+      Δεξίωση
+    </div>
 
-            <path class="sketch-line"
-              d="M164 70 L177 53 L190 70"/>
+    <h2 class="venue-title">
+      Κτήμα Santa Maria Estate
+    </h2>
 
-            <path class="sketch-thin"
-              d="M177 53 L177 44 M171 49 L183 49"/>
+    <p class="venue-address">
+      Παιανία Αττικής
+    </p>
 
-            <path class="sketch-line"
-              d="M93 142 L93 113 C93 101 101 94 110 94 C119 94 127 101 127 113 L127 142"/>
+    <a
+      class="map-link"
+      href="https://www.google.com/maps/search/?api=1&query=Κτήμα+Santa+Maria+Estate+Παιανία"
+      target="_blank"
+      rel="noopener"
+    >
+      Άνοιγμα στους Χάρτες
+    </a>
 
-            <path class="sketch-thin"
-              d="M58 91 C58 82 65 76 72 76 C79 76 84 82 84 91 L84 105 L58 105 Z"/>
+    <img
+      class="shire-art"
+      src="shire.png"
+      alt=""
+      aria-hidden="true"
+    >
 
-            <path class="sketch-thin"
-              d="M136 91 C136 82 141 76 148 76 C155 76 162 82 162 91 L162 105 L136 105 Z"/>
+  </div>
 
-            <path class="sketch-thin"
-              d="M110 61 L110 77 M104 67 L116 67"/>
-
-            <path class="sketch-thin"
-              d="M47 120 L61 120 M66 120 L79 120 M141 120 L154 120 M159 120 L173 120"/>
-
-            <path class="sketch-line"
-              d="M20 143 C65 138 160 138 200 143"/>
-
-            <path class="sketch-thin"
-              d="M25 149 C72 145 157 145 195 149"/>
-
-          </svg>
-
-        </div>
-
-        <div class="venue-label">
-          Ιερός Ναός
-        </div>
-
-        <h2 class="venue-title">
-          Ιερός Καθεδρικός Ναός
-          Μεταμορφώσεως του Σωτήρος
-        </h2>
-
-        <p class="venue-address">
-          Χλόης και Οδυσσέως,
-          Μεταμόρφωση Αττικής,
-          Αθήνα 14452
-        </p>
-
-        <a
-          class="map-link"
-          href="https://www.google.com/maps/search/?api=1&query=Ιερός+Καθεδρικός+Ναός+Μεταμορφώσεως+του+Σωτήρος,+Χλόης+και+Οδυσσέως,+Μεταμόρφωση+Αττικής"
-          target="_blank"
-          rel="noopener"
-        >
-          Άνοιγμα στους Χάρτες
-        </a>
-
-      </div>
-
-      <div class="venue-divider"></div>
-
-      <!-- ΔΕΞΙΩΣΗ -->
-
-      <div class="venue reception-venue">
-
-        <div class="venue-label">
-          Δεξίωση
-        </div>
-
-        <h2 class="venue-title">
-          Κτήμα Santa Maria Estate
-        </h2>
-
-        <p class="venue-address">
-          Παιανία Αττικής
-        </p>
-
-        <a
-          class="map-link"
-          href="https://www.google.com/maps/search/?api=1&query=Κτήμα+Santa+Maria+Estate+Παιανία"
-          target="_blank"
-          rel="noopener"
-        >
-          Άνοιγμα στους Χάρτες
-        </a>
-
-        <img
-          class="shire-art"
-          src="shire.png"
-          alt=""
-          aria-hidden="true"
-        >
-
-      </div>
-
-    </section>
+</section>
 
     <div class="ornament">
       <span></span>
