@@ -2382,30 +2382,53 @@ footer{
 .flower-top-right{
   position:absolute;
 
-  top:22px;
-  right:22px;
+  top:12px;
+  right:8px;
 
-  width:190px;
-  max-width:30%;
+  width:220px;
+  max-width:34%;
   height:auto;
 
-  opacity:.78;
-  mix-blend-mode:darken;
+  opacity:.88;
+
+  mix-blend-mode:multiply;
+
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse at 82% 20%,
+      black 0%,
+      black 32%,
+      rgba(0,0,0,.95) 48%,
+      rgba(0,0,0,.70) 62%,
+      rgba(0,0,0,.28) 75%,
+      transparent 88%
+    );
+
+  mask-image:
+    radial-gradient(
+      ellipse at 82% 20%,
+      black 0%,
+      black 32%,
+      rgba(0,0,0,.95) 48%,
+      rgba(0,0,0,.70) 62%,
+      rgba(0,0,0,.28) 75%,
+      transparent 88%
+    );
 
   pointer-events:none;
   z-index:3;
 }
-
+  
 @media(max-width:700px){
 
   .flower-top-right{
-    top:16px;
-    right:10px;
+    top:8px;
+    right:2px;
 
-    width:145px;
-    max-width:38%;
+    width:170px;
+    max-width:42%;
 
-    opacity:.72;
+    opacity:.82;
   }
 
 }
