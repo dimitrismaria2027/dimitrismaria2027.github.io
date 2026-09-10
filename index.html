@@ -1742,16 +1742,17 @@ a{
 }
 
 .hall-art{
-  position:absolute;
+  display:block;
 
-  right:0;
-  bottom:0;
+  position:relative;
 
   width:100%;
+  max-width:520px;
   height:auto;
 
-  opacity:.22;
+  margin:24px auto 0;
 
+  opacity:.22;
   mix-blend-mode:darken;
 
   pointer-events:none;
@@ -2187,11 +2188,10 @@ footer{
   }
 
   .hall-art{
-  right:-12px;
-  bottom:-3px;
+  width:100%;
+  max-width:360px;
 
-  width:235px;
-  max-width:64%;
+  margin:20px auto 0;
 
   opacity:.22;
 }
