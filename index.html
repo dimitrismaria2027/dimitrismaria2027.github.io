@@ -1291,6 +1291,42 @@ a{
 }
 
 /* =========================
+   BOTTOM LEFT ROSE
+========================= */
+
+.rose-bottom-left{
+  position:absolute;
+
+  left:22px;
+  bottom:22px;
+
+  width:220px;
+  max-width:30%;
+
+  height:auto;
+
+  opacity:.78;
+
+  pointer-events:none;
+
+  z-index:2;
+}
+
+@media(max-width:700px){
+
+  .rose-bottom-left{
+    left:14px;
+    bottom:14px;
+
+    width:150px;
+    max-width:38%;
+
+    opacity:.72;
+  }
+
+}
+
+/* =========================
    INVITATION PAPER
 ========================= */
 
@@ -2576,6 +2612,13 @@ footer{
   <img
   class="rose-top-right"
   src="roser.png"
+  alt=""
+  aria-hidden="true"
+>
+
+  <img
+  class="rose-bottom-left"
+  src="rosel.png"
   alt=""
   aria-hidden="true"
 >
