@@ -2349,6 +2349,102 @@ footer{
 .copy-message.show{
   opacity:1;
 }
+
+/* =========================================
+   ΤΕΛΙΚΗ ΔΙΟΡΘΩΣΗ GLOW ΒΟΥΛΟΚΕΡΙΟΥ
+========================================= */
+
+.wax-seal.seal-glow{
+  animation:none !important;
+  box-shadow:none !important;
+  filter:none !important;
+  background:transparent !important;
+}
+
+/* Καμία σκιά πάνω στο τετράγωνο canvas της PNG */
+.wax-seal.seal-glow .seal-crest{
+  animation:sealImageGlow .72s ease-out forwards !important;
+  box-shadow:none !important;
+}
+
+/* Η λάμψη δημιουργείται ξεχωριστά πίσω από το βουλοκέρι */
+.wax-seal.seal-glow::after{
+  content:"";
+
+  position:absolute;
+  left:50%;
+  top:50%;
+
+  width:88px;
+  height:88px;
+
+  transform:translate(-50%,-50%) scale(.65);
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(238,201,108,.70) 0%,
+      rgba(217,170,72,.38) 35%,
+      rgba(185,127,38,.16) 58%,
+      rgba(185,127,38,0) 75%
+    );
+
+  opacity:0;
+
+  pointer-events:none;
+
+  z-index:1;
+
+  animation:sealRoundAura .72s ease-out forwards;
+}
+
+.wax-seal.seal-glow .seal-crest{
+  position:relative;
+  z-index:2;
+}
+
+@keyframes sealImageGlow{
+
+  0%{
+    filter:brightness(1);
+  }
+
+  38%{
+    filter:brightness(1.18);
+  }
+
+  100%{
+    filter:brightness(1.04);
+  }
+
+}
+
+@keyframes sealRoundAura{
+
+  0%{
+    opacity:0;
+    transform:
+      translate(-50%,-50%)
+      scale(.65);
+  }
+
+  38%{
+    opacity:1;
+    transform:
+      translate(-50%,-50%)
+      scale(1.18);
+  }
+
+  100%{
+    opacity:0;
+    transform:
+      translate(-50%,-50%)
+      scale(1.35);
+  }
+
+}
   
 </style>
 </head>
