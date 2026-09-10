@@ -594,11 +594,17 @@ a{
    ΧΡΥΣΗ ΛΑΜΨΗ ΒΟΥΛΟΚΕΡΙΟΥ
 ========================= */
 
+.wax-seal.seal-glow{
+  box-shadow:none !important;
+  background:transparent !important;
+}
+
 .wax-seal.seal-glow .seal-crest{
   animation:sealIgnite .72s ease-out forwards;
 }
 
 @keyframes sealIgnite{
+
   0%{
     filter:
       brightness(1)
@@ -609,17 +615,17 @@ a{
     filter:
       brightness(1.14)
       drop-shadow(0 0 7px rgba(238,201,108,.95))
-      drop-shadow(0 0 15px rgba(217,170,72,.70))
-      drop-shadow(0 0 25px rgba(185,127,38,.38));
+      drop-shadow(0 0 14px rgba(217,170,72,.65))
+      drop-shadow(0 0 22px rgba(185,127,38,.32));
   }
 
   100%{
     filter:
       brightness(1.04)
-      drop-shadow(0 0 6px rgba(226,188,93,.30));
+      drop-shadow(0 0 5px rgba(226,188,93,.28));
   }
-}
 
+}
 
 /* =========================
    ΧΡΥΣΗ ΛΑΜΨΗ ΦΑΚΕΛΟΥ
