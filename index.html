@@ -2350,8 +2350,11 @@ footer{
   opacity:1;
 }
 
+ΤΕΛΙΚΗ ΔΙΟΡΘΩΣΗ
+
 /* =========================================
-   ΤΕΛΙΚΗ ΔΙΟΡΘΩΣΗ GLOW ΒΟΥΛΟΚΕΡΙΟΥ
+   ΤΕΛΙΚΟ GLOW ΒΟΥΛΟΚΕΡΙΟΥ
+   χωρίς φωτισμό του τετράγωνου PNG
 ========================================= */
 
 .wax-seal.seal-glow{
@@ -2361,13 +2364,14 @@ footer{
   background:transparent !important;
 }
 
-/* Καμία σκιά πάνω στο τετράγωνο canvas της PNG */
+/* Η ίδια η εικόνα ΔΕΝ παίρνει κανένα filter/glow */
 .wax-seal.seal-glow .seal-crest{
-  animation:sealImageGlow .72s ease-out forwards !important;
+  animation:none !important;
+  filter:none !important;
   box-shadow:none !important;
 }
 
-/* Η λάμψη δημιουργείται ξεχωριστά πίσω από το βουλοκέρι */
+/* Μόνο απαλή στρογγυλή λάμψη πίσω από το βουλοκέρι */
 .wax-seal.seal-glow::after{
   content:"";
 
@@ -2375,26 +2379,26 @@ footer{
   left:50%;
   top:50%;
 
-  width:88px;
-  height:88px;
+  width:78px;
+  height:78px;
 
-  transform:translate(-50%,-50%) scale(.65);
+  transform:
+    translate(-50%,-50%)
+    scale(.70);
 
   border-radius:50%;
 
   background:
     radial-gradient(
       circle,
-      rgba(238,201,108,.70) 0%,
-      rgba(217,170,72,.38) 35%,
-      rgba(185,127,38,.16) 58%,
-      rgba(185,127,38,0) 75%
+      rgba(238,201,108,.72) 0%,
+      rgba(217,170,72,.38) 38%,
+      rgba(185,127,38,.14) 60%,
+      rgba(185,127,38,0) 76%
     );
 
   opacity:0;
-
   pointer-events:none;
-
   z-index:1;
 
   animation:sealRoundAura .72s ease-out forwards;
@@ -2405,46 +2409,30 @@ footer{
   z-index:2;
 }
 
-@keyframes sealImageGlow{
-
-  0%{
-    filter:brightness(1);
-  }
-
-  38%{
-    filter:brightness(1.18);
-  }
-
-  100%{
-    filter:brightness(1.04);
-  }
-
-}
-
 @keyframes sealRoundAura{
 
   0%{
     opacity:0;
     transform:
       translate(-50%,-50%)
-      scale(.65);
+      scale(.70);
   }
 
   38%{
     opacity:1;
     transform:
       translate(-50%,-50%)
-      scale(1.18);
+      scale(1.15);
   }
 
   100%{
     opacity:0;
     transform:
       translate(-50%,-50%)
-      scale(1.35);
+      scale(1.30);
   }
 
-}
+}  
   
 </style>
 </head>
