@@ -2353,85 +2353,19 @@ footer{
 ΤΕΛΙΚΗ ΔΙΟΡΘΩΣΗ
 
 /* =========================================
-   ΤΕΛΙΚΟ GLOW ΒΟΥΛΟΚΕΡΙΟΥ
-   χωρίς φωτισμό του τετράγωνου PNG
+   ΒΟΥΛΟΚΕΡΙ — ΧΩΡΙΣ ΔΙΚΟ ΤΟΥ GLOW
 ========================================= */
 
-.wax-seal.seal-glow{
+.wax-seal.seal-glow,
+.wax-seal.seal-glow .seal-crest{
   animation:none !important;
-  box-shadow:none !important;
   filter:none !important;
+  box-shadow:none !important;
   background:transparent !important;
 }
 
-/* Η ίδια η εικόνα ΔΕΝ παίρνει κανένα filter/glow */
-.wax-seal.seal-glow .seal-crest{
-  animation:none !important;
-  filter:none !important;
-  box-shadow:none !important;
-}
-
-/* Μόνο απαλή στρογγυλή λάμψη πίσω από το βουλοκέρι */
 .wax-seal.seal-glow::after{
-  content:"";
-
-  position:absolute;
-  left:50%;
-  top:50%;
-
-  width:78px;
-  height:78px;
-
-  transform:
-    translate(-50%,-50%)
-    scale(.70);
-
-  border-radius:50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(238,201,108,.72) 0%,
-      rgba(217,170,72,.38) 38%,
-      rgba(185,127,38,.14) 60%,
-      rgba(185,127,38,0) 76%
-    );
-
-  opacity:0;
-  pointer-events:none;
-  z-index:1;
-
-  animation:sealRoundAura .72s ease-out forwards;
-}
-
-.wax-seal.seal-glow .seal-crest{
-  position:relative;
-  z-index:2;
-}
-
-@keyframes sealRoundAura{
-
-  0%{
-    opacity:0;
-    transform:
-      translate(-50%,-50%)
-      scale(.70);
-  }
-
-  38%{
-    opacity:1;
-    transform:
-      translate(-50%,-50%)
-      scale(1.15);
-  }
-
-  100%{
-    opacity:0;
-    transform:
-      translate(-50%,-50%)
-      scale(1.30);
-  }
-
+  content:none !important;
 }  
   
 </style>
