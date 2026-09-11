@@ -796,18 +796,29 @@ a{
 
 @media(min-width:701px){
 
+  .paper-holder{
+    overflow:hidden;
+    clip-path:none;
+    z-index:15;
+    transform:none !important;
+  }
+
   .paper-rising .paper-holder{
-    transform:translateZ(.1px);
-    backface-visibility:hidden;
-    -webkit-backface-visibility:hidden;
+    overflow:hidden;
+    clip-path:none;
+    z-index:15;
+    transform:none !important;
   }
 
   .paper-rising .fold-left,
-  .paper-rising .fold-right,
+  .paper-rising .fold-right{
+    z-index:25;
+    transform:none !important;
+  }
+
   .paper-rising .fold-bottom{
-    transform:translateZ(.2px);
-    backface-visibility:hidden;
-    -webkit-backface-visibility:hidden;
+    z-index:30;
+    transform:none !important;
   }
 
 }
