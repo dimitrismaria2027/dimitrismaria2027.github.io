@@ -2943,12 +2943,12 @@ footer{
   role="button"
   tabindex="0"
 >
-  GR000000000000000000
+  IBAN: GR•• •••• •••• •••• •••• •••• •••
   <span class="copy-icon">⧉</span>
 </span>
 
 <span class="copy-message" id="copyMessage">
-  Αντιγράφηκε ✓
+  Αντιγράφηκε ο IBAN ✓
 </span>
 
 
@@ -3107,11 +3107,7 @@ seal.addEventListener("click", function(){
 
 function copyIban(){
 
-  const iban = document
-    .getElementById("copyIban")
-    .childNodes[0]
-    .textContent
-    .trim();
+  const iban = "GR5201106720000091016376906";
 
   navigator.clipboard.writeText(iban).then(function(){
 
