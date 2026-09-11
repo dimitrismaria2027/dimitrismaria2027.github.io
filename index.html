@@ -797,7 +797,9 @@ a{
 @media(min-width:701px){
 
   .paper-rising .paper-holder{
-    transform:none;
+    transform:translateZ(.1px);
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
   }
 
   .paper-rising .fold-left,
