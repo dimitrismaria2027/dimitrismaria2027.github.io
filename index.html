@@ -702,15 +702,13 @@ a{
   top:7%;
   bottom:5%;
 
-  overflow:hidden;
+  overflow:visible;
+
+  clip-path:inset(0 0 0 0);
 
   z-index:15;
 
   pointer-events:none;
-}
-
-.paper-rising .paper-holder{
-  overflow:visible;
 }
 
 .inside-paper{
@@ -742,17 +740,23 @@ a{
   transition:top 2.25s cubic-bezier(.17,.76,.17,1);
 }
 
-.inside-paper::after{
-  content:"";
-
-  position:absolute;
-  inset:12px;
-
-  border:1px solid rgba(123,91,38,.16);
+.paper-rising .paper-holder{
+  clip-path:inset(-120% 0 0 0);
+  z-index:40;
 }
 
 .paper-rising .inside-paper{
-  top:-32%;
+  top:-30%;
+}
+
+.paper-rising .fold-left,
+.paper-rising .fold-right,
+.paper-rising .fold-bottom{
+  z-index:50;
+}
+
+.paper-rising .flap{
+  z-index:30;
 }
 
 .paper-mini-date{
