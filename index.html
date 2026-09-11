@@ -805,7 +805,9 @@ a{
   .paper-rising .fold-left,
   .paper-rising .fold-right,
   .paper-rising .fold-bottom{
-    transform:none;
+    transform:translateZ(.2px);
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
   }
 
 }
