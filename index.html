@@ -755,7 +755,17 @@ a{
 }
 
 .paper-rising .flap{
-  z-index:30;
+  z-index:10;
+}
+
+.paper-rising .flap-front,
+.paper-rising .flap-back{
+  border-color:transparent !important;
+  box-shadow:none !important;
+}
+
+.paper-rising .flap-front::before{
+  display:none !important;
 }
 
 .paper-rising .flap-front::before{
