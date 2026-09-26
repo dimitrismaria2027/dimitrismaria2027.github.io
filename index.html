@@ -2570,6 +2570,68 @@ footer{
   }
 
 }
+
+/* =========================
+   MUSIC BUTTON
+========================= */
+
+.music-toggle{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+
+  width:44px;
+  height:44px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:0;
+
+  border:1px solid rgba(155,123,53,.55);
+  border-radius:50%;
+
+  background:rgba(241,231,212,.90);
+
+  font-size:19px;
+  line-height:1;
+
+  cursor:pointer;
+
+  box-shadow:0 3px 12px rgba(0,0,0,.12);
+
+  z-index:200;
+
+  opacity:0;
+  visibility:hidden;
+
+  transition:
+    opacity .4s ease,
+    transform .25s ease;
+}
+
+.music-toggle.visible{
+  opacity:.82;
+  visibility:visible;
+}
+
+.music-toggle:hover{
+  opacity:1;
+  transform:scale(1.06);
+}
+
+@media(max-width:700px){
+  .music-toggle{
+    right:14px;
+    bottom:14px;
+
+    width:40px;
+    height:40px;
+
+    font-size:17px;
+  }
+}
   
 </style>
 </head>
@@ -3127,6 +3189,16 @@ footer{
 <audio id="weddingMusic" preload="auto">
   <source src="music.mp3" type="audio/mpeg">
 </audio>
+
+<button
+  id="musicToggle"
+  class="music-toggle"
+  type="button"
+  aria-label="Κλείσιμο μουσικής"
+  title="Μουσική"
+>
+  🔊
+</button>  
   
 <script>
 
@@ -3137,6 +3209,7 @@ const opening = document.getElementById("opening");
 const invitation = document.getElementById("invitation");
 const goldDust = document.getElementById("goldDust");
 const weddingMusic = document.getElementById("weddingMusic");
+const musicToggle = document.getElementById("musicToggle");
 
 let opened = false;
 
@@ -3150,6 +3223,7 @@ seal.addEventListener("click", function(){
   opened = true;
 
   weddingMusic.volume = 0.45;
+
   weddingMusic.play().catch(function(){
     // Αν η συσκευή μπλοκάρει τη μουσική,
     // η πρόσκληση συνεχίζει κανονικά.
@@ -3217,21 +3291,47 @@ seal.addEventListener("click", function(){
 
   /* 6. ΕΜΦΑΝΙΖΕΤΑΙ ΤΟ ΠΡΟΣΚΛΗΤΗΡΙΟ */
 
-  setTimeout(function(){
+setTimeout(function(){
+  opening.classList.add("opening-hidden");
+  invitation.classList.add("visible");
+  musicToggle.classList.add("visible");
 
-    opening.classList.add("opening-hidden");
-
-    invitation.classList.add("visible");
-
-    window.scrollTo({
-      top:0,
-      behavior:"instant"
-    });
-
-  }, 3750);
+  window.scrollTo({
+    top:0,
+    behavior:"instant"
+  });
+}, 3750);
 
 
 });
+
+musicToggle.addEventListener("click", function(){
+
+  if(weddingMusic.paused){
+
+    weddingMusic.play().then(function(){
+
+      musicToggle.textContent = "🔊";
+      musicToggle.setAttribute(
+        "aria-label",
+        "Κλείσιμο μουσικής"
+      );
+
+    }).catch(function(){});
+
+  }else{
+
+    weddingMusic.pause();
+
+    musicToggle.textContent = "🔇";
+    musicToggle.setAttribute(
+      "aria-label",
+      "Άνοιγμα μουσικής"
+    );
+
+  }
+
+});  
 
 function copyIban(){
 
