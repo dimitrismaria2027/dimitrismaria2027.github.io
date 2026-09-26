@@ -3124,40 +3124,36 @@ footer{
 
 </main>
 
-
+<audio id="weddingMusic" preload="auto">
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+  
 <script>
 
-const seal =
-  document.getElementById("seal");
-
-const envelope =
-  document.getElementById("envelope");
-
-const flap =
-  document.getElementById("flap");
-
-const opening =
-  document.getElementById("opening");
-
-const invitation =
-  document.getElementById("invitation");
-
-const goldDust =
-  document.getElementById("goldDust");
+const seal = document.getElementById("seal");
+const envelope = document.getElementById("envelope");
+const flap = document.getElementById("flap");
+const opening = document.getElementById("opening");
+const invitation = document.getElementById("invitation");
+const goldDust = document.getElementById("goldDust");
+const weddingMusic = document.getElementById("weddingMusic");
 
 let opened = false;
 
 
 seal.addEventListener("click", function(){
 
-
   if(opened){
     return;
   }
 
-
   opened = true;
 
+  weddingMusic.volume = 0.45;
+  weddingMusic.play().catch(function(){
+    // Αν η συσκευή μπλοκάρει τη μουσική,
+    // η πρόσκληση συνεχίζει κανονικά.
+  });
 
   seal.style.pointerEvents = "none";
 
