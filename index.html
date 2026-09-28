@@ -3333,6 +3333,20 @@ musicToggle.addEventListener("click", function(){
 
 });  
 
+document.addEventListener("visibilitychange", function(){
+
+  if(document.hidden && !weddingMusic.paused){
+    weddingMusic.pause();
+
+    musicToggle.textContent = "🔇";
+    musicToggle.setAttribute(
+      "aria-label",
+      "Άνοιγμα μουσικής"
+    );
+  }
+
+});  
+
 function copyIban(){
 
   const iban = "GR5201106720000091016376906";
